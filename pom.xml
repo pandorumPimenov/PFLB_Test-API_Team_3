@@ -14,6 +14,8 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <testng.version>7.11.0</testng.version>
         <selenium.version>4.32.0</selenium.version>
+        <selenide.version>7.9.0</selenide.version>
+        <allure-selenide.version>2.24.0</allure-selenide.version>
         <suiteXmlFile>src/test/resources/SmokeTest.xml</suiteXmlFile>
         <allure.version>2.24.0</allure.version>
         <aspectj.version>1.9.20.1</aspectj.version>
@@ -46,18 +48,25 @@
     </dependencyManagement>
 
     <dependencies>
+        <!-- Selenide -->
+        <dependency>
+            <groupId>com.codeborne</groupId>
+            <artifactId>selenide</artifactId>
+            <version>${selenide.version}</version>
+        </dependency>
+
+        <!-- Allure-selenide -->
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-selenide</artifactId>
+            <version>${allure-selenide.version}</version>
+        </dependency>
+
         <!-- TestNG -->
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
             <version>${testng.version}</version>
-        </dependency>
-
-        <!-- Selenium -->
-        <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-java</artifactId>
-            <version>${selenium.version}</version>
         </dependency>
 
         <!-- AssertJ -->
