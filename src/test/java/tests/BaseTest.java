@@ -20,7 +20,7 @@ public class BaseTest {
 
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--maximized");
-        options.addArguments("--incognito");
+//      options.addArguments("--incognito");
         Configuration.browserCapabilities = options;
 
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide()
