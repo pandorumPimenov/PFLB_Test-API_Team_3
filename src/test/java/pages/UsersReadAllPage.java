@@ -2,7 +2,6 @@ package pages;
 
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
-import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.$;
@@ -19,24 +18,22 @@ sex
 money   - найти его там нереально может пропустить?
 */
 public class UsersReadAllPage extends BasePage {
-    private final SelenideElement USER_TITLE_UP_MENU = $("#basic-nav-dropdown");
-    private final SelenideElement DROPDOWN_LINK_READ_ALL = $x("//div[@class='dropdown-menu'] /descendant:: a[contains (text()='Read all')]");
-    private final SelenideElement USERS_READ_ALL_RELOAD_BUTTON = $x("//button[contains(text(),'Reload')]");
-    private final SelenideElement USERS_READ_ALL_ID_BUTTON = $x("//button[contains(text(),'ID')]");
-    private final SelenideElement USERS_READ_ALL_FIRST_NAME_BUTTON = $x("//button[contains(text(),'First')]");
-    private final SelenideElement USERS_READ_ALL_LAST_NAME_BUTTON = $x("//button[contains(text(),'Last')]");
-    private final SelenideElement USERS_READ_ALL_AGE_BUTTON = $x("//button[contains(text(),'Age')]");
-    private final SelenideElement USERS_READ_ALL_SEX_BUTTON = $x("//button[contains(text(),'Sex')]");
-    private final SelenideElement USERS_READ_ALL_MONEY_BUTTON = $x("//button[contains(text(),'Money')]");
-    private final SelenideElement USERS_READ_ALL_TABLE_ID_TITLE = $x("//th[contains(text(),'ID')]");
-    private final SelenideElement USERS_READ_ALL_FIRST_NAME_TITLE = $x("//th[contains(text(),'First')]");
-    private final SelenideElement USERS_READ_ALL_LAST_NAME_TITLE = $x("//th[contains(text(),'Last')]");
-    private final SelenideElement USERS_READ_ALL_AGE_TITLE = $x("//th[contains(text(),'Age')]");
-    private final SelenideElement USERS_READ_ALL_SEX_TITLE = $x("//th[contains(text(),'Sex')]");
-    private final SelenideElement USERS_READ_ALL_MONEY_TITLE = $x("//th[contains(text(),'Money')]");
-    private final SelenideElement USERS_READ_ALL_TABLE_BODY = $("tbody");
-    private final SelenideElement USERS_READ_ALL_TABLE_CELL_ID = $x("//td[contains(text(), '3')]");
-    private final SelenideElement USERS_READ_ALL_TABLE_CELL_FIRST_NAME = $("tbody tr td:nth-child(2)");// втроая с именем
+    private final SelenideElement reloadButton = $x("//button[contains(text(),'Reload')]");
+    private final SelenideElement idSortButton = $x("//button[contains(text(),'ID')]");
+    private final SelenideElement firstNameSortButton = $x("//button[contains(text(),'First')]");
+    private final SelenideElement lastNameSortButton = $x("//button[contains(text(),'Last')]");
+    private final SelenideElement ageSortButton = $x("//button[contains(text(),'Age')]");
+    private final SelenideElement sexSortButton = $x("//button[contains(text(),'Sex')]");
+    private final SelenideElement moneySortButton = $x("//button[contains(text(),'Money')]");
+    private final SelenideElement idTitle = $x("//th[contains(text(),'ID')]");
+    private final SelenideElement firstNameTitle = $x("//th[contains(text(),'First')]");
+    private final SelenideElement lastNameTitle = $x("//th[contains(text(),'Last')]");
+    private final SelenideElement ageTitle = $x("//th[contains(text(),'Age')]");
+    private final SelenideElement sexTitle = $x("//th[contains(text(),'Sex')]");
+    private final SelenideElement moneyTitle = $x("//th[contains(text(),'Money')]");
+    private final SelenideElement tableBody = $("tbody");
+    private final SelenideElement userWithId3 = $x("//td[contains(text(), '3')]");
+    private final SelenideElement secondNameCell = $("tbody tr td:nth-child(2)"); // вторая с именем
 
     @Step("открытие страницы Users_Read_all")
     public UsersReadAllPage openUsersReadAllPage(){
@@ -44,47 +41,46 @@ public class UsersReadAllPage extends BasePage {
         return this;
     }
 
-    @Step("Проверка наличия плашки с кнопками")
-    public UsersReadAllPage checkSortButtons(){
-        $(USERS_READ_ALL_RELOAD_BUTTON);
-        $(USERS_READ_ALL_ID_BUTTON);
-        $(USERS_READ_ALL_FIRST_NAME_BUTTON);
-        $(USERS_READ_ALL_LAST_NAME_BUTTON);
-        $(USERS_READ_ALL_AGE_BUTTON);
-        $(USERS_READ_ALL_SEX_BUTTON);
-        $(USERS_READ_ALL_MONEY_BUTTON);
+    @Step("Проверка отображения всех кнопок сортировки")
+    public UsersReadAllPage checkSortButtons() {
+        reloadButton.shouldBe(visible);
+        idSortButton.shouldBe(visible);
+        firstNameSortButton.shouldBe(visible);
+        lastNameSortButton.shouldBe(visible);
+        ageSortButton.shouldBe(visible);
+        sexSortButton.shouldBe(visible);
+        moneySortButton.shouldBe(visible);
         return this;
     }
 
     @Step("Проверка наличия и корректности названий столбцов таблицы")
-    public UsersReadAllPage checkTableTitles(){
-        $(USERS_READ_ALL_TABLE_ID_TITLE);
-        $(USERS_READ_ALL_FIRST_NAME_TITLE);
-        $(USERS_READ_ALL_LAST_NAME_TITLE);
-        $(USERS_READ_ALL_AGE_TITLE);
-        $(USERS_READ_ALL_SEX_TITLE);
-        $(USERS_READ_ALL_MONEY_TITLE);
+    public UsersReadAllPage checkTableTitles() {
+        idTitle.shouldBe(visible);
+        firstNameTitle.shouldBe(visible);
+        lastNameTitle.shouldBe(visible);
+        ageTitle.shouldBe(visible);
+        sexTitle.shouldBe(visible);
+        moneyTitle.shouldBe(visible);
         return this;
     }
 
     @Step("Проверка наличия строк в таблице")
-    public UsersReadAllPage checkTableNotEmpty(){
-        $(USERS_READ_ALL_TABLE_BODY);
+    public UsersReadAllPage checkTableNotEmpty() {
+        tableBody.shouldBe(visible);
         return this;
     }
 
     @Step("Проверка сортировки по ID")
-    public UsersReadAllPage checkSortingByID(){
-        $(USERS_READ_ALL_ID_BUTTON).click();
-        $(USERS_READ_ALL_TABLE_CELL_ID).shouldHave(text("3"));
+    public UsersReadAllPage checkSortingByID() {
+        idSortButton.click();
+        userWithId3.shouldHave(text("3"));
         return this;
     }
 
     @Step("Проверка сортировки по Имени")
-    public UsersReadAllPage checkSortingByName(){
-        $(USERS_READ_ALL_FIRST_NAME_BUTTON).click();
-        $(USERS_READ_ALL_TABLE_CELL_FIRST_NAME).shouldBe(empty);
+    public UsersReadAllPage checkSortingByName() {
+        firstNameSortButton.click();
+        secondNameCell.shouldBe(empty);
         return this;
-
     }
 }
