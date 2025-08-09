@@ -33,6 +33,7 @@ public class BaseTest {
         menuPage = new MenuPage();
         createUserPage = new CreateUserPage();
         addMoneyPage = new AddMoneyPage();
+        usersReadAllPage = new UsersReadAllPage();
         softAssert = new SoftAssert();
     }
 
