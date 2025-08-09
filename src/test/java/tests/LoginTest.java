@@ -7,5 +7,4 @@ public class LoginTest extends BaseTest{
         loginPage.login(user, password);
         softAssert.assertEquals(loginPage.checkAlert(), "Successful authorization");
     }
-
 }
