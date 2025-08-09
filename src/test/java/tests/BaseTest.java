@@ -1,37 +1,53 @@
 package tests;
 
 import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.WebDriverRunner;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.asserts.SoftAssert;
-import pages.LoginPage;
-import pages.UsersReadAllPage;
-
+import pages.*;
 import static com.codeborne.selenide.Selenide.closeWebDriver;
-import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
 public class BaseTest {
-    LoginPage loginPage = new LoginPage();
-    UsersReadAllPage usersReadAllPage = new UsersReadAllPage();
-    String user = System.getProperty("user", PropertyReader.getProperty("user"));
-    String password = System.getProperty("password", PropertyReader.getProperty("password"));
-    SoftAssert softAssert = new SoftAssert();
+    protected LoginPage loginPage;
+    protected MenuPage menuPage;
+    protected CreateUserPage createUserPage;
+    protected AddMoneyPage addMoneyPage;
+    protected SoftAssert softAssert;
+    protected UsersReadAllPage usersReadAllPage; 
+
+    protected final String user = System.getProperty("user", PropertyReader.getProperty("user"));
+    protected final String password = System.getProperty("password", PropertyReader.getProperty("password"));
+
     @BeforeMethod
     public void setup() {
+        initializePages();
+        configureBrowser();
+        setupAllure();
+    }
+
+    private void initializePages() {
+        loginPage = new LoginPage();
+        menuPage = new MenuPage();
+        createUserPage = new CreateUserPage();
+        addMoneyPage = new AddMoneyPage();
+        softAssert = new SoftAssert();
+    }
+
+    private void configureBrowser() {
         Configuration.browser = "chrome";
-        Configuration.timeout = 5000;
+        Configuration.timeout = 10000;
         Configuration.headless = false;
         Configuration.clickViaJs = true;
 
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--maximized");
-//      options.addArguments("--incognito");
+        options.addArguments("--start-maximized");
         Configuration.browserCapabilities = options;
+    }
 
+    private void setupAllure() {
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide()
                 .screenshots(true)
                 .savePageSource(true)
@@ -40,8 +56,7 @@ public class BaseTest {
 
     @AfterMethod
     public void tearDown() {
-        if(getWebDriver() !=null) {
-            closeWebDriver();
-        }
+        softAssert.assertAll();
+        closeWebDriver();
     }
 }

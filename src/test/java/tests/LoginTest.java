@@ -1,10 +1,16 @@
 package tests;
+
 import org.testng.annotations.Test;
-public class LoginTest extends BaseTest{
+import static org.testng.Assert.assertEquals;
+
+public class LoginTest extends BaseTest {
 
     @Test(testName = "Авторизация с валидными данными")
-    public void checkLogin() {
-        loginPage.login(user, password);
-        softAssert.assertEquals(loginPage.checkAlert(), "Successful authorization");
+    public void successfulLoginWithValidCredentials() {
+        String alertMessage = loginPage.login(user, password)
+                .checkAlert();
+
+        assertEquals(alertMessage, "Successful authorization",
+                "Сообщение об успешной авторизации не соответствует ожидаемому");
     }
 }
