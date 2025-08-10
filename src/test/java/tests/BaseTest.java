@@ -6,17 +6,21 @@ import io.qameta.allure.selenide.AllureSelenide;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import org.testng.asserts.SoftAssert;
 import pages.*;
+
 import static com.codeborne.selenide.Selenide.closeWebDriver;
 
+@Listeners(TestListener.class)
 public class BaseTest {
     protected LoginPage loginPage;
     protected MenuPage menuPage;
     protected CreateUserPage createUserPage;
     protected AddMoneyPage addMoneyPage;
     protected SoftAssert softAssert;
-    protected UsersReadAllPage usersReadAllPage; 
+    protected UsersReadAllPage usersReadAllPage;
+    protected CarsPage carsPage;
 
     protected final String user = System.getProperty("user", PropertyReader.getProperty("user"));
     protected final String password = System.getProperty("password", PropertyReader.getProperty("password"));
@@ -34,6 +38,7 @@ public class BaseTest {
         createUserPage = new CreateUserPage();
         addMoneyPage = new AddMoneyPage();
         usersReadAllPage = new UsersReadAllPage();
+        carsPage = new CarsPage();
         softAssert = new SoftAssert();
     }
 
