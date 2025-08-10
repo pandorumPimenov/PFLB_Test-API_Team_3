@@ -6,11 +6,13 @@ import io.qameta.allure.selenide.AllureSelenide;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import org.testng.asserts.SoftAssert;
 import pages.*;
 
 import static com.codeborne.selenide.Selenide.closeWebDriver;
 
+@Listeners(TestListener.class)
 public class BaseTest {
     protected LoginPage loginPage;
     protected MenuPage menuPage;
