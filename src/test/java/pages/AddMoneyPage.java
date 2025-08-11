@@ -1,7 +1,9 @@
 package pages;
 
 import com.codeborne.selenide.SelenideElement;
+import dto.Money;
 import io.qameta.allure.Step;
+import wrappers.Input;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
@@ -14,9 +16,9 @@ public class AddMoneyPage extends BasePage {
     private final SelenideElement incorrectMessage = $x("//button[normalize-space()='Status: Incorrect input data']");
 
     @Step("Пополнение баланса пользователя с ID {userId} на сумму {money}")
-    public AddMoneyPage addMoney(String userId, String money) {
-        setValue(userIdField, userId);
-        setValue(moneyField, money);
+    public AddMoneyPage addMoney(Money money) {
+        new Input("id_send").write(money.getUserId());
+        new Input("money_send").write(money.getMoney());
         clickElement(pushButton);
         return this;
     }
