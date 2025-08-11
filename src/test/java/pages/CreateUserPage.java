@@ -5,7 +5,6 @@ import dto.UserBuild;
 import io.qameta.allure.Step;
 import wrappers.Checkbox;
 import wrappers.Input;
-
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
 
@@ -25,7 +24,6 @@ public class CreateUserPage extends BasePage {
         clickElement(pushButton);
         return this;
     }
-
 
     @Step("Получение сообщения об успешном создании пользователя")
     public String getSuccessMessage() {

@@ -10,7 +10,6 @@ import static com.codeborne.selenide.Selenide.$;
 public class Checkbox {
     String value;
 
-
     public Checkbox(String value) {
         this.value = value;
     }
@@ -27,5 +26,4 @@ public class Checkbox {
                 .shouldBe(visible, enabled)
                 .click();
     }
-
 }

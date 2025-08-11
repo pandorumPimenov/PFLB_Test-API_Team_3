@@ -11,7 +11,6 @@ import static com.codeborne.selenide.Condition.visible;
 
 public class Input {
 
-
     private final String value;
 
     public Input(String value) {
@@ -31,8 +30,6 @@ public class Input {
                 .shouldBe(visible)
                 .setValue(text);
     }
-
-
 }
 
 
