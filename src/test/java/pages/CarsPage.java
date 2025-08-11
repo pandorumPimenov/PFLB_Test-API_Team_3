@@ -1,8 +1,13 @@
 package pages;
 
 import com.codeborne.selenide.SelenideElement;
+import dto.BuyCar;
+import dto.Cars;
+import dto.SellCar;
 import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
+import wrappers.Checkbox;
+import wrappers.Input;
 
 import static com.codeborne.selenide.Selectors.by;
 import static com.codeborne.selenide.Selenide.*;
@@ -16,21 +21,11 @@ public class CarsPage extends BasePage {
     private final SelenideElement carsReloadFiled = $x("//button[text()='Reload']");
     private final SelenideElement idField = $x("//button[contains(text(),'ID')]");
     private final SelenideElement idUpField = $x("//button[text()='↑']");
-
     private final SelenideElement carsCrateField = $x("//a[text()='Create new']");
-    private final SelenideElement carEngineTypeField = $(by("id", "car_engine_type_send"));
-    private final SelenideElement carMarkField = $(by("id", "car_mark_send"));
-    private final SelenideElement carModelField = $(by("id", "car_model_send"));
-    private final SelenideElement carPriceField = $(by("id", "car_price_send"));
     private final SelenideElement pushButton = $("button.btn.btn-primary.tableButton");
     private final SelenideElement successMessage201 = $x("//button[normalize-space()='Status: Successfully pushed, code: 200']");
     private final SelenideElement invalidMessage = $x("//button[normalize-space()='Status: AxiosError: Request failed with status code 400']");
-
     private final SelenideElement carsByOrSellField = $x("//a[text()='Buy or sell car']");
-    private final SelenideElement userIDField = $(by("id", "id_send"));
-    private final SelenideElement carIdField = $(by("id", "car_send"));
-    private final SelenideElement radioBuyField = $("input[value='buyCar']");
-    private final SelenideElement radioSellField = $("input[value='sellCar']");
 
     @Step("Клик по меню Cars")
     public CarsPage clickMenuCars() {
@@ -78,20 +73,22 @@ public class CarsPage extends BasePage {
         return this;
     }
 
+
     @Step("Создание нового автомобиля с данными {engineType}, {mark}, {model}, {price}. Негативный")
-    public CarsPage createNewCarNegative(String engineType, String mark, String model, String price) {
+    public CarsPage createNewCar(Cars cars) {
         log.info("Set value in Engine Type");
-        setValue(carEngineTypeField, engineType);
+        new Input("car_engine_type_send").write(cars.getEngineType());
         log.info("Set value in Mark");
-        setValue(carModelField, mark);
+        new Input("car_mark_send").write(cars.getMark());
         log.info("Set value in Model");
-        setValue(carMarkField, model);
+        new Input("car_model_send").write(cars.getModel());
         log.info("Set value in Price");
-        setValue(carPriceField, price);
+        new Input("car_price_send").write(cars.getPrice());
         log.info("Click button --PUSH TO API--");
         clickElement(pushButton);
         return this;
     }
+
 
     @Step("Получение сообщения об успехе")
     public String getSuccessMessage() {
@@ -112,26 +109,26 @@ public class CarsPage extends BasePage {
     }
 
     @Step("Покупка автомобиля с данными {userID}, {CarId}. Позитивный")
-    public CarsPage buyCarPositive(String userID, String carId) {
+    public CarsPage buyCarPositive(BuyCar buyCar) {
         log.info("Set value in User ID BUY");
-        setValue(userIDField, userID);
+        new Input("id_send").write(buyCar.getUserId());
         log.info("Set value in Card Id BUY");
-        setValue(carIdField, carId);
+        new Input("car_send").write(buyCar.getCarId());
         log.info("Tap radio button BUY");
-        clickElement(radioBuyField);
+        new Checkbox("buyCar").checkBuyOrSellCars();
         log.info("Click button --PUSH TO API-- BUY");
         clickElement(pushButton);
         return this;
     }
 
     @Step("Продажа автомобиля с данными {userID}, {CarId}. Позитивный")
-    public CarsPage sellCarPositive(String userID, String carId) {
+    public CarsPage sellCarPositive(SellCar sellCar) {
         log.info("Set value in User ID SELL");
-        setValue(userIDField, userID);
+        new Input("id_send").write(sellCar.getUserId());
         log.info("Set value in Card Id SELL");
-        setValue(carIdField, carId);
+        new Input("car_send").write(sellCar.getCarId());
         log.info("Tap radio button SELL");
-        clickElement(radioSellField);
+        new Checkbox("sellCar").checkBuyOrSellCars();
         log.info("Click button --PUSH TO API-- SELL");
         clickElement(pushButton);
         return this;

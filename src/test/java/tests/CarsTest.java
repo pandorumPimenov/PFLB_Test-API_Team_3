@@ -1,10 +1,27 @@
 package tests;
 
+import dto.BuyCar;
+import dto.Cars;
+import dto.SellCar;
 import org.testng.annotations.Test;
 
 public class CarsTest extends BaseTest {
     @Test(testName = "Автомобили")
     public void checkCars() {
+        Cars cars = Cars.builder()
+                .engineType("diesel")
+                .model("1")
+                .mark("2")
+                .price("22")
+                .build();
+        BuyCar buyCar = BuyCar.builder()
+                .CarId("7335")
+                .CarId("677")
+                .build();
+        SellCar sellCar = SellCar.builder()
+                .CarId("7335")
+                .UserId("677")
+                .build();
         loginPage.login(user, password)
                 .checkAlert();
         carsPage.clickMenuCars()
@@ -14,13 +31,13 @@ public class CarsTest extends BaseTest {
                 .sortWithIdUp()
                 .clickMenuCars()
                 .clickCreateNew()
-                .createNewCarNegative("diesel", "Toyota", "LCPrado", "500000")
+                .createNewCar(cars)
                 .getErrorMessage();
         carsPage.clickMenuCars()
                 .clickBuyOrSell()
-                .buyCarPositive("7335", "677")
+                .buyCarPositive(buyCar)
                 .getSuccessMessage();
-        carsPage.sellCarPositive("7335", "677")
+        carsPage.sellCarPositive(sellCar)
                 .getSuccessMessage();
     }
 }
