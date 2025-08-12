@@ -5,6 +5,7 @@ import com.google.gson.GsonBuilder;
 import dto.api.User;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
+import io.restassured.mapper.ObjectMapperType;
 import io.restassured.parsing.Parser;
 import io.restassured.specification.RequestSpecification;
 import tests.api.BaseAPITest;
@@ -56,7 +57,7 @@ public class UserAdapter extends BaseAPITest{
                 .log().all()
                 .statusCode(204)
                 .extract()
-                .as(User.class);
+                .as(User.class, ObjectMapperType.GSON);
     }
 
     public User updateUser(User user, int id){

@@ -57,8 +57,7 @@ public class UserTest extends BaseAPITest {
         User rs = userAdapter.createUser(user);
         int id = rs.getId();
         Assert.assertEquals(rs.getFirstName(), "Jo");
-        User delete = userAdapter.deleteUser(id);
-        Assert.assertEquals(delete.getFirstName(), "Jo");
+        userAdapter.deleteUser(id);
     }
     @Test
     public void updateUser(){
