@@ -2,11 +2,16 @@ package pages;
 
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.testng.Assert;
+
+import java.time.Duration;
+import java.util.Collection;
+import java.util.List;
 
 import static com.codeborne.selenide.Condition.*;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$x;
-import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.*;
 
 /*
 Создать пользователя и проверить отображение данных в таблице:
@@ -33,7 +38,8 @@ public class UsersReadAllPage extends BasePage {
     private final SelenideElement moneyTitle = $x("//th[contains(text(),'Money')]");
     private final SelenideElement tableBody = $("tbody");
     private final SelenideElement userWithId3 = $x("//td[contains(text(), '3')]");
-    private final SelenideElement secondNameCell = $("tbody tr td:nth-child(2)"); // вторая с именем
+    private final SelenideElement secondNameCell = $("tbody tr td:nth-child(2)");// вторая с именем
+    private final SelenideElement thirdSurnameCell = $("tbody tr td:nth-child(3)");
 
     @Step("открытие страницы Users_Read_all")
     public UsersReadAllPage openUsersReadAllPage(){
@@ -83,4 +89,9 @@ public class UsersReadAllPage extends BasePage {
         secondNameCell.shouldBe(empty);
         return this;
     }
-}
+    @Step("Проверка наличия созданного пользователя в таблице")
+    public UsersReadAllPage checkNewUserInTable(String newUserName){
+     tableBody.$$("tr").findBy(text(newUserName)).should(exist);
+     return this;
+        }
+    }
