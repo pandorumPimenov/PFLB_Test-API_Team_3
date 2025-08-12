@@ -1,6 +1,6 @@
 package tests;
 
-import dto.Money;
+import dto.ui.Money;
 import org.testng.annotations.Test;
 
 import static com.codeborne.selenide.Selenide.webdriver;

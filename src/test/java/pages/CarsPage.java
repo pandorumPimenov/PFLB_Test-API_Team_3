@@ -1,9 +1,9 @@
 package pages;
 
 import com.codeborne.selenide.SelenideElement;
-import dto.BuyCar;
-import dto.Cars;
-import dto.SellCar;
+import dto.ui.BuyCar;
+import dto.ui.Cars;
+import dto.ui.SellCar;
 import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
 import wrappers.Checkbox;
