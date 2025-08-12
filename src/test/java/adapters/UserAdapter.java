@@ -3,7 +3,9 @@ package adapters;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import dto.api.User;
+import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
+import io.restassured.parsing.Parser;
 import io.restassured.specification.RequestSpecification;
 import tests.api.BaseAPITest;
 
@@ -41,6 +43,31 @@ public class UserAdapter extends BaseAPITest{
                 .then()
                 .log().all()
                 .statusCode(200)
+                .extract()
+                .as(User.class);
+    }
+
+    public User deleteUser(int id){
+        return spec
+                .when()
+                .header("Authorization", "Bearer " + token)
+                .delete(BASE_URI + "user/" + id)
+                .then()
+                .log().all()
+                .statusCode(204)
+                .extract()
+                .as(User.class);
+    }
+
+    public User updateUser(User user, int id){
+        return spec
+                .body(gson.toJson(user))
+                .when()
+                .header("Authorization", "Bearer " + token)
+                .put(BASE_URI + "user/" + id)
+                .then()
+                .log().all()
+                .statusCode(202)
                 .extract()
                 .as(User.class);
     }

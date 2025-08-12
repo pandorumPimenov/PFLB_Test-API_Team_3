@@ -30,6 +30,6 @@ public class AuthorizationAdapter {
                 .log().all()
                 .statusCode(202)
                 .extract()
-                .as(AuthResponse.class, ObjectMapperType.GSON);  // Изменено на AuthResponse
+                .as(AuthResponse.class, ObjectMapperType.GSON);
     }
 }
