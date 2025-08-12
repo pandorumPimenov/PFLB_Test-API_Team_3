@@ -1,5 +1,6 @@
 package tests;
 
+import dto.Money;
 import org.testng.annotations.Test;
 
 import static com.codeborne.selenide.Selenide.webdriver;
@@ -20,11 +21,15 @@ public class AddMoneyTest extends BaseTest {
 
     @Test(testName = "Пополнение баланса с валидными данными")
     public void checkValidMoneyAddition() {
+        Money money = Money.builder()
+                .userId("7205")
+                .money("1000")
+                .build();
         loginPage.login(user, password)
                 .checkAlert();
 
         addMoneyPage = menuPage.openAddMoneyForm()
-                .addMoney("7205", "1000");
+                .addMoney(money);
 
         assertEquals(addMoneyPage.getSuccessMessage(),
                 "Status: Successfully pushed, code: 200",
@@ -33,11 +38,15 @@ public class AddMoneyTest extends BaseTest {
 
     @Test(testName = "Пополнение баланса с отрицательной суммой")
     public void checkNegativeMoney() {
+        Money money = Money.builder()
+                .userId("7205")
+                .money("-500")
+                .build();
         loginPage.login(user, password)
                 .checkAlert();
 
         addMoneyPage = menuPage.openAddMoneyForm()
-                .addMoney("7205", "-500");
+                .addMoney(money);
 
         assertEquals(addMoneyPage.getIncorrectMessage(),
                 "Status: Incorrect input data",
@@ -46,11 +55,15 @@ public class AddMoneyTest extends BaseTest {
 
     @Test(testName = "Пополнение баланса с текстовым значением")
     public void checkMoneyWithText() {
+        Money money = Money.builder()
+                .userId("7205")
+                .money("Сто$")
+                .build();
         loginPage.login(user, password)
                 .checkAlert();
 
         addMoneyPage = menuPage.openAddMoneyForm()
-                .addMoney("7205", "Сто$");
+                .addMoney(money);
 
         assertEquals(addMoneyPage.getIncorrectMessage(),
                 "Status: Incorrect input data",
@@ -59,11 +72,16 @@ public class AddMoneyTest extends BaseTest {
 
     @Test(testName = "Пополнение баланса с нулевой суммой")
     public void checkZeroMoney() {
+        Money money = Money.builder()
+            .userId("7205")
+            .money("0")
+            .build();
+
         loginPage.login(user, password)
                 .checkAlert();
 
         addMoneyPage = menuPage.openAddMoneyForm()
-                .addMoney("7205", "0");
+                .addMoney(money);
 
         assertEquals(addMoneyPage.getIncorrectMessage(),
                 "Status: Incorrect input data",
