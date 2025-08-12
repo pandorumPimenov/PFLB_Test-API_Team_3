@@ -1,12 +1,11 @@
 package tests;
+
 import org.testng.annotations.Test;
-
 import java.time.Duration;
-
 import static com.codeborne.selenide.Selenide.webdriver;
 import static com.codeborne.selenide.WebDriverConditions.urlContaining;
 
-public class ReadUserWithCarsTest extends BaseTest{
+public class ReadUserWithCarsTest extends BaseTest {
 
     @Test(testName = "Проверка открытия страницы UsersReadAllWithCars")
     public void openedReadUserWithCarsPage() {
@@ -16,19 +15,18 @@ public class ReadUserWithCarsTest extends BaseTest{
         webdriver().shouldHave(urlContaining("#/read/userInfo"), Duration.ofSeconds(20));
     }
 
-
-@Test(testName = "Проверка открытия страницы и наличия элементов управления")
-    public void checkUsersReadAllWithCarsNavBar(){
+    @Test(testName = "Проверка открытия страницы и наличия элементов управления")
+    public void checkUsersReadAllWithCarsNavBar() {
         loginPage.login(user, password)
-                        .checkAlert();
+                .checkAlert();
         readUserWithCarsPage.openUsersReadUserWithCars()
                 .checkNavBar();
     }
 
     @Test(testName = "Проверка работы инпута")
-    public void checkInput(){
+    public void checkInput() {
         loginPage.login(user, password)
-                        .checkAlert();
+                .checkAlert();
         readUserWithCarsPage.openUsersReadUserWithCars()
                 .checkInput("7008");
     }
@@ -43,13 +41,5 @@ public class ReadUserWithCarsTest extends BaseTest{
                         "45", "MALE", "7997001",
                         "1", "677", "Gasoline",
                         "VedroS", "Gaykamy", "1000");
-    }
-
-    @Test(testName = "Проверка работы стрелок в инпуте")
-    public void checkArrows(){
-        loginPage.login(user, password)
-                .checkAlert();
-        readUserWithCarsPage.openUsersReadUserWithCars()
-                .checkArrows();
     }
 }

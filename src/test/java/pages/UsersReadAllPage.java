@@ -2,13 +2,6 @@ package pages;
 
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.testng.Assert;
-
-import java.time.Duration;
-import java.util.Collection;
-import java.util.List;
 
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
@@ -42,7 +35,7 @@ public class UsersReadAllPage extends BasePage {
     private final SelenideElement thirdSurnameCell = $("tbody tr td:nth-child(3)");
 
     @Step("открытие страницы Users_Read_all")
-    public UsersReadAllPage openUsersReadAllPage(){
+    public UsersReadAllPage openUsersReadAllPage() {
         open(BASE_URL + "#/read/users");
         return this;
     }
@@ -89,9 +82,10 @@ public class UsersReadAllPage extends BasePage {
         secondNameCell.shouldBe(empty);
         return this;
     }
+
     @Step("Проверка наличия созданного пользователя в таблице")
-    public UsersReadAllPage checkNewUserInTable(String newUserName){
-     tableBody.$$("tr").findBy(text(newUserName)).should(exist);
-     return this;
-        }
+    public UsersReadAllPage checkNewUserInTable(String newUserName) {
+        tableBody.$$("tr").findBy(text(newUserName)).should(exist);
+        return this;
     }
+}
