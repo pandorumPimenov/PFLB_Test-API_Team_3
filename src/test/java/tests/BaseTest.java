@@ -20,6 +20,7 @@ public class BaseTest {
     protected AddMoneyPage addMoneyPage;
     protected SoftAssert softAssert;
     protected UsersReadAllPage usersReadAllPage;
+    protected ReadUserWithCarsPage readUserWithCarsPage;
     protected CarsPage carsPage;
 
     protected final String user = System.getProperty("user", PropertyReader.getProperty("user"));
@@ -38,6 +39,7 @@ public class BaseTest {
         createUserPage = new CreateUserPage();
         addMoneyPage = new AddMoneyPage();
         usersReadAllPage = new UsersReadAllPage();
+        readUserWithCarsPage = new ReadUserWithCarsPage();
         carsPage = new CarsPage();
         softAssert = new SoftAssert();
     }
