@@ -1,7 +1,7 @@
 package pages;
 
 import com.codeborne.selenide.SelenideElement;
-import dto.Money;
+import dto.ui.Money;
 import io.qameta.allure.Step;
 import wrappers.Input;
 

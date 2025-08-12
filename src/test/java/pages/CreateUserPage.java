@@ -1,7 +1,7 @@
 package pages;
 
 import com.codeborne.selenide.SelenideElement;
-import dto.UserBuild;
+import dto.ui.UserBuild;
 import io.qameta.allure.Step;
 import wrappers.Checkbox;
 import wrappers.Input;

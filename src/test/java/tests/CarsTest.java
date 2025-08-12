@@ -1,8 +1,8 @@
 package tests;
 
-import dto.BuyCar;
-import dto.Cars;
-import dto.SellCar;
+import dto.ui.BuyCar;
+import dto.ui.Cars;
+import dto.ui.SellCar;
 import org.testng.annotations.Test;
 
 public class CarsTest extends BaseTest {

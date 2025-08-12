@@ -1,6 +1,6 @@
 package tests;
 
-import dto.UserBuild;
+import dto.ui.UserBuild;
 import org.testng.annotations.Test;
 
 import static com.codeborne.selenide.Selenide.webdriver;
