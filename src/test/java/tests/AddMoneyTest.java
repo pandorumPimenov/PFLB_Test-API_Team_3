@@ -87,4 +87,21 @@ public class AddMoneyTest extends BaseTest {
                 "Status: Incorrect input data",
                 "Нулевая сумма должна быть принята");
     }
+    @Test(testName = "Пополнение баланса минимально допустимой суммой")
+    public void checkMinAndMaxMoney() {
+        Money money = Money.builder()
+                .userId("7205")
+                .money("0.01")
+                .build();
+
+        loginPage.login(user, password)
+                .checkAlert();
+
+        addMoneyPage = menuPage.openAddMoneyForm()
+                .addMoney(money);
+
+        assertEquals(addMoneyPage.getSuccessMessage(),
+                "Status: Successfully pushed, code: 200",
+                "Деньги не были добавлены");
+    }
 }
