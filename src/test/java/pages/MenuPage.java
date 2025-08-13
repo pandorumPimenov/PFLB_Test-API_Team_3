@@ -2,13 +2,11 @@ package pages;
 
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
-import lombok.extern.log4j.Log4j2;
-
-import java.time.Duration;
-
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverConditions.urlContaining;
+import lombok.extern.log4j.Log4j2;
+import java.time.Duration;
 
 @Log4j2
 public class MenuPage extends BasePage {
@@ -17,6 +15,7 @@ public class MenuPage extends BasePage {
     private final SelenideElement dropDownAddMoney = $("a.dropdown-item[href='#/update/users/plusMoney']");
     private final SelenideElement dropDownLinkReadAll = $x("//div[@class='dropdown-menu'] " +
             "/descendant:: a[contains (text()='Read all')]");
+    private final SelenideElement dropDownHousesReadOneByIdPage = $x("//a[@class='dropdown-item' and @href='#/read/house']");
     private final SelenideElement dropDownReadUserWithCars = $x("//a[@class='dropdown-item' and @href='#/read/userInfo']");
 
     @Step("Открытие меню Users")
@@ -43,6 +42,19 @@ public class MenuPage extends BasePage {
         log.info("Add Money form opened successfully");
         return new AddMoneyPage();
     }
+
+    @Step("Открытие страницы Houses Read One By Id")
+    public HousesReadOneByIdPage openHousesReadOneByIdPage() {
+        openUsersMenu();
+        dropDownHousesReadOneByIdPage
+                .shouldBe(visible, enabled, interactable)
+                .click();
+        webdriver().shouldHave(
+                urlContaining("#/read/house"),
+                Duration.ofSeconds(5));
+        return new HousesReadOneByIdPage();
+    }
+}
 
     @Step("Открытие страницы Read user with cars")
     public ReadUserWithCarsPage openReadUserWithCars() {

@@ -23,6 +23,10 @@ public class BaseTest {
     protected UsersReadAllPage usersReadAllPage;
     protected ReadUserWithCarsPage readUserWithCarsPage;
     protected CarsPage carsPage;
+    protected HousesReadAllPage housesReadAllPage;
+    protected CreateHousePage createHousePage;
+    protected HousesReadOneByIdPage housesReadOneByIdPage;
+    protected SettleOrEvictUserPage settleOrEvictUserPage;
 
     protected final String user = System.getProperty("user", PropertyReader.getProperty("user"));
     protected final String password = System.getProperty("password", PropertyReader.getProperty("password"));
@@ -40,6 +44,10 @@ public class BaseTest {
         createUserPage = new CreateUserPage();
         addMoneyPage = new AddMoneyPage();
         usersReadAllPage = new UsersReadAllPage();
+        housesReadAllPage = new HousesReadAllPage();
+        housesReadOneByIdPage = new HousesReadOneByIdPage();
+        settleOrEvictUserPage = new SettleOrEvictUserPage();
+        createHousePage = new CreateHousePage();
         readUserWithCarsPage = new ReadUserWithCarsPage();
         carsPage = new CarsPage();
         softAssert = new SoftAssert();
