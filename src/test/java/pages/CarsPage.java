@@ -6,36 +6,37 @@ import dto.ui.Cars;
 import dto.ui.SellCar;
 import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
-import wrappers.RadioButton;
 import wrappers.Input;
+import wrappers.RadioButton;
+
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverConditions.urlContaining;
 
 @Log4j2
 public class CarsPage extends BasePage {
 
-    private final SelenideElement carsFiled = $x("//a[text()='Cars']");
-    private final SelenideElement carsReadFiled = $x("//a[text()='Read all']");
-    private final SelenideElement carsReloadFiled = $x("//button[text()='Reload']");
-    private final SelenideElement idField = $x("//button[contains(text(),'ID')]");
-    private final SelenideElement idUpField = $x("//button[text()='↑']");
-    private final SelenideElement carsCrateField = $x("//a[text()='Create new']");
-    private final SelenideElement pushButton = $("button.btn.btn-primary.tableButton");
-    private final SelenideElement successMessage201 = $x("//button[normalize-space()='Status: Successfully pushed, code: 200']");
-    private final SelenideElement invalidMessage = $x("//button[normalize-space()='Status: AxiosError: Request failed with status code 400']");
-    private final SelenideElement carsByOrSellField = $x("//a[text()='Buy or sell car']");
+    private final SelenideElement CARS_FIELD = $x("//a[text()='Cars']");
+    private final SelenideElement CARS_READ_FIELD = $x("//a[text()='Read all']");
+    private final SelenideElement CARS_RELOAD_FIELD = $x("//button[text()='Reload']");
+    private final SelenideElement ID_FIELD = $x("//button[contains(text(),'ID')]");
+    private final SelenideElement ID_UP_FIELD = $x("//button[text()='↑']");
+    private final SelenideElement CAR_CREATE_FIELD = $x("//a[text()='Create new']");
+    private final SelenideElement PUSH_BUTTON = $("button.btn.btn-primary.tableButton");
+    private final SelenideElement SUCCESS_MESSAGE_201 = $x("//button[normalize-space()='Status: Successfully pushed, code: 200']");
+    private final SelenideElement INVALID_MESSAGE = $x("//button[normalize-space()='Status: AxiosError: Request failed with status code 400']");
+    private final SelenideElement CAR_BUY_OR_SELL_FIELD = $x("//a[text()='Buy or sell car']");
 
     @Step("Клик по меню Cars")
     public CarsPage clickMenuCars() {
         log.info("Click menu Cars");
-        (carsFiled).click();
+        (CARS_FIELD).click();
         return this;
     }
 
     @Step("Клик по пункту Read All в меню Cars. Проверка соответствующего открытия окна")
     public CarsPage clickReadAll() {
         log.info("Click menu Cars -> Read All");
-        (carsReadFiled).click();
+        (CARS_READ_FIELD).click();
         log.info("Check is opened /#/read/cars");
         webdriver().shouldHave(urlContaining("/#/read/cars"));
         return this;
@@ -44,28 +45,28 @@ public class CarsPage extends BasePage {
     @Step("Клик по кнопке Reload")
     public CarsPage isCarsReadPageOpened() {
         log.info("Click button Reload");
-        (carsReloadFiled).click();
+        (CARS_READ_FIELD).click();
         return this;
     }
 
     @Step("Клик по кнопке ID сортировка по возрастанию")
     public CarsPage sortWithId() {
         log.info("Click button ID");
-        (idField).click();
+        (ID_FIELD).click();
         return this;
     }
 
     @Step("Клик по кнопке ID сортировка по убыванию")
     public CarsPage sortWithIdUp() {
         log.info("Click menu Cars -> Create New");
-        (idUpField).click();
+        (ID_UP_FIELD).click();
         return this;
     }
 
     @Step("Клик по пункту Create New в меню Cars. Проверка открытия соответствующего окна")
     public CarsPage clickCreateNew() {
         log.info("Click button ↑ ID");
-        (carsCrateField).click();
+        (CAR_CREATE_FIELD).click();
         log.info("Check is opened /#/create/cars");
         webdriver().shouldHave(urlContaining("/#/create/cars"));
         return this;
@@ -83,24 +84,24 @@ public class CarsPage extends BasePage {
         log.info("Set value in Price");
         new Input("car_price_send").write(cars.getPrice());
         log.info("Click button --PUSH TO API--");
-        clickElement(pushButton);
+        clickElement(PUSH_BUTTON);
         return this;
     }
 
 
     @Step("Получение сообщения об успехе")
     public String getSuccessMessage() {
-        return getText(successMessage201);
+        return getText(SUCCESS_MESSAGE_201);
     }
 
     @Step("Получение сообщения об ошибке")
     public String getErrorMessage() {
-        return getText(invalidMessage);
+        return getText(INVALID_MESSAGE);
     }
 
     @Step("Клик по пункту Buy or sell car в меню Cars. Проверка открытия соответствующего окна")
     public CarsPage clickBuyOrSell() {
-        $(carsByOrSellField).click();
+        $(CAR_BUY_OR_SELL_FIELD).click();
         log.info("Check is opened /#/update/users/buyCar");
         webdriver().shouldHave(urlContaining("/#/update/users/buyCar"));
         return this;
@@ -115,7 +116,7 @@ public class CarsPage extends BasePage {
         log.info("Tap radio button BUY");
         new RadioButton("buyCar").checkBuyOrSellCars();
         log.info("Click button --PUSH TO API-- BUY");
-        clickElement(pushButton);
+        clickElement(PUSH_BUTTON);
         return this;
     }
 
@@ -128,7 +129,7 @@ public class CarsPage extends BasePage {
         log.info("Tap radio button SELL");
         new RadioButton("sellCar").checkBuyOrSellCars();
         log.info("Click button --PUSH TO API-- SELL");
-        clickElement(pushButton);
+        clickElement(PUSH_BUTTON);
         return this;
     }
 }

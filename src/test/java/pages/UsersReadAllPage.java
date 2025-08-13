@@ -7,38 +7,30 @@ import lombok.extern.log4j.Log4j2;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
 
-/*
-Создать пользователя и проверить отображение данных в таблице:
-ID
-first name
-last name
-age
-sex
-money   - найти его там нереально может пропустить?
-*/
 @Log4j2
 public class UsersReadAllPage extends BasePage {
+
     // Элементы управления
-    private final SelenideElement reloadButton = $x("//button[contains(text(),'Reload')]");
+    private final SelenideElement RELOAD_BUTTON = $x("//button[contains(text(),'Reload')]");
     // Кнопки сортировки
-    private final SelenideElement idSortButton = $x("//button[contains(text(),'ID')]");
-    private final SelenideElement firstNameSortButton = $x("//button[contains(text(),'First')]");
-    private final SelenideElement lastNameSortButton = $x("//button[contains(text(),'Last')]");
-    private final SelenideElement ageSortButton = $x("//button[contains(text(),'Age')]");
-    private final SelenideElement sexSortButton = $x("//button[contains(text(),'Sex')]");
-    private final SelenideElement moneySortButton = $x("//button[contains(text(),'Money')]");
+    private final SelenideElement ID_SORT_BUTTON = $x("//button[contains(text(),'ID')]");
+    private final SelenideElement FIRST_NAME_SORT_BUTTON = $x("//button[contains(text(),'First')]");
+    private final SelenideElement LAST_NAME_SORT_BUTTON = $x("//button[contains(text(),'Last')]");
+    private final SelenideElement AGE_SORT_BUTTON = $x("//button[contains(text(),'Age')]");
+    private final SelenideElement SEX_SORT_BUTTON = $x("//button[contains(text(),'Sex')]");
+    private final SelenideElement MONEY_SORT_BUTTON = $x("//button[contains(text(),'Money')]");
     // Заголовки столбцов
-    private final SelenideElement idTitle = $x("//th[contains(text(),'ID')]");
-    private final SelenideElement firstNameTitle = $x("//th[contains(text(),'First')]");
-    private final SelenideElement lastNameTitle = $x("//th[contains(text(),'Last')]");
-    private final SelenideElement ageTitle = $x("//th[contains(text(),'Age')]");
-    private final SelenideElement sexTitle = $x("//th[contains(text(),'Sex')]");
-    private final SelenideElement moneyTitle = $x("//th[contains(text(),'Money')]");
+    private final SelenideElement ID_TITLE = $x("//th[contains(text(),'ID')]");
+    private final SelenideElement FIRST_NAME_TITLE = $x("//th[contains(text(),'First')]");
+    private final SelenideElement LAST_NAME_TITLE = $x("//th[contains(text(),'Last')]");
+    private final SelenideElement AGE_TITLE = $x("//th[contains(text(),'Age')]");
+    private final SelenideElement SEX_TITLE = $x("//th[contains(text(),'Sex')]");
+    private final SelenideElement MONEY_TITLE = $x("//th[contains(text(),'Money')]");
     // Элементы таблицы
-    private final SelenideElement tableBody = $("tbody");
-    private final SelenideElement userWithId3 = $x("//td[contains(text(), '3')]");
-    private final SelenideElement secondNameCell = $("tbody tr td:nth-child(2)");// вторая с именем
-    private final SelenideElement thirdSurnameCell = $("tbody tr td:nth-child(3)");
+    private final SelenideElement TABLE_BODY = $("tbody");
+    private final SelenideElement USER_WITH_ID_3 = $x("//td[contains(text(), '3')]");
+    private final SelenideElement SECOND_NAME_CELL = $("tbody tr td:nth-child(2)");// вторая с именем
+    private final SelenideElement THIRD_SURNAME_CELL = $("tbody tr td:nth-child(3)");
 
     @Step("открытие страницы Users_Read_all")
     public UsersReadAllPage openUsersReadAllPage() {
@@ -51,15 +43,15 @@ public class UsersReadAllPage extends BasePage {
     @Step("Обновить данные таблицы")
     public UsersReadAllPage reloadTable() {
         log.info("Reloading table data");
-        clickElement(reloadButton);
-        tableBody.shouldBe(visible);
+        clickElement(RELOAD_BUTTON);
+        TABLE_BODY.shouldBe(visible);
         return this;
     }
 
     @Step("Проверить видимость всех элементов управления")
     public UsersReadAllPage verifyControlsVisible() {
         log.info("Checking visibility of all controls");
-        reloadButton.shouldBe(visible);
+        RELOAD_BUTTON.shouldBe(visible);
         checkSortButtons();
         checkTableTitles();
         return this;
@@ -68,31 +60,31 @@ public class UsersReadAllPage extends BasePage {
     @Step("Проверка отображения всех кнопок сортировки")
     public UsersReadAllPage checkSortButtons() {
         log.info("Checking visibility of all sort buttons");
-        idSortButton.shouldBe(visible);
-        firstNameSortButton.shouldBe(visible);
-        lastNameSortButton.shouldBe(visible);
-        ageSortButton.shouldBe(visible);
-        sexSortButton.shouldBe(visible);
-        moneySortButton.shouldBe(visible);
+        ID_SORT_BUTTON.shouldBe(visible);
+        FIRST_NAME_SORT_BUTTON.shouldBe(visible);
+        LAST_NAME_SORT_BUTTON.shouldBe(visible);
+        AGE_SORT_BUTTON.shouldBe(visible);
+        SEX_SORT_BUTTON.shouldBe(visible);
+        MONEY_SORT_BUTTON.shouldBe(visible);
         return this;
     }
 
     @Step("Проверка наличия и корректности названий столбцов таблицы")
     public UsersReadAllPage checkTableTitles() {
         log.info("Checking visibility of all column titles");
-        idTitle.shouldBe(visible);
-        firstNameTitle.shouldBe(visible);
-        lastNameTitle.shouldBe(visible);
-        ageTitle.shouldBe(visible);
-        sexTitle.shouldBe(visible);
-        moneyTitle.shouldBe(visible);
+        ID_TITLE.shouldBe(visible);
+        FIRST_NAME_TITLE.shouldBe(visible);
+        LAST_NAME_TITLE.shouldBe(visible);
+        AGE_TITLE.shouldBe(visible);
+        SEX_TITLE.shouldBe(visible);
+        MONEY_TITLE.shouldBe(visible);
         return this;
     }
 
     @Step("Проверка наличия строк в таблице")
     public UsersReadAllPage checkTableNotEmpty() {
         log.info("Checking if table contains data");
-        tableBody.shouldBe(visible);
+        TABLE_BODY.shouldBe(visible);
         log.info("Table contains data");
         return this;
     }
@@ -100,8 +92,8 @@ public class UsersReadAllPage extends BasePage {
     @Step("Проверка сортировки по ID")
     public UsersReadAllPage checkSortingByID() {
         log.info("Checking sorting by ID");
-        idSortButton.click();
-        userWithId3.shouldHave(text("3"));
+        ID_SORT_BUTTON.click();
+        USER_WITH_ID_3.shouldHave(text("3"));
         log.info("Sorting by ID works correctly");
         return this;
     }
@@ -109,8 +101,8 @@ public class UsersReadAllPage extends BasePage {
     @Step("Проверка сортировки по Имени")
     public UsersReadAllPage checkSortingByName() {
         log.info("Checking sorting by Name");
-        firstNameSortButton.click();
-        secondNameCell.shouldBe(empty);
+        FIRST_NAME_SORT_BUTTON.click();
+        SECOND_NAME_CELL.shouldBe(empty);
         log.info("Sorting by Name works correctly");
         return this;
     }
@@ -118,11 +110,8 @@ public class UsersReadAllPage extends BasePage {
     @Step("Проверка наличия созданного пользователя в таблице")
     public UsersReadAllPage checkNewUserInTable(String firstName, String lastName) {
         log.info("Checking presence of new user with firstName: {} and lastName: {}", firstName, lastName);
-
         reloadTable();
-
-        tableBody.shouldHave(text(firstName), text(lastName));
-
+        TABLE_BODY.shouldHave(text(firstName), text(lastName));
         log.info("User {} {} found in table", firstName, lastName);
         return this;
     }
