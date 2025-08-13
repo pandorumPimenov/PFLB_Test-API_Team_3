@@ -1,53 +1,58 @@
 package pages;
 
 import com.codeborne.selenide.SelenideElement;
+import dto.ui.UserBuild;
 import io.qameta.allure.Step;
+import lombok.extern.log4j.Log4j2;
+import wrappers.Input;
+import wrappers.RadioButton;
 
-import static com.codeborne.selenide.Condition.enabled;
-import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
 
+@Log4j2
 public class CreateUserPage extends BasePage {
-    private final SelenideElement firstNameField = $("#first_name_send");
-    private final SelenideElement lastNameField = $("#last_name_send");
-    private final SelenideElement ageField = $("#age_send");
-    private final SelenideElement maleRadio = $("input[value='MALE']");
-    private final SelenideElement femaleRadio = $("input[value='FEMALE']");
-    private final SelenideElement moneyField = $("#money_send");
     private final SelenideElement pushButton = $("button.btn.btn-primary.tableButton");
     private final SelenideElement successMessage201 = $x("//button[normalize-space()='Status: Successfully pushed, code: 201']");
     private final SelenideElement invalidMessage = $x("//button[normalize-space()='Status: Invalid request data']");
 
     @Step("Создание пользователя с данными: {firstName}, {lastName}, {age}, {sex}, {money}")
-    public CreateUserPage createUser(String firstName, String lastName, String age, String sex, String money) {
-        setValue(firstNameField, firstName);
-        setValue(lastNameField, lastName);
-        setValue(ageField, age);
-        selectSex(sex);
-        setValue(moneyField, money);
-        clickElement(pushButton);
-        return this;
-    }
+    public CreateUserPage createUser(UserBuild user, String sex) {
+        log.info("Starting user creation process");
+        log.info("User data - FirstName: {}, LastName: {}, Age: {}, Sex: {}, Money: {}",
+                user.getFirstName(), user.getLastName(), user.getAge(), sex, user.getMoney());
 
-    @Step("Выбор пола: {sex}")
-    private void selectSex(String sex) {
-        if ("MALE".equalsIgnoreCase(sex)) {
-            maleRadio.shouldBe(visible, enabled).click();
-        } else if ("FEMALE".equalsIgnoreCase(sex)) {
-            femaleRadio.shouldBe(visible, enabled).click();
-        } else {
-            throw new IllegalArgumentException("Неизвестный пол: " + sex);
+        new Input("first_name_send").write(user.getFirstName());
+        log.info("Entered first name");
+
+        new Input("last_name_send").write(user.getLastName());
+        log.info("Entered last name");
+
+        new Input("age_send").write(user.getAge());
+        log.info("Entered age");
+
+        if (sex != null && !sex.trim().isEmpty()) {
+            log.info("Selecting sex: {}", sex);
+            new RadioButton(sex).checkUser();
         }
+
+        new Input("money_send").write(user.getMoney());
+        log.info("Entered money amount");
+        clickElement(pushButton);
+
+        log.info("Clicked submit button");
+        return this;
     }
 
     @Step("Получение сообщения об успешном создании пользователя")
     public String getSuccessMessage() {
+        log.info("Checking for success message");
         return getText(successMessage201);
     }
 
     @Step("Получение сообщения об ошибке")
     public String getErrorMessage() {
+        log.info("Checking for error message");
         return getText(invalidMessage);
     }
 }
