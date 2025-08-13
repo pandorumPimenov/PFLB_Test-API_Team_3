@@ -54,7 +54,6 @@ public class MenuPage extends BasePage {
                 Duration.ofSeconds(5));
         return new HousesReadOneByIdPage();
     }
-}
 
     @Step("Открытие страницы Read user with cars")
     public ReadUserWithCarsPage openReadUserWithCars() {
