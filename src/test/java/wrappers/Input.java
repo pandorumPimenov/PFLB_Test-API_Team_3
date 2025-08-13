@@ -1,10 +1,6 @@
 package wrappers;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Duration;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Condition.visible;
@@ -31,7 +27,3 @@ public class Input {
                 .setValue(text);
     }
 }
-
-
-
-

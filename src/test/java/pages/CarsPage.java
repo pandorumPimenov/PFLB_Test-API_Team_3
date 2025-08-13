@@ -6,7 +6,7 @@ import dto.ui.Cars;
 import dto.ui.SellCar;
 import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
-import wrappers.Checkbox;
+import wrappers.RadioButton;
 import wrappers.Input;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverConditions.urlContaining;
@@ -113,7 +113,7 @@ public class CarsPage extends BasePage {
         log.info("Set value in Card Id BUY");
         new Input("car_send").write(buyCar.getCarId());
         log.info("Tap radio button BUY");
-        new Checkbox("buyCar").checkBuyOrSellCars();
+        new RadioButton("buyCar").checkBuyOrSellCars();
         log.info("Click button --PUSH TO API-- BUY");
         clickElement(pushButton);
         return this;
@@ -126,7 +126,7 @@ public class CarsPage extends BasePage {
         log.info("Set value in Card Id SELL");
         new Input("car_send").write(sellCar.getCarId());
         log.info("Tap radio button SELL");
-        new Checkbox("sellCar").checkBuyOrSellCars();
+        new RadioButton("sellCar").checkBuyOrSellCars();
         log.info("Click button --PUSH TO API-- SELL");
         clickElement(pushButton);
         return this;

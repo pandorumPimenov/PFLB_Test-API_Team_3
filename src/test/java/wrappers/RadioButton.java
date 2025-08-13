@@ -1,16 +1,15 @@
 package wrappers;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 
 import static com.codeborne.selenide.Condition.enabled;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
-public class Checkbox {
+public class RadioButton {
     String value;
 
-    public Checkbox(String value) {
+    public RadioButton (String value) {
         this.value = value;
     }
 
