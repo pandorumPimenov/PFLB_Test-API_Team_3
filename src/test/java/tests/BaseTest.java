@@ -22,7 +22,7 @@ public class BaseTest {
     protected SoftAssert softAssert;
     protected UsersReadAllPage usersReadAllPage;
     protected ReadUserWithCarsPage readUserWithCarsPage;
-    protected CarsPage carsPage;
+    protected CarPage carPage;
     protected HousesReadAllPage housesReadAllPage;
     protected CreateHousePage createHousePage;
     protected HousesReadOneByIdPage housesReadOneByIdPage;
@@ -49,7 +49,7 @@ public class BaseTest {
         settleOrEvictUserPage = new SettleOrEvictUserPage();
         createHousePage = new CreateHousePage();
         readUserWithCarsPage = new ReadUserWithCarsPage();
-        carsPage = new CarsPage();
+        carPage = new CarPage();
         softAssert = new SoftAssert();
     }
 

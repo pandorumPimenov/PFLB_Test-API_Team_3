@@ -9,8 +9,9 @@ import org.testng.annotations.Test;
 
 public class UserTest extends BaseAPITest {
 
+    public static long id;
     @Test
-    public void createUser(){
+    public void createUser() {
         UserAdapter userAdapter = new UserAdapter();
         User user = User.builder()
                 .id(24)
@@ -21,12 +22,12 @@ public class UserTest extends BaseAPITest {
                 .money(20000)
                 .build();
         User rs = userAdapter.createUser(user);
-        long id = rs.getId();
+        id = rs.getId();
         Assert.assertEquals(rs.getFirstName(), "Jo");
     }
 
     @Test
-    public void getUser(){
+    public void getUser() {
         UserAdapter userAdapter = new UserAdapter();
         User user = User.builder()
                 .id(24)
@@ -44,7 +45,7 @@ public class UserTest extends BaseAPITest {
     }
 
     @Test
-    public void deleteUser(){
+    public void deleteUser() {
         UserAdapter userAdapter = new UserAdapter();
         User user = User.builder()
                 .id(24)
@@ -59,8 +60,9 @@ public class UserTest extends BaseAPITest {
         Assert.assertEquals(rs.getFirstName(), "Jo");
         userAdapter.deleteUser(id);
     }
+
     @Test
-    public void updateUser(){
+    public void updateUser() {
         UserAdapter userAdapter = new UserAdapter();
         User user = User.builder()
                 .id(24)

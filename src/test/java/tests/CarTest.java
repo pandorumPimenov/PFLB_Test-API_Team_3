@@ -5,7 +5,7 @@ import dto.ui.Cars;
 import dto.ui.SellCar;
 import org.testng.annotations.Test;
 
-public class CarsTest extends BaseTest {
+public class CarTest extends BaseTest {
     @Test(testName = "Автомобили")
     public void checkCars() {
         Cars cars = Cars.builder()
@@ -24,7 +24,7 @@ public class CarsTest extends BaseTest {
                 .build();
         loginPage.login(user, password)
                 .checkAlert();
-        carsPage.clickMenuCars()
+        carPage.clickMenuCars()
                 .clickReadAll()
                 .isCarsReadPageOpened()
                 .sortWithId()
@@ -33,11 +33,11 @@ public class CarsTest extends BaseTest {
                 .clickCreateNew()
                 .createNewCar(cars)
                 .getErrorMessage();
-        carsPage.clickMenuCars()
+        carPage.clickMenuCars()
                 .clickBuyOrSell()
                 .buyCarPositive(buyCar)
                 .getSuccessMessage();
-        carsPage.sellCarPositive(sellCar)
+        carPage.sellCarPositive(sellCar)
                 .getSuccessMessage();
     }
 }
