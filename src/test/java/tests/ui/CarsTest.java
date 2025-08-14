@@ -1,12 +1,14 @@
-package tests;
+package tests.ui;
 
 import dto.ui.BuyCar;
 import dto.ui.Cars;
 import dto.ui.SellCar;
+import io.qameta.allure.Owner;
 import org.testng.annotations.Test;
 
 public class CarsTest extends BaseTest {
     @Test(testName = "Автомобили")
+    @Owner("Бессолицын Игорь")
     public void checkCars() {
         Cars cars = Cars.builder()
                 .engineType("diesel")

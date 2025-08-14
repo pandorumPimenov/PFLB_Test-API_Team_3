@@ -3,11 +3,12 @@ package dto.ui;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+
 @Data
 @AllArgsConstructor
 @Builder
 public class SellCar {
-        String UserId;
-        String CarId;
-    }
+    String UserId;
+    String CarId;
+}
 

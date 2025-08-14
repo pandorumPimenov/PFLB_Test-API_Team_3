@@ -3,28 +3,24 @@ package adapters;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import dto.api.User;
-import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.mapper.ObjectMapperType;
-import io.restassured.parsing.Parser;
 import io.restassured.specification.RequestSpecification;
 import tests.api.BaseAPITest;
 
 import static io.restassured.RestAssured.given;
 
-public class UserAdapter extends BaseAPITest{
+public class UserAdapter extends BaseAPITest {
 
+    private final String BASE_URI = "http://82.142.167.37:4879/";
     public Gson gson = new GsonBuilder()
             .excludeFieldsWithoutExposeAnnotation()
             .create();
-
-    private final String BASE_URI = "http://82.142.167.37:4879/";
-
-    public RequestSpecification spec =  given()
+    public RequestSpecification spec = given()
             .contentType(ContentType.JSON)
             .log().all();
 
-    public User createUser(User user){
+    public User createUser(User user) {
         return spec
                 .body(gson.toJson(user))
                 .header("Authorization", "Bearer " + token)
@@ -36,7 +32,8 @@ public class UserAdapter extends BaseAPITest{
                 .extract()
                 .as(User.class);
     }
-    public User getUser(int id){
+
+    public User getUser(int id) {
         return spec
                 .when()
                 .header("Authorization", "Bearer " + token)
@@ -48,7 +45,7 @@ public class UserAdapter extends BaseAPITest{
                 .as(User.class);
     }
 
-    public User deleteUser(int id){
+    public User deleteUser(int id) {
         return spec
                 .when()
                 .header("Authorization", "Bearer " + token)
@@ -60,7 +57,7 @@ public class UserAdapter extends BaseAPITest{
                 .as(User.class, ObjectMapperType.GSON);
     }
 
-    public User updateUser(User user, int id){
+    public User updateUser(User user, int id) {
         return spec
                 .body(gson.toJson(user))
                 .when()

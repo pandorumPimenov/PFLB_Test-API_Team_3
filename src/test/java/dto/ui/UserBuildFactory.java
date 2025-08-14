@@ -1,7 +1,6 @@
-package dto;
+package dto.ui;
 
 import com.github.javafaker.Faker;
-import dto.ui.UserBuild;
 
 public class UserBuildFactory {
     public static final Faker faker = new Faker();

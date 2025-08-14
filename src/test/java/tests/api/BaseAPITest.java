@@ -3,16 +3,15 @@ package tests.api;
 import adapters.AuthorizationAdapter;
 import dto.api.AuthResponse;
 import dto.api.Login;
-import io.restassured.RestAssured;
-import io.restassured.parsing.Parser;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import tests.BaseTest;
+import tests.ui.BaseTest;
 
 
 public class BaseAPITest extends BaseTest {
     protected static String token;
-@BeforeMethod
+
+    @BeforeMethod
     @Test
     public void testAuthorization() {
         AuthorizationAdapter authorizationAdapter = new AuthorizationAdapter();

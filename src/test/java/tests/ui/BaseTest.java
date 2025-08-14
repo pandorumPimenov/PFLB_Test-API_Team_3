@@ -1,20 +1,36 @@
-package tests;
+package tests.ui;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.selenide.AllureSelenide;
 import listeners.TestListener;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 import org.testng.asserts.SoftAssert;
-import pages.*;
+import pages.LoginPage;
+import pages.MenuPage;
+import pages.cars.CarsPage;
+import pages.houses.CreateHousePage;
+import pages.houses.HousesReadAllPage;
+import pages.houses.HousesReadOneByIdPage;
+import pages.houses.SettleOrEvictUserPage;
+import pages.users.AddMoneyPage;
+import pages.users.CreateUserPage;
+import pages.users.ReadUserWithCarsPage;
+import pages.users.UsersReadAllPage;
+import utils.AllureUtils;
+import utils.PropertyReader;
 
 import static com.codeborne.selenide.Selenide.closeWebDriver;
+import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
 @Listeners(TestListener.class)
 public class BaseTest {
+    protected final String user = System.getProperty("user", PropertyReader.getProperty("user"));
+    protected final String password = System.getProperty("password", PropertyReader.getProperty("password"));
     protected LoginPage loginPage;
     protected MenuPage menuPage;
     protected CreateUserPage createUserPage;
@@ -28,15 +44,14 @@ public class BaseTest {
     protected HousesReadOneByIdPage housesReadOneByIdPage;
     protected SettleOrEvictUserPage settleOrEvictUserPage;
 
-    protected final String user = System.getProperty("user", PropertyReader.getProperty("user"));
-    protected final String password = System.getProperty("password", PropertyReader.getProperty("password"));
-
     @BeforeMethod
     public void setup() {
         initializePages();
         configureBrowser();
         setupAllure();
+//        iTestContext.setAttribute("driver", WebDriverRunner.getWebDriver());
     }
+
 
     private void initializePages() {
         loginPage = new LoginPage();
@@ -72,8 +87,15 @@ public class BaseTest {
     }
 
     @AfterMethod
-    public void tearDown() {
+    public void tearDown(ITestResult result) {
         softAssert.assertAll();
-        closeWebDriver();
+
+        if (result.getStatus() == ITestResult.FAILURE) {
+            AllureUtils.takeScreenshot();
+        }
+
+        if (getWebDriver() != null) {
+            closeWebDriver();
+        }
     }
 }

@@ -17,11 +17,11 @@ public class AuthorizationAdapter {
             .excludeFieldsWithoutExposeAnnotation()
             .create();
 
-    public RequestSpecification spec =  given()
+    public RequestSpecification spec = given()
             .contentType(ContentType.JSON)
             .log().all();
 
-    public  AuthResponse authorization(Login login) {
+    public AuthResponse authorization(Login login) {
         return spec
                 .body(gson.toJson(login))
                 .when()

@@ -1,8 +1,9 @@
-package pages;
+package pages.users;
 
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
+import pages.BasePage;
 
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
@@ -18,27 +19,35 @@ money   - найти его там нереально может пропуст�
 */
 @Log4j2
 public class UsersReadAllPage extends BasePage {
+
     // Элементы управления
-    private final SelenideElement reloadButton = $x("//button[contains(text(),'Reload')]");
+    private final SelenideElement
+            reloadButton = $x("//button[contains(text(),'Reload')]");
+
     // Кнопки сортировки
-    private final SelenideElement idSortButton = $x("//button[contains(text(),'ID')]");
-    private final SelenideElement firstNameSortButton = $x("//button[contains(text(),'First')]");
-    private final SelenideElement lastNameSortButton = $x("//button[contains(text(),'Last')]");
-    private final SelenideElement ageSortButton = $x("//button[contains(text(),'Age')]");
-    private final SelenideElement sexSortButton = $x("//button[contains(text(),'Sex')]");
-    private final SelenideElement moneySortButton = $x("//button[contains(text(),'Money')]");
+    private final SelenideElement
+            idSortButton = $x("//button[contains(text(),'ID')]"),
+            firstNameSortButton = $x("//button[contains(text(),'First')]"),
+            lastNameSortButton = $x("//button[contains(text(),'Last')]"),
+            ageSortButton = $x("//button[contains(text(),'Age')]"),
+            sexSortButton = $x("//button[contains(text(),'Sex')]"),
+            moneySortButton = $x("//button[contains(text(),'Money')]");
+
     // Заголовки столбцов
-    private final SelenideElement idTitle = $x("//th[contains(text(),'ID')]");
-    private final SelenideElement firstNameTitle = $x("//th[contains(text(),'First')]");
-    private final SelenideElement lastNameTitle = $x("//th[contains(text(),'Last')]");
-    private final SelenideElement ageTitle = $x("//th[contains(text(),'Age')]");
-    private final SelenideElement sexTitle = $x("//th[contains(text(),'Sex')]");
-    private final SelenideElement moneyTitle = $x("//th[contains(text(),'Money')]");
+    private final SelenideElement
+            idTitle = $x("//th[contains(text(),'ID')]"),
+            firstNameTitle = $x("//th[contains(text(),'First')]"),
+            lastNameTitle = $x("//th[contains(text(),'Last')]"),
+            ageTitle = $x("//th[contains(text(),'Age')]"),
+            sexTitle = $x("//th[contains(text(),'Sex')]"),
+            moneyTitle = $x("//th[contains(text(),'Money')]");
+
     // Элементы таблицы
-    private final SelenideElement tableBody = $("tbody");
-    private final SelenideElement userWithId3 = $x("//td[contains(text(), '3')]");
-    private final SelenideElement secondNameCell = $("tbody tr td:nth-child(2)");// вторая с именем
-    private final SelenideElement thirdSurnameCell = $("tbody tr td:nth-child(3)");
+    private final SelenideElement
+            tableBody = $("tbody"),
+            userWithId3 = $x("//td[contains(text(), '3')]"),
+            secondNameCell = $("tbody tr td:nth-child(2)"),
+            thirdSurnameCell = $("tbody tr td:nth-child(3)");
 
     @Step("открытие страницы Users_Read_all")
     public UsersReadAllPage openUsersReadAllPage() {

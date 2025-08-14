@@ -2,15 +2,15 @@ package tests.api;
 
 import adapters.UserAdapter;
 import dto.api.User;
-import io.restassured.RestAssured;
-import io.restassured.parsing.Parser;
+import io.qameta.allure.Owner;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class UserTest extends BaseAPITest {
 
     @Test
-    public void createUser(){
+    @Owner("Андреев Дмитрий")
+    public void createUser() {
         UserAdapter userAdapter = new UserAdapter();
         User user = User.builder()
                 .id(24)
@@ -26,7 +26,8 @@ public class UserTest extends BaseAPITest {
     }
 
     @Test
-    public void getUser(){
+    @Owner("Андреев Дмитрий")
+    public void getUser() {
         UserAdapter userAdapter = new UserAdapter();
         User user = User.builder()
                 .id(24)
@@ -44,7 +45,8 @@ public class UserTest extends BaseAPITest {
     }
 
     @Test
-    public void deleteUser(){
+    @Owner("Андреев Дмитрий")
+    public void deleteUser() {
         UserAdapter userAdapter = new UserAdapter();
         User user = User.builder()
                 .id(24)
@@ -59,8 +61,10 @@ public class UserTest extends BaseAPITest {
         Assert.assertEquals(rs.getFirstName(), "Jo");
         userAdapter.deleteUser(id);
     }
+
     @Test
-    public void updateUser(){
+    @Owner("Андреев Дмитрий")
+    public void updateUser() {
         UserAdapter userAdapter = new UserAdapter();
         User user = User.builder()
                 .id(24)
