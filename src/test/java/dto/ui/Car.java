@@ -8,16 +8,16 @@ import lombok.Builder.Default;
 @Data
 @AllArgsConstructor
 @Builder
-public class UserBuild {
+public class Car {
     @Default
-    String firstName = "";
+    public String engineType = "GASOLINE";
 
     @Default
-    String lastName = "";
+    public String mark = "";
 
     @Default
-    String age = "0";
+    public String model = "";
 
     @Default
-    String money = "0";
+    public String price = "0";
 }

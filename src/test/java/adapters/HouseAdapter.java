@@ -1,64 +1,61 @@
 package adapters;
 
-import dto.api.User;
+import dto.api.House;
 import io.restassured.mapper.ObjectMapperType;
 
+public class HouseAdapter extends BaseAdapter {
 
-public class UserAdapter extends BaseAdapter {
-
-
-    public User createUser(User user) {
+    public House createHouse(House house) {
         getToken();
         return spec
-                .body(gson.toJson(user))
+                .body(gson.toJson(house))
                 .header("Authorization", "Bearer " + token)
                 .when()
-                .post(BASE_URI + "user")
+                .post(BASE_URI + "house")
                 .then()
                 .log().all()
                 .statusCode(201)
                 .extract()
-                .as(User.class);
+                .as(House.class);
     }
 
-    public User getUser(long id) {
+    public House getHouse(long id) {
         getToken();
         return spec
                 .when()
                 .header("Authorization", "Bearer " + token)
-                .get(BASE_URI + "user/" + id)
+                .get(BASE_URI + "house/" + id)
                 .then()
                 .log().all()
                 .statusCode(200)
                 .extract()
-                .as(User.class);
+                .as(House.class);
     }
 
-    public User deleteUser(long id) {
+    public House deleteHouse(long id) {
         getToken();
         return spec
                 .when()
                 .header("Authorization", "Bearer " + token)
-                .delete(BASE_URI + "user/" + id)
+                .delete(BASE_URI + "house/" + id)
                 .then()
                 .log().all()
                 .statusCode(204)
                 .extract()
-                .as(User.class, ObjectMapperType.GSON);
+                .as(House.class, ObjectMapperType.GSON);
     }
 
-    public User updateUser(User user, long id) {
+    public House updateHouse(House house, long id) {
         getToken();
         return spec
-                .body(gson.toJson(user))
+                .body(gson.toJson(house))
                 .when()
                 .header("Authorization", "Bearer " + token)
-                .put(BASE_URI + "user/" + id)
+                .put(BASE_URI + "house/" + id)
                 .then()
                 .log().all()
                 .statusCode(202)
                 .extract()
-                .as(User.class);
+                .as(House.class);
     }
-
 }

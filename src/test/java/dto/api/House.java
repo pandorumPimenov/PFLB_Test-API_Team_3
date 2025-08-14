@@ -4,39 +4,39 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import lombok.Builder;
 import lombok.Data;
+import lombok.Singular;
 import lombok.extern.jackson.Jacksonized;
+
+import java.util.List;
 
 @Jacksonized
 @Data
 @Builder
-public class User {
+public class House {
     @SerializedName("id")
     @Expose
     @Builder.Default
     private Integer id = 0;
 
-    @SerializedName("firstName")
+    @SerializedName("floorCount")
     @Expose
     @Builder.Default
-    private String firstName = "";
+    private Integer floorCount = 1;
 
-    @SerializedName("secondName")
+    @SerializedName("price")
     @Expose
     @Builder.Default
-    private String secondName = "";
+    private Integer price = 0;
 
-    @SerializedName("age")
+    @SerializedName("parkingPlaces")
     @Expose
+    @Singular
     @Builder.Default
-    private Integer age = 0;
+    private List<ParkingPlace> parkingPlaces = List.of();
 
-    @SerializedName("sex")
+    @SerializedName("lodgers")
     @Expose
+    @Singular
     @Builder.Default
-    private String sex = "UNKNOWN";
-
-    @SerializedName("money")
-    @Expose
-    @Builder.Default
-    private Integer money = 0;
+    private List<Lodger> lodgers = List.of();
 }
