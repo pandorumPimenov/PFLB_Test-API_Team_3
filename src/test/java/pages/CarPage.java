@@ -2,7 +2,7 @@ package pages;
 
 import com.codeborne.selenide.SelenideElement;
 import dto.ui.BuyCar;
-import dto.ui.Cars;
+import dto.ui.Car;
 import dto.ui.SellCar;
 import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
@@ -15,28 +15,31 @@ import static com.codeborne.selenide.WebDriverConditions.urlContaining;
 @Log4j2
 public class CarPage extends BasePage {
 
-    private final SelenideElement CARS_FILED = $x("//a[text()='Cars']"),
+    private final SelenideElement
+            CARS_FILED = $x("//a[text()='Cars']"),
             CAR_READ_FILED = $x("//a[text()='Read all']"),
             CAR_RELOAD_FILED = $x("//button[text()='Reload']"),
             ID_FILED = $x("//button[contains(text(),'ID')]"),
             ID_UP_FILED = $x("//button[text()='↑']"),
             CAR_CREATE_FILED = $x("//a[text()='Create new']"),
             PUSH_BUTTON_FILED = $("button.btn.btn-primary.tableButton"),
-            SUCCESS_MESSAGE_FILED = $x("//button[normalize-space()='Status: Successfully pushed, code: 200']"),
-            INVALID_MESSAGE_FILED = $x("//button[normalize-space()='Status: AxiosError: Request failed with status code 400']"),
+            SUCCESS_MESSAGE_FILED = $x("//button[normalize-space()='Status: " +
+                    "Successfully pushed, code: 200']"),
+            INVALID_MESSAGE_FILED = $x("//button[normalize-space()='Status: " +
+                    "AxiosError: Request failed with status code 400']"),
             CAR_BUY_OR_SELL_FILED = $x("//a[text()='Buy or sell car']");
 
     @Step("Клик по меню Cars")
     public CarPage clickMenuCars() {
         log.info("Click menu Cars");
-        (CARS_FILED).click();
+        CARS_FILED.click();
         return this;
     }
 
     @Step("Клик по пункту Read All в меню Cars. Проверка соответствующего открытия окна")
     public CarPage clickReadAll() {
         log.info("Click menu Cars -> Read All");
-        (CAR_READ_FILED).click();
+        CAR_READ_FILED.click();
         log.info("Check is opened /#/read/cars");
         webdriver().shouldHave(urlContaining("/#/read/cars"));
         return this;
@@ -45,35 +48,35 @@ public class CarPage extends BasePage {
     @Step("Клик по кнопке Reload")
     public CarPage isCarsReadPageOpened() {
         log.info("Click button Reload");
-        (CAR_RELOAD_FILED).click();
+        CAR_RELOAD_FILED.click();
         return this;
     }
 
     @Step("Клик по кнопке ID сортировка по возрастанию")
     public CarPage sortWithId() {
         log.info("Click button ID");
-        (ID_FILED).click();
+        ID_FILED.click();
         return this;
     }
 
     @Step("Клик по кнопке ID сортировка по убыванию")
     public CarPage sortWithIdUp() {
         log.info("Click menu Cars -> Create New");
-        (ID_UP_FILED).click();
+        ID_UP_FILED.click();
         return this;
     }
 
     @Step("Клик по пункту Create New в меню Cars. Проверка открытия соответствующего окна")
     public CarPage clickCreateNew() {
         log.info("Click button ↑ ID");
-        (CAR_CREATE_FILED).click();
+        CAR_CREATE_FILED.click();
         log.info("Check is opened /#/create/cars");
         webdriver().shouldHave(urlContaining("/#/create/cars"));
         return this;
     }
 
     @Step("Создание нового автомобиля с данными {engineType}, {mark}, {model}, {price}. Негативный")
-    public CarPage createNewCar(Cars cars) {
+    public CarPage createNewCar(Car cars) {
         log.info("Set value in Engine Type");
         new Input("car_engine_type_send").write(cars.getEngineType());
         log.info("Set value in Mark");

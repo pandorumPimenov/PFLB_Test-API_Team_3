@@ -2,8 +2,9 @@ package wrappers;
 
 import org.openqa.selenium.By;
 
-import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Selenide.$;
 
 public class Input {
 
@@ -14,7 +15,7 @@ public class Input {
     }
 
     public void write(String text) {
-        String xpath = String.format("//tbody//input[@id = '%s']", value);
+        String xpath = String.format("//input[@id = '%s']", value);
         $(By.xpath(xpath))
                 .shouldBe(visible)
                 .setValue(text);
@@ -25,5 +26,11 @@ public class Input {
         $(By.xpath(xpath))
                 .shouldBe(visible)
                 .setValue(text);
+    }
+
+    public Input shouldExist() {
+        String xpath = String.format("//input[@id = '%s']", value);
+        $(By.xpath(xpath)).should(exist);
+        return this;
     }
 }

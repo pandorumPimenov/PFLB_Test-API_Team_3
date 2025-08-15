@@ -8,13 +8,17 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.testng.ITestResult;
 import org.testng.annotations.*;
 import org.testng.asserts.SoftAssert;
 import pages.*;
+import utils.AllureUtils;
+import utils.PropertyReader;
 
 import java.util.HashMap;
 
 import static com.codeborne.selenide.Selenide.closeWebDriver;
+import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
 @Listeners(TestListener.class)
 public class BaseTest {
@@ -92,8 +96,15 @@ public class BaseTest {
     }
 
     @AfterMethod
-    public void tearDown() {
+    public void tearDown(ITestResult result) {
         softAssert.assertAll();
-        closeWebDriver();
+
+        if (result.getStatus() == ITestResult.FAILURE) {
+            AllureUtils.takeScreenshot();
+        }
+
+        if (getWebDriver() != null) {
+            closeWebDriver();
+        }
     }
 }

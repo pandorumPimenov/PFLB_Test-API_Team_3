@@ -12,9 +12,17 @@ import static com.codeborne.selenide.Selenide.$x;
 
 @Log4j2
 public class CreateUserPage extends BasePage {
-    private final SelenideElement pushButton = $("button.btn.btn-primary.tableButton");
-    private final SelenideElement successMessage201 = $x("//button[normalize-space()='Status: Successfully pushed, code: 201']");
-    private final SelenideElement invalidMessage = $x("//button[normalize-space()='Status: Invalid request data']");
+
+    // Кнопки действий
+    private final SelenideElement
+            PUSH_BUTTON = $("button.btn.btn-primary.tableButton");
+
+    // Сообщения о статусе операций
+    private final SelenideElement
+            SUCCESS_MESSAGE_201 = $x("//button[normalize-space()='Status: " +
+            "Successfully pushed, code: 201']"),
+            INVALID_MESSAGE = $x("//button[normalize-space()='Status: " +
+                    "Invalid request data']");
 
     @Step("Создание пользователя с данными: {firstName}, {lastName}, {age}, {sex}, {money}")
     public CreateUserPage createUser(UserBuild user, String sex) {
@@ -38,7 +46,7 @@ public class CreateUserPage extends BasePage {
 
         new Input("money_send").write(user.getMoney());
         log.info("Entered money amount");
-        clickElement(pushButton);
+        clickElement(PUSH_BUTTON);
 
         log.info("Clicked submit button");
         return this;
@@ -47,12 +55,12 @@ public class CreateUserPage extends BasePage {
     @Step("Получение сообщения об успешном создании пользователя")
     public String getSuccessMessage() {
         log.info("Checking for success message");
-        return getText(successMessage201);
+        return getText(SUCCESS_MESSAGE_201);
     }
 
     @Step("Получение сообщения об ошибке")
     public String getErrorMessage() {
         log.info("Checking for error message");
-        return getText(invalidMessage);
+        return getText(INVALID_MESSAGE);
     }
 }
