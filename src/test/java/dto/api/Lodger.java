@@ -9,7 +9,7 @@ import lombok.extern.jackson.Jacksonized;
 @Jacksonized
 @Data
 @Builder
-public class User {
+public class Lodger {
     @SerializedName("id")
     @Expose
     @Builder.Default

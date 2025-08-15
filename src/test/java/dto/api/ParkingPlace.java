@@ -9,34 +9,24 @@ import lombok.extern.jackson.Jacksonized;
 @Jacksonized
 @Data
 @Builder
-public class User {
+public class ParkingPlace {
     @SerializedName("id")
     @Expose
     @Builder.Default
     private Integer id = 0;
 
-    @SerializedName("firstName")
+    @SerializedName("isWarm")
     @Expose
     @Builder.Default
-    private String firstName = "";
+    private Boolean isWarm = false;
 
-    @SerializedName("secondName")
+    @SerializedName("isCovered")
     @Expose
     @Builder.Default
-    private String secondName = "";
+    private Boolean isCovered = false;
 
-    @SerializedName("age")
+    @SerializedName("placesCount")
     @Expose
     @Builder.Default
-    private Integer age = 0;
-
-    @SerializedName("sex")
-    @Expose
-    @Builder.Default
-    private String sex = "UNKNOWN";
-
-    @SerializedName("money")
-    @Expose
-    @Builder.Default
-    private Integer money = 0;
+    private Integer placesCount = 1;
 }

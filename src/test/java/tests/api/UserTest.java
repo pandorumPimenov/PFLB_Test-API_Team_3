@@ -2,15 +2,13 @@ package tests.api;
 
 import adapters.UserAdapter;
 import dto.api.User;
-import io.restassured.RestAssured;
-import io.restassured.parsing.Parser;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class UserTest extends BaseAPITest {
+public class UserTest {
+    long id;
 
-    public static long id;
-    @Test
+    @Test(priority = 1)
     public void createUser() {
         UserAdapter userAdapter = new UserAdapter();
         User user = User.builder()
@@ -26,63 +24,30 @@ public class UserTest extends BaseAPITest {
         Assert.assertEquals(rs.getFirstName(), "Jo");
     }
 
-    @Test
+    @Test(priority = 2)
     public void getUser() {
         UserAdapter userAdapter = new UserAdapter();
-        User user = User.builder()
-                .id(24)
-                .age(20)
-                .sex("MALE")
-                .firstName("Jo")
-                .secondName("MO")
-                .money(20000)
-                .build();
-        User rs = userAdapter.createUser(user);
-        int id = rs.getId();
-        Assert.assertEquals(rs.getFirstName(), "Jo");
         User get = userAdapter.getUser(id);
         Assert.assertEquals(get.getFirstName(), "Jo");
     }
 
-    @Test
+    @Test(priority = 4)
     public void deleteUser() {
         UserAdapter userAdapter = new UserAdapter();
-        User user = User.builder()
-                .id(24)
-                .age(20)
-                .sex("MALE")
-                .firstName("Jo")
-                .secondName("MO")
-                .money(20000)
-                .build();
-        User rs = userAdapter.createUser(user);
-        int id = rs.getId();
-        Assert.assertEquals(rs.getFirstName(), "Jo");
         userAdapter.deleteUser(id);
     }
 
-    @Test
+    @Test(priority = 3)
     public void updateUser() {
         UserAdapter userAdapter = new UserAdapter();
         User user = User.builder()
                 .id(24)
                 .age(20)
                 .sex("MALE")
-                .firstName("Jo")
-                .secondName("MO")
-                .money(20000)
-                .build();
-        User rs = userAdapter.createUser(user);
-        int id = rs.getId();
-        Assert.assertEquals(rs.getFirstName(), "Jo");
-        User user1 = User.builder()
-                .id(24)
-                .age(20)
-                .sex("MALE")
                 .firstName("Jo Jo")
                 .secondName("MO")
                 .money(20000).build();
-        User update = userAdapter.updateUser(user1, id);
+        User update = userAdapter.updateUser(user, id);
         Assert.assertEquals(update.getFirstName(), "Jo Jo");
     }
 }

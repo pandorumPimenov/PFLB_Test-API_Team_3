@@ -1,64 +1,61 @@
 package adapters;
 
-import dto.api.User;
+import dto.api.Car;
 import io.restassured.mapper.ObjectMapperType;
 
+public class CarAdapter extends BaseAdapter {
 
-public class UserAdapter extends BaseAdapter {
-
-
-    public User createUser(User user) {
+    public Car createCar(Car car) {
         getToken();
         return spec
-                .body(gson.toJson(user))
+                .body(gson.toJson(car))
                 .header("Authorization", "Bearer " + token)
                 .when()
-                .post(BASE_URI + "user")
+                .post(BASE_URI + "car")
                 .then()
                 .log().all()
                 .statusCode(201)
                 .extract()
-                .as(User.class);
+                .as(Car.class);
     }
 
-    public User getUser(long id) {
+    public Car getCar(long id) {
         getToken();
         return spec
                 .when()
                 .header("Authorization", "Bearer " + token)
-                .get(BASE_URI + "user/" + id)
+                .get(BASE_URI + "car/" + id)
                 .then()
                 .log().all()
                 .statusCode(200)
                 .extract()
-                .as(User.class);
+                .as(Car.class);
     }
 
-    public User deleteUser(long id) {
+    public Car deleteCar(long id) {
         getToken();
         return spec
                 .when()
                 .header("Authorization", "Bearer " + token)
-                .delete(BASE_URI + "user/" + id)
+                .delete(BASE_URI + "car/" + id)
                 .then()
                 .log().all()
                 .statusCode(204)
                 .extract()
-                .as(User.class, ObjectMapperType.GSON);
+                .as(Car.class, ObjectMapperType.GSON);
     }
 
-    public User updateUser(User user, long id) {
+    public Car updateCar(Car car, long id) {
         getToken();
         return spec
-                .body(gson.toJson(user))
+                .body(gson.toJson(car))
                 .when()
                 .header("Authorization", "Bearer " + token)
-                .put(BASE_URI + "user/" + id)
+                .put(BASE_URI + "car/" + id)
                 .then()
                 .log().all()
                 .statusCode(202)
                 .extract()
-                .as(User.class);
+                .as(Car.class);
     }
-
 }

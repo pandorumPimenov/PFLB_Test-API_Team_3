@@ -12,8 +12,11 @@ import lombok.extern.jackson.Jacksonized;
 public class Login {
     @SerializedName("username")
     @Expose
-    private String username;
+    @Builder.Default
+    private String username = "";
+
     @SerializedName("password")
     @Expose
-    private String password;
+    @Builder.Default
+    private String password = "";
 }
