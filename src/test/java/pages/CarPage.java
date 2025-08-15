@@ -8,72 +8,72 @@ import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
 import wrappers.RadioButton;
 import wrappers.Input;
+
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverConditions.urlContaining;
 
 @Log4j2
-public class CarsPage extends BasePage {
+public class CarPage extends BasePage {
 
-    private final SelenideElement carsFiled = $x("//a[text()='Cars']");
-    private final SelenideElement carsReadFiled = $x("//a[text()='Read all']");
-    private final SelenideElement carsReloadFiled = $x("//button[text()='Reload']");
-    private final SelenideElement idField = $x("//button[contains(text(),'ID')]");
-    private final SelenideElement idUpField = $x("//button[text()='↑']");
-    private final SelenideElement carsCrateField = $x("//a[text()='Create new']");
-    private final SelenideElement pushButton = $("button.btn.btn-primary.tableButton");
-    private final SelenideElement successMessage201 = $x("//button[normalize-space()='Status: Successfully pushed, code: 200']");
-    private final SelenideElement invalidMessage = $x("//button[normalize-space()='Status: AxiosError: Request failed with status code 400']");
-    private final SelenideElement carsByOrSellField = $x("//a[text()='Buy or sell car']");
+    private final SelenideElement CARS_FILED = $x("//a[text()='Cars']"),
+            CAR_READ_FILED = $x("//a[text()='Read all']"),
+            CAR_RELOAD_FILED = $x("//button[text()='Reload']"),
+            ID_FILED = $x("//button[contains(text(),'ID')]"),
+            ID_UP_FILED = $x("//button[text()='↑']"),
+            CAR_CREATE_FILED = $x("//a[text()='Create new']"),
+            PUSH_BUTTON_FILED = $("button.btn.btn-primary.tableButton"),
+            SUCCESS_MESSAGE_FILED = $x("//button[normalize-space()='Status: Successfully pushed, code: 200']"),
+            INVALID_MESSAGE_FILED = $x("//button[normalize-space()='Status: AxiosError: Request failed with status code 400']"),
+            CAR_BUY_OR_SELL_FILED = $x("//a[text()='Buy or sell car']");
 
     @Step("Клик по меню Cars")
-    public CarsPage clickMenuCars() {
+    public CarPage clickMenuCars() {
         log.info("Click menu Cars");
-        (carsFiled).click();
+        (CARS_FILED).click();
         return this;
     }
 
     @Step("Клик по пункту Read All в меню Cars. Проверка соответствующего открытия окна")
-    public CarsPage clickReadAll() {
+    public CarPage clickReadAll() {
         log.info("Click menu Cars -> Read All");
-        (carsReadFiled).click();
+        (CAR_READ_FILED).click();
         log.info("Check is opened /#/read/cars");
         webdriver().shouldHave(urlContaining("/#/read/cars"));
         return this;
     }
 
     @Step("Клик по кнопке Reload")
-    public CarsPage isCarsReadPageOpened() {
+    public CarPage isCarsReadPageOpened() {
         log.info("Click button Reload");
-        (carsReloadFiled).click();
+        (CAR_RELOAD_FILED).click();
         return this;
     }
 
     @Step("Клик по кнопке ID сортировка по возрастанию")
-    public CarsPage sortWithId() {
+    public CarPage sortWithId() {
         log.info("Click button ID");
-        (idField).click();
+        (ID_FILED).click();
         return this;
     }
 
     @Step("Клик по кнопке ID сортировка по убыванию")
-    public CarsPage sortWithIdUp() {
+    public CarPage sortWithIdUp() {
         log.info("Click menu Cars -> Create New");
-        (idUpField).click();
+        (ID_UP_FILED).click();
         return this;
     }
 
     @Step("Клик по пункту Create New в меню Cars. Проверка открытия соответствующего окна")
-    public CarsPage clickCreateNew() {
+    public CarPage clickCreateNew() {
         log.info("Click button ↑ ID");
-        (carsCrateField).click();
+        (CAR_CREATE_FILED).click();
         log.info("Check is opened /#/create/cars");
         webdriver().shouldHave(urlContaining("/#/create/cars"));
         return this;
     }
 
-
     @Step("Создание нового автомобиля с данными {engineType}, {mark}, {model}, {price}. Негативный")
-    public CarsPage createNewCar(Cars cars) {
+    public CarPage createNewCar(Cars cars) {
         log.info("Set value in Engine Type");
         new Input("car_engine_type_send").write(cars.getEngineType());
         log.info("Set value in Mark");
@@ -83,31 +83,30 @@ public class CarsPage extends BasePage {
         log.info("Set value in Price");
         new Input("car_price_send").write(cars.getPrice());
         log.info("Click button --PUSH TO API--");
-        clickElement(pushButton);
+        clickElement(PUSH_BUTTON_FILED);
         return this;
     }
 
-
     @Step("Получение сообщения об успехе")
     public String getSuccessMessage() {
-        return getText(successMessage201);
+        return getText(SUCCESS_MESSAGE_FILED);
     }
 
     @Step("Получение сообщения об ошибке")
     public String getErrorMessage() {
-        return getText(invalidMessage);
+        return getText(INVALID_MESSAGE_FILED);
     }
 
     @Step("Клик по пункту Buy or sell car в меню Cars. Проверка открытия соответствующего окна")
-    public CarsPage clickBuyOrSell() {
-        $(carsByOrSellField).click();
+    public CarPage clickBuyOrSell() {
+        $(CAR_BUY_OR_SELL_FILED).click();
         log.info("Check is opened /#/update/users/buyCar");
         webdriver().shouldHave(urlContaining("/#/update/users/buyCar"));
         return this;
     }
 
     @Step("Покупка автомобиля с данными {userID}, {CarId}. Позитивный")
-    public CarsPage buyCarPositive(BuyCar buyCar) {
+    public CarPage buyCarPositive(BuyCar buyCar) {
         log.info("Set value in User ID BUY");
         new Input("id_send").write(buyCar.getUserId());
         log.info("Set value in Card Id BUY");
@@ -115,12 +114,12 @@ public class CarsPage extends BasePage {
         log.info("Tap radio button BUY");
         new RadioButton("buyCar").checkBuyOrSellCars();
         log.info("Click button --PUSH TO API-- BUY");
-        clickElement(pushButton);
+        clickElement(PUSH_BUTTON_FILED);
         return this;
     }
 
     @Step("Продажа автомобиля с данными {userID}, {CarId}. Позитивный")
-    public CarsPage sellCarPositive(SellCar sellCar) {
+    public CarPage sellCarPositive(SellCar sellCar) {
         log.info("Set value in User ID SELL");
         new Input("id_send").write(sellCar.getUserId());
         log.info("Set value in Card Id SELL");
@@ -128,7 +127,7 @@ public class CarsPage extends BasePage {
         log.info("Tap radio button SELL");
         new RadioButton("sellCar").checkBuyOrSellCars();
         log.info("Click button --PUSH TO API-- SELL");
-        clickElement(pushButton);
+        clickElement(PUSH_BUTTON_FILED);
         return this;
     }
 }
