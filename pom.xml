@@ -19,7 +19,7 @@
         <suiteXmlFile>src/test/resources/SmokeTest.xml</suiteXmlFile>
         <allure.version>2.24.0</allure.version>
         <aspectj.version>1.9.20.1</aspectj.version>
-        <rest-assured.version>5.5.5</rest-assured.version> <!-- Обновлено до 5.5.5 -->
+        <rest-assured.version>5.5.5</rest-assured.version>
         <javafaker.version>1.0.2</javafaker.version>
         <commons-codec.version>1.16.0</commons-codec.version>
         <commons-lang3.version>3.18.0</commons-lang3.version>
