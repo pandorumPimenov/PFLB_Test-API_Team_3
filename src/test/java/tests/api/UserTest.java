@@ -6,7 +6,6 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class UserTest {
-
     long id;
 
     @Test(priority = 1)

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite  name="Team three PFLB Test" thread-count="2" parallel="tests">
+    <test name="Chrome">
+        <classes>
+            <class name="tests.LoginTest"/>
+            <class name="tests.CreateUserTest"/>
+            <class name="tests.UsersReadAllTest"/>
+            <class name="tests.ReadUserWithCarsTest"/>
+            <class name="tests.AddMoneyTest"/>
+            <class name="tests.CarsTest"/>
+            <parameter name="browser" value="Chrome"></parameter>
+        </classes>
+    </test> <!-- Test -->
+    <test name="Edge">
+        <classes>
+            <class name="tests.LoginTest"/>
+            <class name="tests.CreateUserTest"/>
+            <class name="tests.UsersReadAllTest"/>
+            <class name="tests.ReadUserWithCarsTest"/>
+            <class name="tests.AddMoneyTest"/>
+            <class name="tests.CarsTest"/>
+            <parameter name="browser" value="edge"></parameter>
+        </classes>
+    </test> <!-- Test -->
+</suite>
