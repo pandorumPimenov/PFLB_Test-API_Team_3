@@ -2,14 +2,21 @@ package tests.api;
 
 import adapters.UserAdapter;
 import dto.api.User;
+import jdbc.DBConnection;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class UserTest {
-    public static long id;
+    long id;
 
     @Test(priority = 1)
-    public void createUser() {
+    public void createUser() throws SQLException {
         UserAdapter userAdapter = new UserAdapter();
         User user = User.builder()
                 .id(24)
@@ -22,6 +29,23 @@ public class UserTest {
         User rs = userAdapter.createUser(user);
         id = rs.getId();
         Assert.assertEquals(rs.getFirstName(), "Jo");
+        DBConnection connection = new DBConnection();//DB
+        connection.connect();
+        ResultSet res = connection.select("SELECT COUNT(" + id + ") FROM car WHERE id = " + id);
+        if (res != null) {
+            ResultSet result = connection.select("SELECT * FROM person WHERE id = " + id);
+            while (result.next()) {
+                log.info("output new user");
+                System.out.println("id - " + result.getInt("id"));
+                System.out.println("age - " + result.getInt("age"));
+                System.out.println("first_name - " + result.getString("first_name"));
+                System.out.println("second_name - " + result.getString("second_name"));
+                System.out.println("money - " + result.getDouble("money"));
+            }
+        } else {
+            log.info("id absent");
+        }
+        connection.close();
     }
 
     @Test(priority = 2)

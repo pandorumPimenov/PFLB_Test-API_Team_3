@@ -11,7 +11,7 @@ import utils.Retry;
 import static org.testng.Assert.assertEquals;
 
 public class CarTest extends BaseTest {
-    @Test(testName = "Сортировка авто",
+    @Test(testName = "Сортировка авто", priority = 1,
             description = "Сортировка авто по id")
     @Owner("Бессолицын Игорь")
     @Description("Сортировка авто по id")
@@ -25,7 +25,7 @@ public class CarTest extends BaseTest {
                 .sortWithIdUp();
     }
 
-    @Test(testName = "Создание нового авто",
+    @Test(testName = "Создание нового авто", priority = 2,
             retryAnalyzer = Retry.class,
             description = "Тест проверяет создание нового авто")
     @Owner("Бессолицын Игорь")
@@ -47,7 +47,7 @@ public class CarTest extends BaseTest {
                 "Авто не создан");
     }
 
-    @Test(testName = "Создание нового авто. Негативный",
+    @Test(testName = "Создание нового авто. Негативный", priority = 3,
             description = "Тест проверяет создание нового авто")
     @Owner("Бессолицын Игорь")
     @Description("Проверка создания нового авто. Негативный")
@@ -68,7 +68,7 @@ public class CarTest extends BaseTest {
                 "Авто создан");
     }
 
-    @Test(testName = "Покупка авто",
+    @Test(testName = "Покупка авто", priority = 4,
             description = "Тест проверяет покупку авто")
     @Owner("Бессолицын Игорь")
     @Description("Проверка покупки авто")
@@ -87,7 +87,7 @@ public class CarTest extends BaseTest {
                 "Авто не куплен");
     }
 
-    @Test(testName = "Покупка авто. Негативный",
+    @Test(testName = "Покупка авто. Негативный", priority = 5,
             description = "Тест проверяет покупку авто. Негативный")
     @Owner("Бессолицын Игорь")
     @Description("Проверка покупки авто. Негативный")
@@ -106,7 +106,7 @@ public class CarTest extends BaseTest {
                 "Авто куплен");
     }
 
-    @Test(testName = "Продажа авто",
+    @Test(testName = "Продажа авто", priority = 6,
             description = "Тест проверяет продажу авто")
     @Owner("Бессолицын Игорь")
     @Description("Проверка продажи авто")
@@ -125,7 +125,7 @@ public class CarTest extends BaseTest {
                 "Авто не продан");
     }
 
-    @Test(testName = "Продажа авто. Негативный",
+    @Test(testName = "Продажа авто. Негативный", priority = 7,
             description = "Тест проверяет продажу авто. Негативный")
     @Owner("Бессолицын Игорь")
     @Description("Проверка продажи авто. Негативный")
