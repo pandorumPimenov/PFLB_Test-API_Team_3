@@ -1,6 +1,7 @@
 package tests;
 
 import io.qameta.allure.Description;
+import io.qameta.allure.Owner;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import pages.LoginPage;
@@ -9,7 +10,11 @@ import static org.testng.Assert.assertEquals;
 
 public class LoginTest extends BaseTest {
 
-    @Test(testName = "Авторизация с валидными данными")
+    @Test(testName = "Авторизация с валидными данными",
+            description = "Проверка успешной авторизации с корректными учетными данными")
+    @Owner("Андреев Дмитрий")
+    @Description("Позитивный тест авторизации: ввод валидного email и пароля, " +
+            "проверка сообщения об успешной авторизации")
     public void successfulLoginWithValidCredentials() {
         String alertMessage = loginPage.login(user, password)
                 .checkAlert();

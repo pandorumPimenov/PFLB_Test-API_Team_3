@@ -30,13 +30,13 @@ public class House {
 
     @SerializedName("parkingPlaces")
     @Expose
-    @Singular
+//    @Singular
     @Builder.Default
     private List<ParkingPlace> parkingPlaces = List.of();
 
     @SerializedName("lodgers")
     @Expose
-    @Singular
+//    @Singular
     @Builder.Default
     private List<Lodger> lodgers = List.of();
 }

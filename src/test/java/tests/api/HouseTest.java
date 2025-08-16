@@ -9,6 +9,8 @@ import dto.api.User;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.util.List;
+
 public class HouseTest {
 
     long id;
@@ -20,19 +22,23 @@ public class HouseTest {
                 .id(23)
                 .floorCount(3)
                 .price(123124)
-                .parkingPlace(ParkingPlace.builder()
-                        .id(2)
-                        .isWarm(true)
-                        .isCovered(false)
-                        .placesCount(412)
-                        .build())
-                .lodger(Lodger.builder()
-                        .id(32)
-                        .firstName("Tom")
-                        .secondName("O`Nil")
-                        .age(44)
-                        .sex("MALE")
-                        .build())
+                .parkingPlaces(List.of(  // Используем parkingPlaces (List<ParkingPlace>)
+                        ParkingPlace.builder()
+                                .id(2)
+                                .isWarm(true)
+                                .isCovered(false)
+                                .placesCount(412)
+                                .build()
+                ))
+                .lodgers(List.of(  // lodgers тоже List<Lodger>
+                        Lodger.builder()
+                                .id(32)
+                                .firstName("Tom")
+                                .secondName("O`Nil")
+                                .age(44)
+                                .sex("MALE")
+                                .build()
+                ))
                 .build();
         House rs = houseAdapter.createHouse(house);
         id = rs.getId();
@@ -59,19 +65,23 @@ public class HouseTest {
                 .id(23)
                 .floorCount(3)
                 .price(99999)
-                .parkingPlace(ParkingPlace.builder()
-                        .id(2)
-                        .isWarm(true)
-                        .isCovered(false)
-                        .placesCount(412)
-                        .build())
-                .lodger(Lodger.builder()
-                        .id(32)
-                        .firstName("Tom")
-                        .secondName("O`Nil")
-                        .age(44)
-                        .sex("MALE")
-                        .build())
+                .parkingPlaces(List.of(  // Используем List<ParkingPlace>
+                        ParkingPlace.builder()
+                                .id(2)
+                                .isWarm(true)
+                                .isCovered(false)
+                                .placesCount(412)
+                                .build()
+                ))
+                .lodgers(List.of(  // Используем List<Lodger>
+                        Lodger.builder()
+                                .id(32)
+                                .firstName("Tom")
+                                .secondName("O`Nil")
+                                .age(44)
+                                .sex("MALE")
+                                .build()
+                ))
                 .build();
         House update = houseAdapter.updateHouse(house, id);
         Assert.assertEquals(update.getPrice(), 99999);
