@@ -43,7 +43,7 @@ public class CarTest extends BaseTest {
                 .clickCreateNew()
                 .createNewCar(cars);
         assertEquals(carPage.getSuccessMessageCreate(),
-                "Status: Successfully pushed, code: 2011",
+                "Status: Successfully pushed, code: 201",
                 "Авто не создан");
     }
 

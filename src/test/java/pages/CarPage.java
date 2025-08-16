@@ -29,7 +29,7 @@ public class CarPage extends BasePage {
                     "Successfully pushed, code: 201']"),
 
             INVALID_MESSAGE_FILED = $x("//button[normalize-space()='Status: " +
-                    "AxiosError: Request failed with status code 400']"),
+                    "AxiosError: Request failed with status code 404']"),
             CAR_BUY_OR_SELL_FILED = $x("//a[text()='Buy or sell car']");
 
     @Step("Клик по меню Cars")
