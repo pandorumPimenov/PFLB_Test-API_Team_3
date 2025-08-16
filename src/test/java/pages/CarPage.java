@@ -25,6 +25,9 @@ public class CarPage extends BasePage {
             PUSH_BUTTON_FILED = $("button.btn.btn-primary.tableButton"),
             SUCCESS_MESSAGE_FILED = $x("//button[normalize-space()='Status: " +
                     "Successfully pushed, code: 200']"),
+            SUCCESS_MESS_CREATE_FILED = $x("//button[normalize-space()='Status: " +
+                    "Successfully pushed, code: 201']"),
+
             INVALID_MESSAGE_FILED = $x("//button[normalize-space()='Status: " +
                     "AxiosError: Request failed with status code 400']"),
             CAR_BUY_OR_SELL_FILED = $x("//a[text()='Buy or sell car']");
@@ -75,7 +78,7 @@ public class CarPage extends BasePage {
         return this;
     }
 
-    @Step("Создание нового автомобиля с данными {engineType}, {mark}, {model}, {price}. Негативный")
+    @Step("Создание нового автомобиля с данными {engineType}, {mark}, {model}, {price}")
     public CarPage createNewCar(Car cars) {
         log.info("Set value in Engine Type");
         new Input("car_engine_type_send").write(cars.getEngineType());
@@ -95,6 +98,11 @@ public class CarPage extends BasePage {
         return getText(SUCCESS_MESSAGE_FILED);
     }
 
+    @Step("Получение сообщения об успехе / создание авто")
+    public String getSuccessMessageCreate() {
+        return getText(SUCCESS_MESS_CREATE_FILED);
+    }
+
     @Step("Получение сообщения об ошибке")
     public String getErrorMessage() {
         return getText(INVALID_MESSAGE_FILED);
@@ -108,8 +116,8 @@ public class CarPage extends BasePage {
         return this;
     }
 
-    @Step("Покупка автомобиля с данными {userID}, {CarId}. Позитивный")
-    public CarPage buyCarPositive(BuyCar buyCar) {
+    @Step("Покупка автомобиля с данными {userID}, {CarId}")
+    public CarPage buyCar(BuyCar buyCar) {
         log.info("Set value in User ID BUY");
         new Input("id_send").write(buyCar.getUserId());
         log.info("Set value in Card Id BUY");
@@ -121,8 +129,8 @@ public class CarPage extends BasePage {
         return this;
     }
 
-    @Step("Продажа автомобиля с данными {userID}, {CarId}. Позитивный")
-    public CarPage sellCarPositive(SellCar sellCar) {
+    @Step("Продажа автомобиля с данными {userID}, {CarId}")
+    public CarPage sellCar(SellCar sellCar) {
         log.info("Set value in User ID SELL");
         new Input("id_send").write(sellCar.getUserId());
         log.info("Set value in Card Id SELL");
