@@ -6,7 +6,7 @@
         <listener class-name="listeners.TestListener"/>
         <!-- AnnotationTransformer - автоматически добавляет RetryAnalyzer
           ко всем тестам для повторного запуска упавших тестов -->
-        <!--        <listener class-name="listeners.AnnotationTransformer"/>-->
+        <listener class-name="listeners.AnnotationTransformer"/>
     </listeners>
     <test name=""> <!-- Тестовый набор 1-->
         <classes> <!-- Классы, содержащие тесты -->
