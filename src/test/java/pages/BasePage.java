@@ -3,17 +3,30 @@ package pages;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import lombok.extern.log4j.Log4j2;
+
+import java.util.Properties;
+
 import static com.codeborne.selenide.Condition.visible;
 
 @Log4j2
 public class BasePage {
-    protected static final String BASE_URL = "http://82.142.167.37:4881/";
+    protected static final String BASE_URL = loadBaseUrl();
+
+    private static String loadBaseUrl() {
+        log.info("Loading base URL from config.properties");
+        var props = new Properties();
+        try (var input = BasePage.class.getResourceAsStream("/config.properties")) {
+            props.load(input);
+            String url = props.getProperty("base.url"); // URL берётся из файла
+            log.info("Successfully loaded base URL: {}", url);
+            return url;
+        } catch (Exception e) {
+            throw new RuntimeException("Не удалось загрузить base.url из config.properties", e);
+        }
+    }
 
     protected void openPath(String path) {
-        String fullUrl = BASE_URL + path;
-        log.info("Opening URL: {}", fullUrl);
-        Selenide.open(fullUrl);
-        log.info("URL opened successfully: {}", fullUrl);
+        Selenide.open(BASE_URL + path);
     }
 
     protected void clickElement(SelenideElement element) {
