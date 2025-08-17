@@ -4,11 +4,8 @@ import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.selenide.AllureSelenide;
 import listeners.TestListener;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.edge.EdgeDriver;
-import org.openqa.selenium.edge.EdgeOptions;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
 import org.testng.asserts.SoftAssert;
@@ -19,11 +16,11 @@ import utils.PropertyReader;
 import java.util.HashMap;
 
 import static com.codeborne.selenide.Selenide.closeWebDriver;
+import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
 @Listeners(TestListener.class)
 public class BaseTest {
-    WebDriver driver;
     protected LoginPage loginPage;
     protected MenuPage menuPage;
     protected CreateUserPage createUserPage;
@@ -43,30 +40,39 @@ public class BaseTest {
     @Parameters({"browser"})
     @BeforeMethod
     public void setup(@Optional("chrome") String browser) {
-        if (browser.equalsIgnoreCase("chrome")){
+        // Очищаем предыдущий драйвер
+        closeWebDriver();
+
+        // Настройки Selenide
+        Configuration.timeout = 10000;
+        Configuration.clickViaJs = true;
+        Configuration.headless = false; // Для отладки отключаем headless
+
+        if (browser.equalsIgnoreCase("chrome")) {
             ChromeOptions options = new ChromeOptions();
             HashMap<String, Object> chromePrefs = new HashMap<>();
             chromePrefs.put("credentials_enable_service", false);
             chromePrefs.put("profile.password_manager_enabled", false);
             options.setExperimentalOption("prefs", chromePrefs);
-            options.addArguments("--incognito");
+//            options.addArguments("--incognito");
             options.addArguments("--disable-notifications");
             options.addArguments("--disable-popup-blocking");
             options.addArguments("--disable-infobars");
-            options.addArguments("--headless");
             options.addArguments("--start-maximized");
-            driver = new ChromeDriver(options);
-        } else if (browser.equalsIgnoreCase("edge")){
-            Configuration.browser = "edge";
-            EdgeOptions options = new EdgeOptions();
             Configuration.browserCapabilities = options;
-            options.addArguments("--headless");
+            Configuration.browser = "chrome";
+        } else if (browser.equalsIgnoreCase("firefox")) {
+            FirefoxOptions options = new FirefoxOptions();
             options.addArguments("--start-maximized");
-            driver = new EdgeDriver(options);
+            Configuration.browserCapabilities = options;
+            Configuration.browser = "firefox";
         }
+
         initializePages();
-        configureBrowser();
         setupAllure();
+
+        // Открываем базовый URL
+        open(PropertyReader.getProperty("base.url"));
     }
 
     private void initializePages() {
@@ -82,17 +88,6 @@ public class BaseTest {
         readUserWithCarsPage = new ReadUserWithCarsPage();
         carPage = new CarPage();
         softAssert = new SoftAssert();
-    }
-
-    private void configureBrowser() {
-        Configuration.browser = "chrome";
-        Configuration.timeout = 10000;
-        Configuration.headless = true;
-        Configuration.clickViaJs = true;
-
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--start-maximized");
-        Configuration.browserCapabilities = options;
     }
 
     private void setupAllure() {

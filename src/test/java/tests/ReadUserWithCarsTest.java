@@ -4,6 +4,7 @@ import com.codeborne.selenide.WebDriverRunner;
 import io.qameta.allure.Description;
 import io.qameta.allure.Owner;
 import org.testng.annotations.Test;
+import utils.Retry;
 import java.time.Duration;
 import static com.codeborne.selenide.Selenide.webdriver;
 import static com.codeborne.selenide.WebDriverConditions.urlContaining;
@@ -63,7 +64,7 @@ public class ReadUserWithCarsTest extends BaseTest {
     }
 
     @Test(testName = "Проверка отображения пользователя в таблице",
-            description = "Проверка корректного отображения данных пользователя в таблице")
+            description = "Проверка корректного отображения данных пользователя в таблице",retryAnalyzer = Retry.class)
     @Owner("Дерюшева Наталья")
     @Description("Комплексная проверка: поиск пользователя по ID и верификация всех его данных в таблице " +
             "(личные данные и информация об автомобиле)")

@@ -2,25 +2,60 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="PFLB_Test-API_Team_3_Testsuite"> <!-- Основной контейнер для набора тестов -->
     <listeners>
-        <!-- TestListener - логирует начало/конец тестов и измеряет время выполнения -->
-        <listener class-name="listeners.TestListener"/>
         <!-- AnnotationTransformer - автоматически добавляет RetryAnalyzer
           ко всем тестам для повторного запуска упавших тестов -->
         <listener class-name="listeners.AnnotationTransformer"/>
+        <!-- TestListener - логирует начало/конец тестов и измеряет время выполнения -->
+        <listener class-name="listeners.TestListener"/>
     </listeners>
-    <test name=""> <!-- Тестовый набор 1-->
+    <test name="Login Tests"><!-- Тестовый набор 1-->
         <classes> <!-- Классы, содержащие тесты -->
-            <!--            <class name="tests."/>-->
+            <class name="tests.LoginTest"/>
         </classes>
     </test>
-    <test name=""> <!-- Тестовый набор 2-->
+    <test name="Users Read All Tests">
         <classes>
-            <!--            <class name="tests."/>-->
+            <class name="tests.UsersReadAllTest"/>
         </classes>
     </test>
-    <test name=""> <!-- Тестовый набор 3-->
+    <test name="Read User With Cars Test">
         <classes>
-            <!--            <class name="tests."/>-->
+            <class name="tests.ReadUserWithCarsTest"/>
+        </classes>
+    </test>
+    <test name="Create User Tests">
+        <classes>
+            <class name="tests.CreateUserTest"/>
+        </classes>
+    </test>
+    <test name="Add Money Tests">
+        <classes>
+            <class name="tests.AddMoneyTest"/>
+        </classes>
+    </test>
+    <test name="Car Tests">
+        <classes>
+            <class name="tests.CarTest"/>
+        </classes>
+    </test>
+    <test name="Houses ReadAll Tests">
+        <classes>
+            <class name="tests.HousesReadAllTest"/>
+        </classes>
+    </test>
+    <test name="Houses Read By Id Tests">
+        <classes>
+            <class name="tests.HousesReadByIdTest"/>
+        </classes>
+    </test>
+    <test name="Create House Test">
+        <classes>
+            <class name="tests.CreateHouseTest"/>
+        </classes>
+    </test>
+    <test name="Settle Or Evict User Test">
+        <classes>
+            <class name="tests.SettleOrEvictUserTest"/>
         </classes>
     </test>
 </suite>
