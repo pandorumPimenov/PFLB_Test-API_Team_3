@@ -87,7 +87,7 @@ public class BaseTest {
         createHousePage = new CreateHousePage();
         readUserWithCarsPage = new ReadUserWithCarsPage();
         carPage = new CarPage();
-        softAssert = new SoftAssert();
+
     }
 
     private void setupAllure() {
@@ -99,7 +99,7 @@ public class BaseTest {
 
     @AfterMethod
     public void tearDown(ITestResult result) {
-        softAssert.assertAll();
+
 
         if (result.getStatus() == ITestResult.FAILURE) {
             AllureUtils.takeScreenshot();

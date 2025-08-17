@@ -28,7 +28,6 @@ public class CarPage extends BasePage {
                     "Successfully pushed, code: 200']"),
             SUCCESS_MESS_CREATE_FILED = $x("//button[normalize-space()='Status: " +
                     "Successfully pushed, code: 201']"),
-
             INVALID_MESSAGE_FILED = $(byText("Status: AxiosError: " +
                     "Request failed with status code 400")),
             CAR_BUY_OR_SELL_FILED = $x("//a[text()='Buy or sell car']");
@@ -65,14 +64,14 @@ public class CarPage extends BasePage {
 
     @Step("Клик по кнопке ID сортировка по убыванию")
     public CarPage sortWithIdUp() {
-        log.info("Click menu Cars -> Create New");
+        log.info("Click button ↑ ID");
         ID_UP_FILED.click();
         return this;
     }
 
     @Step("Клик по пункту Create New в меню Cars. Проверка открытия соответствующего окна")
     public CarPage clickCreateNew() {
-        log.info("Click button ↑ ID");
+        log.info("Click menu Cars -> Create New");
         CAR_CREATE_FILED.click();
         log.info("Check is opened /#/create/cars");
         webdriver().shouldHave(urlContaining("/#/create/cars"));
