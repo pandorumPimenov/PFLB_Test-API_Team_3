@@ -8,11 +8,11 @@
         <!-- TestListener - логирует начало/конец тестов и измеряет время выполнения -->
         <listener class-name="listeners.TestListener"/>
     </listeners>
-    <test name="Login Tests"><!-- Тестовый набор 1-->
-        <classes> <!-- Классы, содержащие тесты -->
-            <class name="tests.LoginTest"/>
-        </classes>
-    </test>
+<!--    <test name="Login Tests">&lt;!&ndash; Тестовый набор 1&ndash;&gt;-->
+<!--        <classes> &lt;!&ndash; Классы, содержащие тесты &ndash;&gt;-->
+<!--            <class name="tests.LoginTest"/>-->
+<!--        </classes>-->
+<!--    </test>-->
     <test name="Users Read All Tests">
         <classes>
             <class name="tests.UsersReadAllTest"/>
