@@ -42,6 +42,7 @@ public class ReadUserWithCarsPage extends BasePage {
         log.info("Opening Users Read User With Cars page");
         open(BASE_URL + "#/read/userInfo");
         webdriver().shouldHave(urlContaining("#/read/userInfo"));
+        Duration.ofSeconds(10);
         return this;
     }
 
