@@ -9,6 +9,7 @@ import lombok.extern.log4j.Log4j2;
 import wrappers.RadioButton;
 import wrappers.Input;
 
+import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverConditions.urlContaining;
 
@@ -28,8 +29,8 @@ public class CarPage extends BasePage {
             SUCCESS_MESS_CREATE_FILED = $x("//button[normalize-space()='Status: " +
                     "Successfully pushed, code: 201']"),
 
-            INVALID_MESSAGE_FILED = $x("//button[normalize-space()='Status: " +
-                    "AxiosError: Request failed with status code 404']"),
+            INVALID_MESSAGE_FILED = $(byText("Status: AxiosError: " +
+                    "Request failed with status code 400")),
             CAR_BUY_OR_SELL_FILED = $x("//a[text()='Buy or sell car']");
 
     @Step("Клик по меню Cars")
