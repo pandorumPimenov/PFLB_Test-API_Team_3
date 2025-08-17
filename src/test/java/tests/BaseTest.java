@@ -8,6 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
 import org.testng.asserts.SoftAssert;
@@ -53,9 +54,15 @@ public class BaseTest {
             options.addArguments("--disable-popup-blocking");
             options.addArguments("--disable-infobars");
             options.addArguments("--headless");
+            options.addArguments("--start-maximized");
             driver = new ChromeDriver(options);
         } else if (browser.equalsIgnoreCase("edge")){
-            driver = new EdgeDriver();
+            Configuration.browser = "edge";
+            EdgeOptions options = new EdgeOptions();
+            Configuration.browserCapabilities = options;
+            options.addArguments("--headless");
+            options.addArguments("--start-maximized");
+            driver = new EdgeDriver(options);
         }
         initializePages();
         configureBrowser();
@@ -80,7 +87,7 @@ public class BaseTest {
     private void configureBrowser() {
         Configuration.browser = "chrome";
         Configuration.timeout = 10000;
-        Configuration.headless = false;
+        Configuration.headless = true;
         Configuration.clickViaJs = true;
 
         ChromeOptions options = new ChromeOptions();
