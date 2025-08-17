@@ -20,8 +20,8 @@ public class UsersReadAllTest extends BaseTest {
     public void checkOpenUsersReadAll() {
         loginPage.login(user, password)
                 .checkAlert();
-        usersReadAllPage.openUsersReadAllPage()
-                .verifyControlsVisible()
+        usersReadAllPage = menuPage.openReadAll();
+        usersReadAllPage.openUsersReadAllPage().verifyControlsVisible()
                 .checkTableNotEmpty()
                 .checkSortingByID()
                 .checkSortingByName();
@@ -45,7 +45,6 @@ public class UsersReadAllTest extends BaseTest {
                 .checkAlert();
         createUserPage = menuPage.openCreateUserForm()
                 .createUser(userBuild, "MALE");
-
         // Проверяем, что пользователь отображается в таблице
         usersReadAllPage.openUsersReadAllPage()
                 .checkNewUserInTable(expectedFirstName, expectedLastName);

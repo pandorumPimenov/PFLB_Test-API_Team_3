@@ -27,7 +27,8 @@ public class MenuPage extends BasePage {
     // Подменю Houses
     private final SelenideElement
             DROPDOWN_HOUSES_READ_ONE_BY_ID_PAGE = $x("//a[@class='dropdown-item' and @href='#/read/house']"),
-            DROPDOWN_READ_USER_WITH_CARS = $x("//a[@class='dropdown-item' and @href='#/read/userInfo']");
+            DROPDOWN_READ_USER_WITH_CARS = $x("//a[@class='dropdown-item' and @href='#/read/userInfo']"),
+            DROPDOWN_READ_ALL = $x("//a[@class='dropdown-item' and @href='#/read/users']");
 
     @Step("Открытие меню Users")
     public MenuPage openUsersMenu() {
@@ -87,5 +88,19 @@ public class MenuPage extends BasePage {
                 Duration.ofSeconds(5));
         log.info("Successfully navigated to Read User With Cars page");
         return page(ReadUserWithCarsPage.class);
+    }
+    @Step("Открытие страницы Read all")
+    public UsersReadAllPage openReadAll() {
+        log.info("Opening Read all page");
+        openUsersMenu();
+        DROPDOWN_READ_ALL
+                .shouldBe(visible, enabled, interactable)
+                .click();
+        log.info("Clicked Read all link");
+        webdriver().shouldHave(
+                urlContaining("#/read/users"),
+                Duration.ofSeconds(10));
+        log.info("Successfully navigated to Read all page");
+        return page(UsersReadAllPage.class);
     }
 }
