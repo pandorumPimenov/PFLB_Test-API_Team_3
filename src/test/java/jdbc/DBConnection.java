@@ -1,6 +1,7 @@
 package jdbc;
 
 import lombok.extern.slf4j.Slf4j;
+import org.aeonbits.owner.ConfigFactory;
 
 import java.sql.*;
 import java.util.Properties;
@@ -10,9 +11,12 @@ public class DBConnection {
     private Connection connect = null;
     private Statement statement = null;
     private ResultSet result = null;
-    private static final String URL = "jdbc:postgresql://82.142.167.37:4832/pflb_trainingcenter",
-            USER = "pflb-at-read",
-            PASSWORD = "PflbQaTraining2354";
+
+    private static final DbConfig cfg = ConfigFactory.create(DbConfig.class);
+
+    private static final String USER = cfg.dbUser(),
+            PASSWORD = cfg.dbPassword(),
+            URL = cfg.dbUrl();
 
     public void connect() {
         try {
@@ -42,7 +46,6 @@ public class DBConnection {
             if (connect != null) {
                 log.info("Connection close");
                 connect.close();
-                //System.out.println("Закрытие соединения");
             }
             if (statement != null) {
                 statement.close();
