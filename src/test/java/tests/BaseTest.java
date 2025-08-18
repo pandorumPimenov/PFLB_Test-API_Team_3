@@ -46,7 +46,7 @@ public class BaseTest {
         // Настройки Selenide
         Configuration.timeout = 10000;
         Configuration.clickViaJs = true;
-        Configuration.headless = false; // Для отладки отключаем headless
+        Configuration.headless = true; // Для отладки отключаем headless
 
         if (browser.equalsIgnoreCase("chrome")) {
             ChromeOptions options = new ChromeOptions();
