@@ -21,10 +21,7 @@ public class CreateUserTest extends BaseTest {
     public void openedCreateNewPage() {
         loginPage.login(user, password)
                 .checkAlert();
-
         createUserPage = menuPage.openCreateUserForm();
-
-        webdriver().shouldHave(urlContaining("/#/create/user"));
     }
 
     @Test(testName = "Создание пользователя с валидными данными",

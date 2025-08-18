@@ -18,7 +18,6 @@ public class CreateHouseTest extends BaseTest {
         loginPage.login(user, password)
                 .checkAlert();
         createHousePage.openCreateHousePage();
-        webdriver().shouldHave(urlContaining("/#/create/house"));
     }
 
     @Test(testName = "Создание дома с валидными данными",

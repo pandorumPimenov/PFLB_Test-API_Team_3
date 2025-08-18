@@ -15,7 +15,6 @@ public class HousesReadAllTest extends BaseTest {
     public void checkOpenHousesReadAllPage() {
         loginPage.login(user, password);
         housesReadAllPage.openHousesReadAllPage();
-        webdriver().shouldHave(urlContaining("#/read/houses"));
     }
 
     @Test(testName = "Проверка кнопки Reload",

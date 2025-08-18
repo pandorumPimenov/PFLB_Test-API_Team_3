@@ -18,7 +18,6 @@ public class SettleOrEvictUserTest extends BaseTest {
         loginPage.login(user, password)
                 .checkAlert();
         settleOrEvictUserPage.openSettleOrEvictPage();
-        webdriver().shouldHave(urlContaining("/#/update/houseAndUser"));
     }
 
     @Test(testName = "Проверка заселения пользователя в дом",

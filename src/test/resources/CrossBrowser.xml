@@ -10,23 +10,23 @@
     </listeners>
     <test name="Chrome">
         <classes>
+            <class name="tests.LoginTest"/>
+            <class name="tests.CreateUserTest"/>
+            <class name="tests.UsersReadAllTest"/>
+<!--            <class name="tests.ReadUserWithCarsTest"/>-->
+<!--            <class name="tests.AddMoneyTest"/>-->
+<!--            <class name="tests.CarTest"/>-->
+            <parameter name="browser" value="chrome"></parameter>
+        </classes>
+    </test> <!-- Test -->
+    <test name="Firefox">
+        <classes>
 <!--            <class name="tests.LoginTest"/>-->
 <!--            <class name="tests.CreateUserTest"/>-->
 <!--            <class name="tests.UsersReadAllTest"/>-->
             <class name="tests.ReadUserWithCarsTest"/>
             <class name="tests.AddMoneyTest"/>
             <class name="tests.CarTest"/>
-            <parameter name="browser" value="chrome"></parameter>
-        </classes>
-    </test> <!-- Test -->
-    <test name="Firefox">
-        <classes>
-            <class name="tests.LoginTest"/>
-<!--            <class name="tests.CreateUserTest"/>-->
-<!--            <class name="tests.UsersReadAllTest"/>-->
-<!--            <class name="tests.ReadUserWithCarsTest"/>-->
-<!--            <class name="tests.AddMoneyTest"/>-->
-<!--            <class name="tests.CarTest"/>-->
             <parameter name="browser" value="firefox"></parameter>
         </classes>
     </test> <!-- Test -->

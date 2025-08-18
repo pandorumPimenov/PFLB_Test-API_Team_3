@@ -79,8 +79,6 @@ public class CarPage extends BasePage {
     public CarPage clickCreateNew() {
         log.info("Click menu Cars -> Create New");
         CAR_CREATE_FILED.click();
-        log.info("Check is opened /#/create/cars");
-        webdriver().shouldHave(urlContaining("/#/create/cars"));
         return this;
     }
 

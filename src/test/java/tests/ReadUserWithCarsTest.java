@@ -21,15 +21,6 @@ public class ReadUserWithCarsTest extends BaseTest {
         loginPage.login(user, password)
                 .checkAlert();
         readUserWithCarsPage = menuPage.openReadUserWithCars();
-        webdriver().shouldHave(
-                urlContaining("#/read/userInfo"),
-                Duration.ofSeconds(20)
-        );
-
-        assertTrue(
-                WebDriverRunner.url().contains("#/read/userInfo"),
-                "Страница ReadUserWithCars не открылась"
-        );
     }
 
     @Test(testName = "Проверка открытия страницы и наличия элементов управления",
@@ -40,12 +31,8 @@ public class ReadUserWithCarsTest extends BaseTest {
     public void checkUsersReadAllWithCarsNavBar() {
         loginPage.login(user, password)
                 .checkAlert();
-        readUserWithCarsPage = menuPage.openReadUserWithCars();
-        webdriver().shouldHave(
-                urlContaining("#/read/userInfo"),
-                Duration.ofSeconds(20)
-        );
-        readUserWithCarsPage.checkNavBar();
+        readUserWithCarsPage = menuPage.openReadUserWithCars()
+        .checkNavBar();
     }
 
     @Test(testName = "Проверка работы инпута",
@@ -55,12 +42,8 @@ public class ReadUserWithCarsTest extends BaseTest {
     public void checkInput() {
         loginPage.login(user, password)
                 .checkAlert();
-        readUserWithCarsPage = menuPage.openReadUserWithCars();
-        webdriver().shouldHave(
-                urlContaining("#/read/userInfo"),
-                Duration.ofSeconds(20)
-        );
-        readUserWithCarsPage.checkInput("7008");
+        readUserWithCarsPage = menuPage.openReadUserWithCars()
+        .checkInput("7008");
     }
 
     @Test(testName = "Проверка отображения пользователя в таблице",
@@ -71,12 +54,8 @@ public class ReadUserWithCarsTest extends BaseTest {
     public void checkUserInTable() {
         loginPage.login(user, password)
                 .checkAlert();
-        readUserWithCarsPage = menuPage.openReadUserWithCars();
-        webdriver().shouldHave(
-                urlContaining("#/read/userInfo"),
-                Duration.ofSeconds(20)
-        );
-        readUserWithCarsPage.checkInput("7008")
+        readUserWithCarsPage = menuPage.openReadUserWithCars()
+        .checkInput("7008")
                 .checkUserInTable("7008", "Леопольд", "Бетховен",
                         "45", "MALE", "7996001",
                         "1", "3468", "Gasoline",

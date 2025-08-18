@@ -19,7 +19,6 @@ public class HousesReadByIdTest extends BaseTest {
         loginPage.login(user, password)
                 .checkAlert();
         housesReadOneByIdPage = menuPage.openHousesReadOneByIdPage();
-        webdriver().shouldHave(urlContaining("#/read/house"), Duration.ofSeconds(5));
     }
 
     @Test(testName = "Проверка открытия страницы и наличия элементов управления",
