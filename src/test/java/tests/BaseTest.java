@@ -86,7 +86,6 @@ public class BaseTest {
         createHousePage = new CreateHousePage();
         readUserWithCarsPage = new ReadUserWithCarsPage();
         carPage = new CarPage();
-        softAssert = new SoftAssert();
 
     }
 
@@ -108,6 +107,5 @@ public class BaseTest {
         if (getWebDriver() != null) {
             closeWebDriver();
         }
-        softAssert.assertAll();
     }
 }
