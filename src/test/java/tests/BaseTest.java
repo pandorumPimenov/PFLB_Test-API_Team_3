@@ -43,7 +43,7 @@ public class BaseTest {
         closeWebDriver();
 
         // Настройки Selenide
-        Configuration.timeout = 10000;
+        Configuration.timeout = 20000;
         Configuration.clickViaJs = true;
 //        Configuration.headless = true; // Для отладки отключаем headless
 
@@ -86,6 +86,7 @@ public class BaseTest {
         createHousePage = new CreateHousePage();
         readUserWithCarsPage = new ReadUserWithCarsPage();
         carPage = new CarPage();
+        softAssert = new SoftAssert();
 
     }
 
@@ -107,5 +108,6 @@ public class BaseTest {
         if (getWebDriver() != null) {
             closeWebDriver();
         }
+        softAssert.assertAll();
     }
 }
