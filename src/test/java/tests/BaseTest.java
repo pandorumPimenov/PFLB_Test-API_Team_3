@@ -25,7 +25,6 @@ public class BaseTest {
     protected MenuPage menuPage;
     protected CreateUserPage createUserPage;
     protected AddMoneyPage addMoneyPage;
-    protected SoftAssert softAssert;
     protected UsersReadAllPage usersReadAllPage;
     protected ReadUserWithCarsPage readUserWithCarsPage;
     protected CarPage carPage;
@@ -46,7 +45,7 @@ public class BaseTest {
         // Настройки Selenide
         Configuration.timeout = 10000;
         Configuration.clickViaJs = true;
-        Configuration.headless = true; // Для отладки отключаем headless
+//        Configuration.headless = true; // Для отладки отключаем headless
 
         if (browser.equalsIgnoreCase("chrome")) {
             ChromeOptions options = new ChromeOptions();

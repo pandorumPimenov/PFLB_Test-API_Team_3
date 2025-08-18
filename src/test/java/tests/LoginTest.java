@@ -4,12 +4,12 @@ import io.qameta.allure.Description;
 import io.qameta.allure.Owner;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 import pages.LoginPage;
 
 import static org.testng.Assert.assertEquals;
 
 public class LoginTest extends BaseTest {
-
     @Test(testName = "Авторизация с валидными данными",
             description = "Проверка успешной авторизации с корректными учетными данными")
     @Owner("Андреев Дмитрий")
@@ -46,9 +46,12 @@ public class LoginTest extends BaseTest {
             LoginPage.ErrorType errorType,
             String expectedErrorMessage) {
 
+        // Инициализация SoftAssert для каждого теста
+        SoftAssert softAssert = new SoftAssert();
+
         // Проверка основного сообщения
         String alertMessage = loginPage.login(user, password).checkAlert();
-        assertEquals(alertMessage, expectedAlert, "Неверное сообщение в alert");
+        softAssert.assertEquals(alertMessage, expectedAlert, "Неверное сообщение в alert");
 
         // Проверка дополнительных ошибок (если указаны)
         if (errorType != null && expectedErrorMessage != null) {
