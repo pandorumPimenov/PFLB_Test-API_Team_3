@@ -16,7 +16,7 @@
         <selenium.version>4.32.0</selenium.version>
         <selenide.version>7.9.0</selenide.version>
         <allure-selenide.version>2.24.0</allure-selenide.version>
-        <suiteXmlFile>src/test/resources/SmokeTest.xml</suiteXmlFile>
+        <suiteXmlFile>src/test/resources/CrossBrowser.xml</suiteXmlFile>
         <allure.version>2.24.0</allure.version>
         <aspectj.version>1.9.20.1</aspectj.version>
         <rest-assured.version>5.5.5</rest-assured.version>

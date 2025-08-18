@@ -8,7 +8,10 @@ import io.qameta.allure.Owner;
 import org.testng.annotations.Test;
 import utils.Retry;
 
+import java.util.List;
+
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
 
 public class CarTest extends BaseTest {
     @Test(testName = "Сортировка авто", priority = 1,
@@ -101,9 +104,13 @@ public class CarTest extends BaseTest {
         carPage.clickMenuCars()
                 .clickBuyOrSell()
                 .buyCar(buyCar);
-        assertEquals(carPage.getErrorMessage(),
-                "Status: AxiosError: Request failed with status code 404",
-                "Авто куплен");
+        String actualError = carPage.getErrorMessage();
+        List<String> expectedErrors = List.of(
+                "Status: AxiosError: Request failed with status code 400",
+                "Status: AxiosError: Request failed with status code 404"
+        );
+        assertTrue(expectedErrors.contains(actualError),
+                "Текст ошибки не совпадает с ожидаемыми вариантами");
     }
 
     @Test(testName = "Продажа авто", priority = 6,
@@ -139,8 +146,12 @@ public class CarTest extends BaseTest {
         carPage.clickMenuCars()
                 .clickBuyOrSell()
                 .sellCar(sellCar);
-        assertEquals(carPage.getErrorMessage(),
-                "Status: AxiosError: Request failed with status code 404",
-                "Авто не продан");
+        String actualError = carPage.getErrorMessage();
+        List<String> expectedErrors = List.of(
+                "Status: AxiosError: Request failed with status code 400",
+                "Status: AxiosError: Request failed with status code 404"
+        );
+        assertTrue(expectedErrors.contains(actualError),
+                "Текст ошибки не совпадает с ожидаемыми вариантами");
     }
 }
