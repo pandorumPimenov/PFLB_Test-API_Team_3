@@ -9,6 +9,8 @@ import lombok.extern.log4j.Log4j2;
 import wrappers.RadioButton;
 import wrappers.Input;
 
+import static com.codeborne.selenide.Condition.clickable;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverConditions.urlContaining;
@@ -22,6 +24,7 @@ public class CarPage extends BasePage {
             CAR_RELOAD_FILED = $x("//button[text()='Reload']"),
             ID_FILED = $x("//button[contains(text(),'ID')]"),
             ID_UP_FILED = $x("//button[text()='↑']"),
+            ID_DOWN_FILED = $x("//button[text()='↓']"),
             CAR_CREATE_FILED = $x("//a[text()='Create new']"),
             PUSH_BUTTON_FILED = $("button.btn.btn-primary.tableButton"),
             SUCCESS_MESSAGE_FILED = $x("//button[normalize-space()='Status: " +
@@ -29,7 +32,7 @@ public class CarPage extends BasePage {
             SUCCESS_MESS_CREATE_FILED = $x("//button[normalize-space()='Status: " +
                     "Successfully pushed, code: 201']"),
             INVALID_MESSAGE_FILED = $(byText("Status: AxiosError: " +
-                    "Request failed with status code 400")),
+                    "Request failed with status code 404")),
             CAR_BUY_OR_SELL_FILED = $x("//a[text()='Buy or sell car']");
 
     @Step("Клик по меню Cars")
@@ -52,6 +55,7 @@ public class CarPage extends BasePage {
     public CarPage isCarsReadPageOpened() {
         log.info("Click button Reload");
         CAR_RELOAD_FILED.click();
+        CAR_RELOAD_FILED.shouldBe(clickable);
         return this;
     }
 
@@ -59,6 +63,7 @@ public class CarPage extends BasePage {
     public CarPage sortWithId() {
         log.info("Click button ID");
         ID_FILED.click();
+        ID_UP_FILED.shouldBe(visible);
         return this;
     }
 
@@ -66,6 +71,7 @@ public class CarPage extends BasePage {
     public CarPage sortWithIdUp() {
         log.info("Click button ↑ ID");
         ID_UP_FILED.click();
+        ID_DOWN_FILED.shouldBe(visible);
         return this;
     }
 
