@@ -19,8 +19,7 @@ public class AddMoneyTest extends BaseTest {
         loginPage.login(user, password)
                 .checkAlert();
 
-        addMoneyPage = menuPage.openAddMoneyForm()
-                .openAddMoneyPageUrl();
+        addMoneyPage = menuPage.openAddMoneyForm();
     }
 
     @Test(testName = "Пополнение баланса валидной суммой",

@@ -96,6 +96,8 @@ public class MenuPage extends BasePage {
         log.info("Opening Create User form");
         openUsersMenu();
         clickElement(DROPDOWN_CREATE_NEW);
+        webdriver().shouldHave(urlContaining("/#/create/user"));
+        Duration.ofSeconds(60);
         return new CreateUserPage();
     }
 
@@ -105,6 +107,8 @@ public class MenuPage extends BasePage {
         openUsersMenu();
         clickElement(DROPDOWN_ADD_MONEY);
         log.info("Add Money form opened successfully");
+        webdriver().shouldHave(urlContaining("/#/update/users/plusMoney"));
+        Duration.ofSeconds(60);
         return new AddMoneyPage();
     }
 

@@ -58,12 +58,4 @@ public class AddMoneyPage extends BasePage {
         log.info("Checking for error message");
         return getText(INCORRECT_MESSAGE);
     }
-    @Step("Открытие страницы Users_Read_user_with_cars")
-    public AddMoneyPage openAddMoneyPageUrl() {
-        log.info("Opening Users Read User With Cars page");
-        open(BASE_URL + "/#/update/users/plusMoney");
-        webdriver().shouldHave(urlContaining("#/read/userInfo"));
-        Duration.ofSeconds(60);
-        return this;
-    }
 }
