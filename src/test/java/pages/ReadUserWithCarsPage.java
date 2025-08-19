@@ -37,11 +37,11 @@ public class ReadUserWithCarsPage extends BasePage {
             PRICE_CELL = $("table.tableCars td:nth-child(5)");
 
     @Step("Открытие страницы Users_Read_user_with_cars")
-    public ReadUserWithCarsPage openUsersReadUserWithCars() {
+    public ReadUserWithCarsPage openUsersReadUserWithCarsUrl() {
         log.info("Opening Users Read User With Cars page");
         open(BASE_URL + "#/read/userInfo");
         webdriver().shouldHave(urlContaining("#/read/userInfo"));
-        Duration.ofSeconds(10);
+//        Duration.ofSeconds(60);
         return this;
     }
 

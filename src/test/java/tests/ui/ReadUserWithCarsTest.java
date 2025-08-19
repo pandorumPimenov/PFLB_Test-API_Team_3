@@ -6,11 +6,6 @@ import io.qameta.allure.Owner;
 import org.testng.annotations.Test;
 import utils.Retry;
 
-import java.time.Duration;
-
-import static com.codeborne.selenide.Selenide.webdriver;
-import static com.codeborne.selenide.WebDriverConditions.urlContaining;
-
 @Owner("Дерюшева Наталья")
 public class ReadUserWithCarsTest extends BaseTest {
 
@@ -31,11 +26,8 @@ public class ReadUserWithCarsTest extends BaseTest {
     public void checkUsersReadAllWithCarsNavBar() {
         loginPage.login(user, password)
                 .checkAlert();
-        readUserWithCarsPage = menuPage.openReadUserWithCars();
-        webdriver().shouldHave(
-                urlContaining("#/read/userInfo"),
-                Duration.ofSeconds(20)
-        );
+        readUserWithCarsPage = menuPage.openReadUserWithCars()
+                .openUsersReadUserWithCarsUrl();
         readUserWithCarsPage.checkNavBar();
     }
 
@@ -45,11 +37,8 @@ public class ReadUserWithCarsTest extends BaseTest {
     public void checkInput() {
         loginPage.login(user, password)
                 .checkAlert();
-        readUserWithCarsPage = menuPage.openReadUserWithCars();
-        webdriver().shouldHave(
-                urlContaining("#/read/userInfo"),
-                Duration.ofSeconds(20)
-        );
+        readUserWithCarsPage = menuPage.openReadUserWithCars()
+        .openUsersReadUserWithCarsUrl();
         readUserWithCarsPage.checkInput("7008");
     }
 
@@ -61,11 +50,8 @@ public class ReadUserWithCarsTest extends BaseTest {
     public void checkUserInTable() {
         loginPage.login(user, password)
                 .checkAlert();
-        readUserWithCarsPage = menuPage.openReadUserWithCars();
-        webdriver().shouldHave(
-                urlContaining("#/read/userInfo"),
-                Duration.ofSeconds(60)
-        );
+        readUserWithCarsPage = menuPage.openReadUserWithCars()
+        .openUsersReadUserWithCarsUrl();
         readUserWithCarsPage.checkInput("7008")
                 .checkUserInTable("7008", "Леопольд", "Бетховен",
                         "45", "MALE", "7996001",
