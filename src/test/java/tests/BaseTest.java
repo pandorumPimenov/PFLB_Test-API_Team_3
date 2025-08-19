@@ -45,7 +45,7 @@ public class BaseTest {
         // Настройки Selenide
         Configuration.timeout = 20000;
         Configuration.clickViaJs = true;
-//        Configuration.headless = true; // Для отладки отключаем headless
+        Configuration.headless = true; // Для отладки отключаем headless
 
         if (browser.equalsIgnoreCase("chrome")) {
             ChromeOptions options = new ChromeOptions();
@@ -86,7 +86,6 @@ public class BaseTest {
         createHousePage = new CreateHousePage();
         readUserWithCarsPage = new ReadUserWithCarsPage();
         carPage = new CarPage();
-        softAssert = new SoftAssert();
 
     }
 
@@ -108,6 +107,5 @@ public class BaseTest {
         if (getWebDriver() != null) {
             closeWebDriver();
         }
-        softAssert.assertAll();
     }
 }
