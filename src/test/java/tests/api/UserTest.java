@@ -7,9 +7,9 @@ import io.qameta.allure.Owner;
 import jdbc.DBConnection;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import lombok.extern.slf4j.Slf4j;
 
 import lombok.extern.slf4j.Slf4j;
 

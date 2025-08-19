@@ -28,7 +28,7 @@ public class HouseTest {
                 .id(23)
                 .floorCount(3)
                 .price(123124)
-                .parkingPlaces(List.of(  // Используем parkingPlaces (List<ParkingPlace>)
+                .parkingPlaces(List.of(
                         ParkingPlace.builder()
                                 .id(2)
                                 .isWarm(true)
@@ -36,7 +36,7 @@ public class HouseTest {
                                 .placesCount(412)
                                 .build()
                 ))
-                .lodgers(List.of(  // lodgers тоже List<Lodger>
+                .lodgers(List.of(
                         Lodger.builder()
                                 .id(32)
                                 .firstName("Tom")
@@ -77,7 +77,7 @@ public class HouseTest {
                 .id(23)
                 .floorCount(3)
                 .price(99999)
-                .parkingPlaces(List.of(  // Используем List<ParkingPlace>
+                .parkingPlaces(List.of(
                         ParkingPlace.builder()
                                 .id(2)
                                 .isWarm(true)
@@ -85,7 +85,7 @@ public class HouseTest {
                                 .placesCount(412)
                                 .build()
                 ))
-                .lodgers(List.of(  // Используем List<Lodger>
+                .lodgers(List.of(
                         Lodger.builder()
                                 .id(32)
                                 .firstName("Tom")

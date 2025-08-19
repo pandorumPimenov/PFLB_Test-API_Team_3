@@ -29,13 +29,20 @@ public class House {
 
     @SerializedName("parkingPlaces")
     @Expose
-//    @Singular
     @Builder.Default
-    private List<ParkingPlace> parkingPlaces = List.of();
+    private List<ParkingPlace> parkingPlaces = List.of(ParkingPlace.builder()
+            .id(2)
+            .isWarm(true)
+            .isCovered(false)
+            .placesCount(412)
+            .build());
 
     @SerializedName("lodgers")
     @Expose
-//    @Singular
     @Builder.Default
-    private List<Lodger> lodgers = List.of();
-}
+    private List<Lodger> lodgers = List.of(Lodger.builder().id(32)
+            .firstName("Tom")
+            .secondName("O`Nil")
+            .age(44)
+            .sex("MALE")
+            .build());
