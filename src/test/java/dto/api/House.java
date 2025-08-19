@@ -46,3 +46,4 @@ public class House {
             .age(44)
             .sex("MALE")
             .build());
+}
