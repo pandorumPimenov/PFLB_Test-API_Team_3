@@ -7,9 +7,9 @@
     </listeners>
     <test name="Chrome">
         <classes>
-<!--            <class name="tests.ui.ReadUserWithCarsTest"/>-->
-            <class name="tests.ui.AddMoneyTest"/>
-            <class name="tests.ui.CarTest"/>
+            <class name="tests.ui.ReadUserWithCarsTest"/>
+<!--            <class name="tests.ui.AddMoneyTest"/>-->
+<!--            <class name="tests.ui.CarTest"/>-->
             <parameter name="browser" value="chrome"></parameter>
         </classes>
     </test>

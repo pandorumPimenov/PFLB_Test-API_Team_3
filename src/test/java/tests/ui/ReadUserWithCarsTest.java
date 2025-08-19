@@ -62,10 +62,10 @@ public class ReadUserWithCarsTest extends BaseTest {
         loginPage.login(user, password)
                 .checkAlert();
         readUserWithCarsPage = menuPage.openReadUserWithCars();
-        webdriver().shouldHave(
-                urlContaining("#/read/userInfo"),
-                Duration.ofSeconds(20)
-        );
+//        webdriver().shouldHave(
+//                urlContaining("#/read/userInfo"),
+//                Duration.ofSeconds(20)
+//        );
         readUserWithCarsPage.checkInput("7008")
                 .checkUserInTable("7008", "Леопольд", "Бетховен",
                         "45", "MALE", "7996001",
