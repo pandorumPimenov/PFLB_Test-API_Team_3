@@ -1,4 +1,4 @@
-package tests;
+package tests.ui;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.logevents.SelenideLogger;
@@ -8,7 +8,6 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
-import org.testng.asserts.SoftAssert;
 import pages.*;
 import utils.AllureUtils;
 import utils.PropertyReader;
@@ -70,7 +69,6 @@ public class BaseTest {
         initializePages();
         setupAllure();
 
-        // Открываем базовый URL
         open(PropertyReader.getProperty("base.url"));
     }
 

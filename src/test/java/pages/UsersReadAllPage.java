@@ -4,6 +4,8 @@ import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
 
+import java.time.Duration;
+
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
 
@@ -36,14 +38,14 @@ public class UsersReadAllPage extends BasePage {
     private final SelenideElement
             TABLE_BODY = $("tbody"),
             USER_WITH_ID_3 = $x("//td[contains(text(), '3')]"),
-            SECOND_NAME_CELL = $("tbody tr td:nth-child(2)"),
-            THIRD_SURNAME_CELL= $("tbody tr td:nth-child(3)");
+            SECOND_NAME_CELL = $("tbody tr td:nth-child(2)");
 
     @Step("открытие страницы Users_Read_all")
     public UsersReadAllPage openUsersReadAllPage() {
         log.info("Opening Users Read All page");
         open(BASE_URL + "#/read/users");
         log.info("Users Read All page opened successfully");
+        Duration.ofSeconds(80);
         return this;
     }
 

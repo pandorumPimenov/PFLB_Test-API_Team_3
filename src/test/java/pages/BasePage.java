@@ -3,7 +3,6 @@ package pages;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import lombok.extern.log4j.Log4j2;
-
 import java.util.Properties;
 
 import static com.codeborne.selenide.Condition.visible;

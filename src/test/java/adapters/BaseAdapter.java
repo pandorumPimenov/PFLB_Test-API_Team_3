@@ -6,8 +6,7 @@ import dto.api.AuthResponse;
 import dto.api.Login;
 import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
-import tests.BaseTest;
-
+import tests.ui.BaseTest;
 import static io.restassured.RestAssured.given;
 
 public class BaseAdapter extends BaseTest {

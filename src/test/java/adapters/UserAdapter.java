@@ -3,9 +3,7 @@ package adapters;
 import dto.api.User;
 import io.restassured.mapper.ObjectMapperType;
 
-
 public class UserAdapter extends BaseAdapter {
-
 
     public User createUser(User user) {
         getToken();

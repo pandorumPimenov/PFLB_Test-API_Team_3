@@ -8,15 +8,13 @@ import java.util.Properties;
 
 @Slf4j
 public class DBConnection {
-    private Connection connect = null;
-    private Statement statement = null;
-    private ResultSet result = null;
-
     private static final DbConfig cfg = ConfigFactory.create(DbConfig.class);
-
     private static final String USER = cfg.dbUser(),
             PASSWORD = cfg.dbPassword(),
             URL = cfg.dbUrl();
+    private Connection connect = null;
+    private Statement statement = null;
+    private final ResultSet result = null;
 
     public void connect() {
         try {

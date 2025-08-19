@@ -1,4 +1,4 @@
-package tests;
+package tests.ui;
 
 import dto.ui.UserBuild;
 import io.qameta.allure.Description;
@@ -12,11 +12,11 @@ import static dto.ui.UserBuildFactory.getRandomUserBuild;
 import static dto.ui.UserBuildFactory.*;
 import static org.testng.Assert.assertEquals;
 
+@Owner("Пименов Сергей")
 public class CreateUserTest extends BaseTest {
 
     @Test(testName = "Открытие формы создания пользователя Create new",
             description = "После успешной авторизации система должна корректно открывать форму создания нового пользователя")
-    @Owner("Пименов Сергей")
     @Description("Проверка корректности навигации к форме создания пользователя")
     public void openedCreateNewPage() {
         loginPage.login(user, password)
@@ -29,7 +29,6 @@ public class CreateUserTest extends BaseTest {
 
     @Test(testName = "Создание пользователя с валидными данными",
             description = "Система должна успешно создавать пользователя при заполнении всех обязательных полей валидными данными")
-    @Owner("Пименов Сергей")
     @Description("Позитивный сценарий создания пользователя с полным набором валидных данных")
     public void checkValidUserCreation() {
         UserBuild userBuild = getRandomUserBuild();
@@ -47,7 +46,6 @@ public class CreateUserTest extends BaseTest {
 
     @Test(testName = "Boundary: Создание с минимальным/максимальным возрастом",
             description = "Проверка граничных значений возраста (1 год и 123 года) при создании пользователя")
-    @Owner("Пименов Сергей")
     @Description("Проверка boundary-значений для поля возраста пользователя")
     public void checkMinimumAge() {
         UserBuild minAgeUser = getUserWithMinAge();
@@ -77,7 +75,6 @@ public class CreateUserTest extends BaseTest {
 
     @Test(testName = "Validation: Пустое поле First Name",
             description = "Система должна отклонять попытку создания пользователя с пустым именем")
-    @Owner("Пименов Сергей")
     @Description("Негативный сценарий: создание пользователя без указания имени")
     public void checkEmptyFirstName() {
         UserBuild emptyFirstNameBuild = getUserWithEmptyFirstName();
@@ -94,7 +91,6 @@ public class CreateUserTest extends BaseTest {
 
     @Test(testName = "Special: Символы в Last Name",
             description = "Проверка поддержки специальных символов и цифр в поле фамилии пользователя")
-    @Owner("Пименов Сергей")
     @Description("Проверка обработки нестандартных символов в поле фамилии")
     public void createUserWithNonStandardLastName() {
         UserBuild nonStandartLastNameBuild = getUserWithSpecialCharsInLastName();
@@ -112,7 +108,6 @@ public class CreateUserTest extends BaseTest {
 
     @Test(testName = "Validation: Нулевой возраст",
             description = "Система должна отклонять попытки создания пользователя с нулевым возрастом")
-    @Owner("Пименов Сергей")
     @Description("Негативный сценарий: проверка валидации нулевого возраста")
     public void checkZeroAgeValidation() {
         UserBuild zeroAgeUser = getUserWithZeroAge();
@@ -129,7 +124,6 @@ public class CreateUserTest extends BaseTest {
 
     @Test(testName = "Validation: Отрицательный возраст",
             description = "Система должна блокировать создание пользователей с отрицательным возрастом")
-    @Owner("Пименов Сергей")
     @Description("Негативный сценарий: проверка валидации отрицательного возраста")
     public void checkNegativeAgeValidation() {
         UserBuild negativeAgeUser = getUserWithNegativeAge();
@@ -146,7 +140,6 @@ public class CreateUserTest extends BaseTest {
 
     @Test(testName = "Validation: Возраст > 123 лет",
             description = "Система должна корректно обрабатывать максимально допустимый возраст пользователя (123 года)")
-    @Owner("Пименов Сергей")
     @Description("Проверка создания пользователя с предельно допустимым возрастом")
     public void checkMaxAgeLimitValidation() {
         UserBuild maxAgeLimitUser = getUserWithMaxAge();
@@ -165,7 +158,6 @@ public class CreateUserTest extends BaseTest {
 
     @Test(testName = "Validation: Отсутствие пола",
             description = "Проверка обязательности выбора пола при создании пользователя")
-    @Owner("Пименов Сергей")
     @Description("Негативный сценарий: создание пользователя без указания пола")
     public void createUserWithoutSexSelection() {
         UserBuild userBuild = getRandomUserBuild();

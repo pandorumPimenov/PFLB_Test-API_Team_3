@@ -23,6 +23,7 @@ public class CreateHousePage extends BasePage {
         log.info("Opening Create House page");
         open(BASE_URL + "#/create/house");
         webdriver().shouldHave(urlContaining("/#/create/house"));
+
         return this;
     }
 

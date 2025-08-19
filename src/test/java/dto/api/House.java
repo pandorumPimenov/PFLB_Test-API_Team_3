@@ -4,7 +4,6 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import lombok.Builder;
 import lombok.Data;
-import lombok.Singular;
 import lombok.extern.jackson.Jacksonized;
 
 import java.util.List;
