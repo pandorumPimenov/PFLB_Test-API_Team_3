@@ -5,6 +5,7 @@ import adapters.UserAdapter;
 import dto.api.House;
 import dto.api.Lodger;
 import dto.api.ParkingPlace;
+import dto.api.User;
 import io.qameta.allure.Description;
 import io.qameta.allure.Owner;
 import org.testng.Assert;

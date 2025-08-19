@@ -4,7 +4,6 @@ import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
 import wrappers.Input;
-
 import java.time.Duration;
 
 import static com.codeborne.selenide.Condition.*;

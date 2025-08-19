@@ -5,12 +5,13 @@ import dto.api.User;
 import io.qameta.allure.Description;
 import io.qameta.allure.Owner;
 import jdbc.DBConnection;
-import lombok.extern.slf4j.Slf4j;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Owner("Андреев Дмитрий")
