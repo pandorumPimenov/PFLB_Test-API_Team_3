@@ -11,17 +11,20 @@
             <class name="tests.ui.ReadUserWithCarsTest"/>
             <class name="tests.ui.AddMoneyTest"/>
             <class name="tests.ui.CarTest"/>
-            <class name="tests.ui.LoginTest"/>
-            <class name="tests.ui.CreateUserTest"/>
-            <class name="tests.ui.UsersReadAllTest"/>
+<!--            <class name="tests.ui.LoginTest"/>-->
+<!--            <class name="tests.ui.CreateUserTest"/>-->
+<!--            <class name="tests.ui.UsersReadAllTest"/>-->
             <parameter name="browser" value="chrome"></parameter>
         </classes>
     </test>
     <test name="Firefox">
         <classes>
-<!--            <class name="tests.ui.LoginTest"/>-->
-<!--            <class name="tests.ui.CreateUserTest"/>-->
-<!--            <class name="tests.ui.UsersReadAllTest"/>-->
+<!--            <class name="tests.ui.ReadUserWithCarsTest"/>-->
+<!--            <class name="tests.ui.AddMoneyTest"/>-->
+<!--            <class name="tests.ui.CarTest"/>-->
+            <class name="tests.ui.LoginTest"/>
+            <class name="tests.ui.CreateUserTest"/>
+            <class name="tests.ui.UsersReadAllTest"/>
             <parameter name="browser" value="firefox"></parameter>
         </classes>
     </test>
