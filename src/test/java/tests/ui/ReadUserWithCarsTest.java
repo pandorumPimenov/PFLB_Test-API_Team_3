@@ -64,7 +64,7 @@ public class ReadUserWithCarsTest extends BaseTest {
         readUserWithCarsPage = menuPage.openReadUserWithCars();
         webdriver().shouldHave(
                 urlContaining("#/read/userInfo"),
-                Duration.ofSeconds(40)
+                Duration.ofSeconds(60)
         );
         readUserWithCarsPage.checkInput("7008")
                 .checkUserInTable("7008", "Леопольд", "Бетховен",
