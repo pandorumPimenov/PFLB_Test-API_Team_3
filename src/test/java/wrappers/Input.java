@@ -30,7 +30,8 @@ public class Input {
 
     public Input shouldExist() {
         String xpath = String.format("//input[@id = '%s']", value);
-        $(By.xpath(xpath)).should(exist);
+        $(By.xpath(xpath)).should(exist)
+        .shouldBe(visible);
         return this;
     }
 }
