@@ -37,7 +37,7 @@ public class UsersReadAllPage extends BasePage {
             TABLE_BODY = $("tbody"),
             USER_WITH_ID_3 = $x("//td[contains(text(), '3')]"),
             SECOND_NAME_CELL = $("tbody tr td:nth-child(2)"),
-            THIRD_SURNAME_CELL= $("tbody tr td:nth-child(3)");
+            THIRD_SURNAME_CELL = $("tbody tr td:nth-child(3)");
 
     @Step("открытие страницы Users_Read_all")
     public UsersReadAllPage openUsersReadAllPage() {

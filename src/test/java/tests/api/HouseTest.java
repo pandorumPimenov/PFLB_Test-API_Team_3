@@ -5,17 +5,22 @@ import adapters.UserAdapter;
 import dto.api.House;
 import dto.api.Lodger;
 import dto.api.ParkingPlace;
-import dto.api.User;
+import io.qameta.allure.Description;
+import io.qameta.allure.Owner;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.util.List;
 
+@Owner("Андреев Дмитрий")
 public class HouseTest {
 
     long id;
 
-    @Test(priority = 1)
+    @Test(priority = 1,
+            description = "Создание нового дома с жильцами и парковочными местами")
+    @Description("Проверка создания дома с параметрами: 3 этажа, цена 123124, " +
+            "2 парковочных места (1 теплое), 1 жилец (Tom O`Nil, 44 года)")
     public void createHouse() {
         HouseAdapter houseAdapter = new HouseAdapter();
         House house = House.builder()
@@ -45,20 +50,26 @@ public class HouseTest {
         Assert.assertEquals(rs.getPrice(), 123124);
     }
 
-    @Test(priority = 2)
+    @Test(priority = 2,
+            description = "Получение информации о созданном доме")
+    @Description("Проверка корректности данных дома после создания (ожидаемая цена: 123124)")
     public void getUser() {
         HouseAdapter houseAdapter = new HouseAdapter();
         House house = houseAdapter.getHouse(id);
         Assert.assertEquals(house.getPrice(), 123124);
     }
 
-    @Test(priority = 4)
+    @Test(priority = 4,
+            description = "Удаление дома")
+    @Description("Проверка удаления созданного дома по ID")
     public void deleteUser() {
         UserAdapter userAdapter = new UserAdapter();
         userAdapter.deleteUser(id);
     }
 
-    @Test(priority = 3)
+    @Test(priority = 3,
+            description = "Обновление информации о доме")
+    @Description("Изменение цены дома с 123124 на 99999 и проверка обновления")
     public void updateUser() {
         HouseAdapter houseAdapter = new HouseAdapter();
         House house = House.builder()

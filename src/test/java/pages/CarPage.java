@@ -6,52 +6,29 @@ import dto.ui.Car;
 import dto.ui.SellCar;
 import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
-import wrappers.RadioButton;
 import wrappers.Input;
+import wrappers.RadioButton;
 
 import static com.codeborne.selenide.Condition.clickable;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selenide.*;
-import static com.codeborne.selenide.WebDriverConditions.urlContaining;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$x;
 
 @Log4j2
 public class CarPage extends BasePage {
 
     private final SelenideElement
-            CARS_FILED = $x("//a[text()='Cars']"),
-            CAR_READ_FILED = $x("//a[text()='Read all']"),
             CAR_RELOAD_FILED = $x("//button[text()='Reload']"),
             ID_FILED = $x("//button[contains(text(),'ID')]"),
             ID_UP_FILED = $x("//button[text()='↑']"),
             ID_DOWN_FILED = $x("//button[text()='↓']"),
-            CAR_CREATE_FILED = $x("//a[text()='Create new']"),
             PUSH_BUTTON_FILED = $("button.btn.btn-primary.tableButton"),
-            SUCCESS_MESSAGE_FILED = $x("//button[normalize-space()='Status: " +
-                    "Successfully pushed, code: 200']"),
-            SUCCESS_MESS_CREATE_FILED = $x("//button[normalize-space()='Status: " +
-                    "Successfully pushed, code: 201']"),
-            INVALID_MESSAGE_FILED = $(byText("Status: AxiosError: " +
-                    "Request failed with status code 404")),
-            CAR_BUY_OR_SELL_FILED = $x("//a[text()='Buy or sell car']");
+            SUCCESS_MESSAGE_FILED = $x("//button[normalize-space()='Status: Successfully pushed, code: 200']"),
+            SUCCESS_MESS_CREATE_FILED = $x("//button[normalize-space()='Status: Successfully pushed, code: 201']"),
+            INVALID_MESSAGE_FILED = $(byText("Status: AxiosError: Request failed with status code 404"));
 
-    @Step("Клик по меню Cars")
-    public CarPage clickMenuCars() {
-        log.info("Click menu Cars");
-        CARS_FILED.click();
-        return this;
-    }
-
-    @Step("Клик по пункту Read All в меню Cars. Проверка соответствующего открытия окна")
-    public CarPage clickReadAll() {
-        log.info("Click menu Cars -> Read All");
-        CAR_READ_FILED.click();
-        log.info("Check is opened /#/read/cars");
-        webdriver().shouldHave(urlContaining("/#/read/cars"));
-        return this;
-    }
-
-    @Step("Клик по кнопке Reload")
+    @Step("Обновление списка автомобилей")
     public CarPage isCarsReadPageOpened() {
         log.info("Click button Reload");
         CAR_RELOAD_FILED.click();
@@ -59,7 +36,7 @@ public class CarPage extends BasePage {
         return this;
     }
 
-    @Step("Клик по кнопке ID сортировка по возрастанию")
+    @Step("Сортировка автомобилей по ID (возрастание)")
     public CarPage sortWithId() {
         log.info("Click button ID");
         ID_FILED.click();
@@ -67,20 +44,11 @@ public class CarPage extends BasePage {
         return this;
     }
 
-    @Step("Клик по кнопке ID сортировка по убыванию")
+    @Step("Сортировка автомобилей по ID (убывание)")
     public CarPage sortWithIdUp() {
         log.info("Click button ↑ ID");
         ID_UP_FILED.click();
         ID_DOWN_FILED.shouldBe(visible);
-        return this;
-    }
-
-    @Step("Клик по пункту Create New в меню Cars. Проверка открытия соответствующего окна")
-    public CarPage clickCreateNew() {
-        log.info("Click menu Cars -> Create New");
-        CAR_CREATE_FILED.click();
-        log.info("Check is opened /#/create/cars");
-        webdriver().shouldHave(urlContaining("/#/create/cars"));
         return this;
     }
 
@@ -112,14 +80,6 @@ public class CarPage extends BasePage {
     @Step("Получение сообщения об ошибке")
     public String getErrorMessage() {
         return getText(INVALID_MESSAGE_FILED);
-    }
-
-    @Step("Клик по пункту Buy or sell car в меню Cars. Проверка открытия соответствующего окна")
-    public CarPage clickBuyOrSell() {
-        $(CAR_BUY_OR_SELL_FILED).click();
-        log.info("Check is opened /#/update/users/buyCar");
-        webdriver().shouldHave(urlContaining("/#/update/users/buyCar"));
-        return this;
     }
 
     @Step("Покупка автомобиля с данными {userID}, {CarId}")

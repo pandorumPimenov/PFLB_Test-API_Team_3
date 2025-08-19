@@ -2,12 +2,14 @@ package pages;
 
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
+import lombok.extern.log4j.Log4j2;
+
+import java.time.Duration;
+
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverConditions.urlContaining;
-import lombok.extern.log4j.Log4j2;
-import java.time.Duration;
 
 @Log4j2
 public class MenuPage extends BasePage {
@@ -15,14 +17,20 @@ public class MenuPage extends BasePage {
     // Основные пункты меню
     private final SelenideElement
             USERS_MENU = $(byText("Users")),
+            CARS_MENU = $(byText("Cars")),
             HOUSES_MENU = $(byText("Houses"));
 
     // Элементы выпадающего меню Users
     private final SelenideElement
             DROPDOWN_CREATE_NEW = $("a.dropdown-item[href='#/create/user']"),
-            DROPDOWN_ADD_MONEY = $("a.dropdown-item[href='#/update/users/plusMoney']"),
-            DROPDOWN_LINK_READ_ALL = $x("//div[@class='dropdown-menu'] " +
-                    "/descendant:: a[contains (text()='Read all')]");
+            DROPDOWN_ADD_MONEY = $("a.dropdown-item[href='#/update/users/plusMoney']");
+
+    // Элементы выпадающего меню Cars
+    private final SelenideElement
+            CARS_DROPDOWN_MENU = $("div.dropdown-menu.show"),
+            CAR_READ_ALL = $x("//a[text()='Read all']"),
+            CAR_CREATE_NEW = $x("//a[text()='Create new']"),
+            CAR_BUY_OR_SELL = $x("//a[text()='Buy or sell car']");
 
     // Подменю Houses
     private final SelenideElement
@@ -43,6 +51,41 @@ public class MenuPage extends BasePage {
         log.info("Opening Houses menu");
         clickElement(HOUSES_MENU);
         log.info("Houses menu opened successfully");
+        return this;
+    }
+
+    @Step("Открытие меню Cars и ожидание появления выпадающего списка")
+    public MenuPage openCarsMenu() {
+        log.info("Opening Cars menu");
+        clickElement(CARS_MENU);
+        CARS_DROPDOWN_MENU.shouldBe(visible);
+        return this;
+    }
+
+    @Step("Открытие пункта Read All в меню Cars")
+    public MenuPage openCarsReadAll() {
+        log.info("Opening Cars Read All");
+        openCarsMenu();
+        clickElement(CAR_READ_ALL);
+        webdriver().shouldHave(urlContaining("/#/read/cars"));
+        return this;
+    }
+
+    @Step("Открытие формы создания нового автомобиля")
+    public MenuPage openCarsCreateNew() {
+        log.info("Opening Create New Car form");
+        openCarsMenu();
+        clickElement(CAR_CREATE_NEW);
+        webdriver().shouldHave(urlContaining("/#/create/cars"));
+        return this;
+    }
+
+    @Step("Открытие формы покупки/продажи автомобиля")
+    public MenuPage openBuyOrSellCar() {
+        log.info("Opening Buy or Sell Car form");
+        openCarsMenu();
+        clickElement(CAR_BUY_OR_SELL);
+        webdriver().shouldHave(urlContaining("/#/update/users/buyCar"));
         return this;
     }
 
@@ -89,6 +132,7 @@ public class MenuPage extends BasePage {
         log.info("Successfully navigated to Read User With Cars page");
         return page(ReadUserWithCarsPage.class);
     }
+
     @Step("Открытие страницы Read all")
     public UsersReadAllPage openReadAll() {
         log.info("Opening Read all page");

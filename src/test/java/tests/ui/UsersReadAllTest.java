@@ -1,4 +1,4 @@
-package tests;
+package tests.ui;
 
 import dto.ui.UserBuild;
 import io.qameta.allure.Description;
@@ -7,11 +7,11 @@ import org.testng.annotations.Test;
 
 import static dto.ui.UserBuildFactory.getRandomUserBuild;
 
+@Owner("Дерюшева Наталья")
 public class UsersReadAllTest extends BaseTest {
 
     @Test(testName = "Проверка страницы UsersReadAll",
             description = "Комплексная проверка страницы со списком всех пользователей")
-    @Owner("Дерюшева Наталья")
     @Description("Проверка корректного отображения страницы UsersReadAll: " +
             "1. Видимость элементов управления " +
             "2. Наличие данных в таблице " +
@@ -29,7 +29,6 @@ public class UsersReadAllTest extends BaseTest {
 
     @Test(testName = "Проверка отображения нового пользователя в таблице",
             description = "Проверка отображения созданного пользователя в общем списке")
-    @Owner("Дерюшева Наталья")
     @Description("E2E тест создания и проверки пользователя: " +
             "1. Генерация случайного пользователя " +
             "2. Создание пользователя через UI " +

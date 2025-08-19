@@ -1,4 +1,4 @@
-package tests;
+package tests.ui;
 
 import dto.ui.Money;
 import io.qameta.allure.Description;
@@ -9,11 +9,11 @@ import static com.codeborne.selenide.Selenide.webdriver;
 import static com.codeborne.selenide.WebDriverConditions.urlContaining;
 import static org.testng.Assert.assertEquals;
 
+@Owner("Пименов Сергей")
 public class AddMoneyTest extends BaseTest {
 
     @Test(testName = "Открытие страницы Add Money",
             description = "После успешной авторизации система должна корректно открывать форму пополнения баланса")
-    @Owner("Пименов Сергей")
     @Description("Проверка корректности навигации к форме пополнения баланса пользователя")
     public void openedAddMoneyPage() {
         loginPage.login(user, password)
@@ -26,7 +26,6 @@ public class AddMoneyTest extends BaseTest {
 
     @Test(testName = "Пополнение баланса валидной суммой",
             description = "Система должна успешно обрабатывать запрос на пополнение баланса при валидных данных")
-    @Owner("Пименов Сергей")
     @Description("Позитивный сценарий пополнения баланса пользователя")
     public void checkValidMoneyAddition() {
         Money money = Money.builder()
@@ -46,7 +45,6 @@ public class AddMoneyTest extends BaseTest {
 
     @Test(testName = "Validation: Отрицательная сумма",
             description = "Система должна отклонять попытки пополнения баланса отрицательной суммой")
-    @Owner("Пименов Сергей")
     @Description("Негативный сценарий: пополнение баланса отрицательным значением")
     public void checkNegativeMoney() {
         Money money = Money.builder()
@@ -66,7 +64,6 @@ public class AddMoneyTest extends BaseTest {
 
     @Test(testName = "Validation: Текст вместо суммы",
             description = "Система должна отклонять нечисловые значения в поле суммы")
-    @Owner("Пименов Сергей")
     @Description("Негативный сценарий: пополнение баланса текстовым значением")
     public void checkMoneyWithText() {
         Money money = Money.builder()
@@ -86,7 +83,6 @@ public class AddMoneyTest extends BaseTest {
 
     @Test(testName = "Validation: Нулевая сумма",
             description = "Система должна корректно обрабатывать попытку пополнения на нулевую сумму")
-    @Owner("Пименов Сергей")
     @Description("Проверка обработки нулевого значения при пополнении баланса")
     public void checkZeroMoney() {
         Money money = Money.builder()
@@ -107,7 +103,6 @@ public class AddMoneyTest extends BaseTest {
 
     @Test(testName = "Boundary: Минимальная сумма пополнения",
             description = "Система должна корректно обрабатывать минимально допустимую сумму пополнения (0.01)")
-    @Owner("Пименов Сергей")
     @Description("Проверка boundary-значения для минимальной суммы пополнения")
     public void checkMinAndMaxMoney() {
         Money money = Money.builder()

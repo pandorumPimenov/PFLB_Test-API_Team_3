@@ -1,4 +1,4 @@
-package tests;
+package tests.ui;
 
 import io.qameta.allure.Description;
 import io.qameta.allure.Owner;
@@ -9,10 +9,11 @@ import pages.LoginPage;
 
 import static org.testng.Assert.assertEquals;
 
+@Owner("Андреев Дмитрий")
 public class LoginTest extends BaseTest {
+
     @Test(testName = "Авторизация с валидными данными",
             description = "Проверка успешной авторизации с корректными учетными данными")
-    @Owner("Андреев Дмитрий")
     @Description("Позитивный тест авторизации: ввод валидного email и пароля, " +
             "проверка сообщения об успешной авторизации")
     public void successfulLoginWithValidCredentials() {
@@ -26,8 +27,7 @@ public class LoginTest extends BaseTest {
     @DataProvider(name = "LoginTestCases")
     public Object[][] loginTestCases() {
         return new Object[][]{
-                // user, password, expectedAlert, errorType, expectedErrorMessage
-                {"", "", "Incorrect input data", null, null},  // Простая проверка alert
+                {"", "", "Incorrect input data", null, null},
                 {"test", "test", "Incorrect input data", null, null},
                 {"d.a.ru", "password123", "Incorrect input data", LoginPage.ErrorType.EMAIL, "incorrect Email"},
                 {"valid@email.com", "123456789", "Incorrect input data", LoginPage.ErrorType.PASSWORD,
@@ -46,14 +46,11 @@ public class LoginTest extends BaseTest {
             LoginPage.ErrorType errorType,
             String expectedErrorMessage) {
 
-        // Инициализация SoftAssert для каждого теста
         SoftAssert softAssert = new SoftAssert();
 
-        // Проверка основного сообщения
         String alertMessage = loginPage.login(user, password).checkAlert();
         softAssert.assertEquals(alertMessage, expectedAlert, "Неверное сообщение в alert");
 
-        // Проверка дополнительных ошибок (если указаны)
         if (errorType != null && expectedErrorMessage != null) {
             softAssert.assertEquals(
                     loginPage.checkErrorMessage(errorType),

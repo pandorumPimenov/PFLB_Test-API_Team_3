@@ -1,4 +1,4 @@
-package tests;
+package tests.ui;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.logevents.SelenideLogger;
@@ -8,7 +8,6 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
-import org.testng.asserts.SoftAssert;
 import pages.*;
 import utils.AllureUtils;
 import utils.PropertyReader;
@@ -21,6 +20,8 @@ import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
 @Listeners(TestListener.class)
 public class BaseTest {
+    protected final String user = System.getProperty("user", PropertyReader.getProperty("user"));
+    protected final String password = System.getProperty("password", PropertyReader.getProperty("password"));
     protected LoginPage loginPage;
     protected MenuPage menuPage;
     protected CreateUserPage createUserPage;
@@ -33,9 +34,6 @@ public class BaseTest {
     protected HousesReadOneByIdPage housesReadOneByIdPage;
     protected SettleOrEvictUserPage settleOrEvictUserPage;
 
-    protected final String user = System.getProperty("user", PropertyReader.getProperty("user"));
-    protected final String password = System.getProperty("password", PropertyReader.getProperty("password"));
-
     @Parameters({"browser"})
     @BeforeMethod
     public void setup(@Optional("chrome") String browser) {
@@ -45,7 +43,7 @@ public class BaseTest {
         // Настройки Selenide
         Configuration.timeout = 20000;
         Configuration.clickViaJs = true;
-        Configuration.headless = true; // Для отладки отключаем headless
+//        Configuration.headless = true; // Для отладки отключаем headless
 
         if (browser.equalsIgnoreCase("chrome")) {
             ChromeOptions options = new ChromeOptions();
@@ -70,7 +68,6 @@ public class BaseTest {
         initializePages();
         setupAllure();
 
-        // Открываем базовый URL
         open(PropertyReader.getProperty("base.url"));
     }
 
