@@ -19,9 +19,8 @@ public class AddMoneyTest extends BaseTest {
         loginPage.login(user, password)
                 .checkAlert();
 
-        addMoneyPage = menuPage.openAddMoneyForm();
-
-        webdriver().shouldHave(urlContaining("/#/update/users/plusMoney"));
+        addMoneyPage = menuPage.openAddMoneyForm()
+                .openAddMoneyPageUrl();
     }
 
     @Test(testName = "Пополнение баланса валидной суммой",

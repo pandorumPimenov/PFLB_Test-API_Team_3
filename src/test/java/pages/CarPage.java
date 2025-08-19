@@ -9,11 +9,14 @@ import lombok.extern.log4j.Log4j2;
 import wrappers.Input;
 import wrappers.RadioButton;
 
+import java.time.Duration;
+
 import static com.codeborne.selenide.Condition.clickable;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$x;
+import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.webdriver;
+import static com.codeborne.selenide.WebDriverConditions.urlContaining;
 
 @Log4j2
 public class CarPage extends BasePage {

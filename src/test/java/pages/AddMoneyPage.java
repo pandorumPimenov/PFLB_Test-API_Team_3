@@ -6,8 +6,11 @@ import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
 import wrappers.Input;
 
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$x;
+import java.time.Duration;
+
+import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.webdriver;
+import static com.codeborne.selenide.WebDriverConditions.urlContaining;
 
 @Log4j2
 public class AddMoneyPage extends BasePage {
@@ -54,5 +57,13 @@ public class AddMoneyPage extends BasePage {
     public String getIncorrectMessage() {
         log.info("Checking for error message");
         return getText(INCORRECT_MESSAGE);
+    }
+    @Step("Открытие страницы Users_Read_user_with_cars")
+    public AddMoneyPage openAddMoneyPageUrl() {
+        log.info("Opening Users Read User With Cars page");
+        open(BASE_URL + "/#/update/users/plusMoney");
+        webdriver().shouldHave(urlContaining("#/read/userInfo"));
+        Duration.ofSeconds(60);
+        return this;
     }
 }

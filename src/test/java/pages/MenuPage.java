@@ -67,6 +67,7 @@ public class MenuPage extends BasePage {
         openCarsMenu();
         clickElement(CAR_READ_ALL);
         webdriver().shouldHave(urlContaining("/#/read/cars"));
+        Duration.ofSeconds(60);
         return this;
     }
 
@@ -76,6 +77,7 @@ public class MenuPage extends BasePage {
         openCarsMenu();
         clickElement(CAR_CREATE_NEW);
         webdriver().shouldHave(urlContaining("/#/create/cars"));
+        Duration.ofSeconds(60);
         return this;
     }
 
@@ -85,6 +87,7 @@ public class MenuPage extends BasePage {
         openCarsMenu();
         clickElement(CAR_BUY_OR_SELL);
         webdriver().shouldHave(urlContaining("/#/update/users/buyCar"));
+        Duration.ofSeconds(60);
         return this;
     }
 
