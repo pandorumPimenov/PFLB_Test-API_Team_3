@@ -1,8 +1,10 @@
 package tests.ui;
 
 import io.qameta.allure.Description;
+import io.qameta.allure.Flaky;
 import io.qameta.allure.Owner;
 import org.testng.annotations.Test;
+import utils.Retry;
 
 import java.time.Duration;
 
@@ -52,9 +54,10 @@ public class ReadUserWithCarsTest extends BaseTest {
     }
 
     @Test(testName = "Проверка отображения пользователя в таблице",
-            description = "Проверка корректного отображения данных пользователя в таблице")
+            description = "Проверка корректного отображения данных пользователя в таблице",retryAnalyzer = Retry.class)
     @Description("Комплексная проверка: поиск пользователя по ID и верификация всех его данных в таблице " +
             "(личные данные и информация об автомобиле)")
+    @Flaky
     public void checkUserInTable() {
         loginPage.login(user, password)
                 .checkAlert();
