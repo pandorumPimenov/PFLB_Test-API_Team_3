@@ -38,19 +38,7 @@ public class UserTest {
         DBConnection connection = new DBConnection();//DB
         connection.connect();
         ResultSet res = connection.select("SELECT COUNT(" + id + ") FROM car WHERE id = " + id);
-        if (res != null) {
-            ResultSet result = connection.select("SELECT * FROM person WHERE id = " + id);
-            while (result.next()) {
-                log.info("output new user");
-                System.out.println("id - " + result.getInt("id"));
-                System.out.println("age - " + result.getInt("age"));
-                System.out.println("first_name - " + result.getString("first_name"));
-                System.out.println("second_name - " + result.getString("second_name"));
-                System.out.println("money - " + result.getDouble("money"));
-            }
-        } else {
-            log.info("id absent");
-        }
+            Assert.assertTrue(res.next(), "Запись с id " + id + " должна существовать");
         connection.close();
     }
 

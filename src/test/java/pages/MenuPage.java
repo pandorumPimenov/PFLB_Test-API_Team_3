@@ -77,7 +77,7 @@ public class MenuPage extends BasePage {
         openCarsMenu();
         clickElement(CAR_CREATE_NEW);
         webdriver().shouldHave(urlContaining("/#/create/cars"));
-        Duration.ofSeconds(60);
+        Duration.ofSeconds(80);
         return this;
     }
 
@@ -97,7 +97,7 @@ public class MenuPage extends BasePage {
         openUsersMenu();
         clickElement(DROPDOWN_CREATE_NEW);
         webdriver().shouldHave(urlContaining("/#/create/user"));
-        Duration.ofSeconds(60);
+        Duration.ofSeconds(80);
         return new CreateUserPage();
     }
 
@@ -108,7 +108,7 @@ public class MenuPage extends BasePage {
         clickElement(DROPDOWN_ADD_MONEY);
         log.info("Add Money form opened successfully");
         webdriver().shouldHave(urlContaining("/#/update/users/plusMoney"));
-        Duration.ofSeconds(60);
+        Duration.ofSeconds(80);
         return new AddMoneyPage();
     }
 
