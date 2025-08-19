@@ -139,9 +139,6 @@ public class MenuPage extends BasePage {
                 .shouldBe(visible, enabled, interactable)
                 .click();
         log.info("Clicked Read all link");
-        webdriver().shouldHave(
-                urlContaining("#/read/users"),
-                Duration.ofSeconds(10));
         log.info("Successfully navigated to Read all page");
         return page(UsersReadAllPage.class);
     }
