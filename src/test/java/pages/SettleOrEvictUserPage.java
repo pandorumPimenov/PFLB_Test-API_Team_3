@@ -1,5 +1,6 @@
 package pages;
 
+import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
@@ -28,6 +29,7 @@ public class SettleOrEvictUserPage extends BasePage {
 
     @Step("Открытие страницы заселения/выселения пользователя")
     public SettleOrEvictUserPage openSettleOrEvictPage() {
+        Selenide.sleep(5000);
         log.info("Opening Settle/Evict user page");
         open(BASE_URL + "#/update/houseAndUser");
         ID_SEND_SOE_INPUT.shouldBe(visible, Duration.ofSeconds(60));
