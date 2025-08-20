@@ -1,12 +1,15 @@
 package pages;
 
+import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
 import wrappers.Input;
 
+import java.time.Duration;
+
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.*;
-import static com.codeborne.selenide.WebDriverConditions.urlContaining;
 
 @Log4j2
 public class CreateHousePage extends BasePage {
@@ -16,14 +19,15 @@ public class CreateHousePage extends BasePage {
                     "Successfully pushed, code: 201']"),
             INVALID_MESSAGE = $x("//button[normalize-space()='Status: Invalid input data']"),
             INVALID_MESSAGE_400 = $x("//button[normalize-space()='Status: " +
-                    "AxiosError: Request failed with status code 400']");
+                    "AxiosError: Request failed with status code 400']"),
+            FLOOR_INPUT = $("#floor_send");
 
     @Step("Открытие страницы Create House")
     public CreateHousePage openCreateHousePage() {
+        Selenide.sleep(5000);
         log.info("Opening Create House page");
         open(BASE_URL + "#/create/house");
-        webdriver().shouldHave(urlContaining("/#/create/house"));
-
+        FLOOR_INPUT.shouldBe(visible, Duration.ofSeconds(20));
         return this;
     }
 

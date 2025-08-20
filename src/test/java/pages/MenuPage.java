@@ -1,5 +1,6 @@
 package pages;
 
+import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
@@ -8,7 +9,6 @@ import java.time.Duration;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
-import static com.codeborne.selenide.WebDriverConditions.urlContaining;
 
 @Log4j2
 public class MenuPage extends BasePage {
@@ -37,8 +37,18 @@ public class MenuPage extends BasePage {
             DROPDOWN_READ_USER_WITH_CARS = $x("//a[@class='dropdown-item' and @href='#/read/userInfo']"),
             DROPDOWN_READ_ALL = $x("//a[@class='dropdown-item' and @href='#/read/users']");
 
+    private final SelenideElement
+            ID_SORT_BUTTON = $x("//button[contains(text(),'ID')]"),
+            ENGINE_TYPE_INPUT = $("#car_engine_type_send"),
+            ID_SEND_INPUT = $("#id_send"),
+            FIRST_NAME_INPUT = $("#first_name_send"),
+            HOUSE_INPUT = $("#house_input"),
+            USER_INPUT = $("#user_input");
+
     @Step("Открытие меню Users")
     public MenuPage openUsersMenu() {
+        Selenide.sleep(5000);
+        USERS_MENU.shouldBe(visible, Duration.ofSeconds(20));
         log.info("Opening Users menu");
         clickElement(USERS_MENU);
         log.info("Users menu opened successfully");
@@ -47,6 +57,8 @@ public class MenuPage extends BasePage {
 
     @Step("Открытие меню Houses")
     public MenuPage openHousesMenu() {
+        Selenide.sleep(5000);
+        HOUSES_MENU.shouldBe(visible, Duration.ofSeconds(20));
         log.info("Opening Houses menu");
         clickElement(HOUSES_MENU);
         log.info("Houses menu opened successfully");
@@ -55,7 +67,9 @@ public class MenuPage extends BasePage {
 
     @Step("Открытие меню Cars и ожидание появления выпадающего списка")
     public MenuPage openCarsMenu() {
+        Selenide.sleep(5000);
         log.info("Opening Cars menu");
+        CARS_MENU.shouldBe(visible, Duration.ofSeconds(20));
         clickElement(CARS_MENU);
         CARS_DROPDOWN_MENU.shouldBe(visible);
         return this;
@@ -66,8 +80,7 @@ public class MenuPage extends BasePage {
         log.info("Opening Cars Read All");
         openCarsMenu();
         clickElement(CAR_READ_ALL);
-        webdriver().shouldHave(urlContaining("/#/read/cars"));
-        Duration.ofSeconds(60);
+        ID_SORT_BUTTON.shouldBe(visible, Duration.ofSeconds(10));
         return this;
     }
 
@@ -76,51 +89,49 @@ public class MenuPage extends BasePage {
         log.info("Opening Create New Car form");
         openCarsMenu();
         clickElement(CAR_CREATE_NEW);
-        webdriver().shouldHave(urlContaining("/#/create/cars"));
-        Duration.ofSeconds(80);
+        ENGINE_TYPE_INPUT.shouldBe(visible, Duration.ofSeconds(10));
         return this;
     }
 
     @Step("Открытие формы покупки/продажи автомобиля")
     public MenuPage openBuyOrSellCar() {
+        Selenide.sleep(5000);
         log.info("Opening Buy or Sell Car form");
         openCarsMenu();
         clickElement(CAR_BUY_OR_SELL);
-        webdriver().shouldHave(urlContaining("/#/update/users/buyCar"));
-        Duration.ofSeconds(60);
+        ID_SEND_INPUT.shouldBe(visible, Duration.ofSeconds(10));
         return this;
     }
 
     @Step("Открытие формы создания пользователя")
     public CreateUserPage openCreateUserForm() {
+        Selenide.sleep(5000);
         log.info("Opening Create User form");
         openUsersMenu();
         clickElement(DROPDOWN_CREATE_NEW);
-        webdriver().shouldHave(urlContaining("/#/create/user"));
-        Duration.ofSeconds(80);
+        FIRST_NAME_INPUT.shouldBe(visible, Duration.ofSeconds(10));
         return new CreateUserPage();
     }
 
     @Step("Открытие формы добавления денег")
     public AddMoneyPage openAddMoneyForm() {
+        Selenide.sleep(5000);
         log.info("Opening Add Money form");
         openUsersMenu();
         clickElement(DROPDOWN_ADD_MONEY);
         log.info("Add Money form opened successfully");
-        webdriver().shouldHave(urlContaining("/#/update/users/plusMoney"));
-        Duration.ofSeconds(80);
+        ID_SEND_INPUT.shouldBe(visible, Duration.ofSeconds(10));
         return new AddMoneyPage();
     }
 
     @Step("Открытие страницы Houses Read One By Id")
     public HousesReadOneByIdPage openHousesReadOneByIdPage() {
+        Selenide.sleep(5000);
         openHousesMenu();
         DROPDOWN_HOUSES_READ_ONE_BY_ID_PAGE
                 .shouldBe(visible, enabled, interactable)
                 .click();
-        webdriver().shouldHave(
-                urlContaining("#/read/house"),
-                Duration.ofSeconds(5));
+        HOUSE_INPUT.shouldBe(visible, Duration.ofSeconds(10));
         return new HousesReadOneByIdPage();
     }
 
@@ -132,9 +143,7 @@ public class MenuPage extends BasePage {
                 .shouldBe(visible, enabled, interactable)
                 .click();
         log.info("Clicked Read User With Cars link");
-        webdriver().shouldHave(
-                urlContaining("#/read/userInfo"),
-                Duration.ofSeconds(5));
+        USER_INPUT.shouldBe(visible, Duration.ofSeconds(10));
         log.info("Successfully navigated to Read User With Cars page");
         return page(ReadUserWithCarsPage.class);
     }

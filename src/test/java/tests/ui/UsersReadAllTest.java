@@ -34,17 +34,16 @@ public class UsersReadAllTest extends BaseTest {
             "2. Создание пользователя через UI " +
             "3. Проверка его отображения в таблице UsersReadAll")
     public void checkNewUserInTable() {
-        // Генерируем случайного пользователя
+
         UserBuild userBuild = getRandomUserBuild();
         String expectedFirstName = userBuild.getFirstName();
         String expectedLastName = userBuild.getLastName();
 
-        // Логинимся и создаем пользователя
         loginPage.login(user, password)
                 .checkAlert();
         createUserPage = menuPage.openCreateUserForm()
                 .createUser(userBuild, "MALE");
-        // Проверяем, что пользователь отображается в таблице
+
         usersReadAllPage.openUsersReadAllPage()
                 .checkNewUserInTable(expectedFirstName, expectedLastName);
     }

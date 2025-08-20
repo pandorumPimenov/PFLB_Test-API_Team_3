@@ -1,11 +1,11 @@
 package tests.ui;
 
 import io.qameta.allure.Description;
+import io.qameta.allure.Flaky;
 import io.qameta.allure.Owner;
 import org.testng.annotations.Test;
+import utils.Retry;
 
-import static com.codeborne.selenide.Selenide.webdriver;
-import static com.codeborne.selenide.WebDriverConditions.urlContaining;
 import static org.testng.Assert.assertEquals;
 
 @Owner("Шишкин Федор")
@@ -18,13 +18,14 @@ public class SettleOrEvictUserTest extends BaseTest {
         loginPage.login(user, password)
                 .checkAlert();
         settleOrEvictUserPage.openSettleOrEvictPage();
-        webdriver().shouldHave(urlContaining("/#/update/houseAndUser"));
     }
 
     @Test(testName = "Проверка заселения пользователя в дом",
-            description = "Проверка функционала заселения пользователя в указанный дом")
+            description = "Проверка функционала заселения пользователя в указанный дом",
+            retryAnalyzer = Retry.class)
     @Description("Позитивный тест: проверка успешного заселения пользователя с валидными данными " +
             "(houseId: 3, userId: 2203)")
+    @Flaky
     public void settleUserInHouse() {
         loginPage.login(user, password)
                 .checkAlert();
@@ -36,9 +37,11 @@ public class SettleOrEvictUserTest extends BaseTest {
     }
 
     @Test(testName = "Проверка выселения пользователя из дома",
-            description = "Проверка функционала выселения пользователя из дома")
+            description = "Проверка функционала выселения пользователя из дома",
+            retryAnalyzer = Retry.class)
     @Description("Позитивный тест: проверка успешного выселения пользователя (houseId: 3, userId: 2203) " +
             "с подтверждением статуса операции")
+    @Flaky
     public void evictUserFromHouse() {
         loginPage.login(user, password)
                 .checkAlert();

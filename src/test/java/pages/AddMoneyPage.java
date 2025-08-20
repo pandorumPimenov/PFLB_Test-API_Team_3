@@ -6,19 +6,11 @@ import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
 import wrappers.Input;
 
-import java.time.Duration;
-
 import static com.codeborne.selenide.Selenide.*;
-import static com.codeborne.selenide.Selenide.webdriver;
-import static com.codeborne.selenide.WebDriverConditions.urlContaining;
+
 
 @Log4j2
 public class AddMoneyPage extends BasePage {
-
-    // Поля формы
-    private final SelenideElement
-            USER_ID_FIELD = $("#id_send"),
-            MONEY_FIELD = $("#money_send");
 
     // Кнопки действий
     private final SelenideElement

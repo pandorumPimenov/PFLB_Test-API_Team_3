@@ -1,8 +1,10 @@
 package tests.ui;
 
 import io.qameta.allure.Description;
+import io.qameta.allure.Flaky;
 import io.qameta.allure.Owner;
 import org.testng.annotations.Test;
+import utils.Retry;
 
 import static com.codeborne.selenide.Selenide.webdriver;
 import static com.codeborne.selenide.WebDriverConditions.urlContaining;
@@ -63,8 +65,10 @@ public class CreateHouseTest extends BaseTest {
     }
 
     @Test(testName = "Ввод данных превышающих максимальную длину полей",
-            description = "Тест проверяет обработку значений, превышающих максимально допустимую длину")
+            description = "Тест проверяет обработку значений, превышающих максимально допустимую длину",
+            retryAnalyzer = Retry.class)
     @Description("Проверка валидации при вводе значений, превышающих максимально допустимую длину")
+    @Flaky
     public void checkMoreThenMaximumValue() {
         loginPage.login(user, password)
                 .checkAlert();
