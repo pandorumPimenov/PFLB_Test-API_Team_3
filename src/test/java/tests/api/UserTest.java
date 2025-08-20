@@ -5,11 +5,12 @@ import dto.api.User;
 import io.qameta.allure.Description;
 import io.qameta.allure.Owner;
 import jdbc.DBConnection;
+import lombok.extern.slf4j.Slf4j;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Owner("Андреев Дмитрий")
@@ -36,7 +37,7 @@ public class UserTest {
         DBConnection connection = new DBConnection();//DB
         connection.connect();
         ResultSet res = connection.select("SELECT COUNT(" + id + ") FROM car WHERE id = " + id);
-            Assert.assertTrue(res.next(), "Запись с id " + id + " должна существовать");
+        Assert.assertTrue(res.next(), "Запись с id " + id + " должна существовать");
         connection.close();
     }
 

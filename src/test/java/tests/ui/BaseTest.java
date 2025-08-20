@@ -20,6 +20,8 @@ import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
 @Listeners(TestListener.class)
 public class BaseTest {
+    protected final String user = System.getProperty("user", PropertyReader.getProperty("user"));
+    protected final String password = System.getProperty("password", PropertyReader.getProperty("password"));
     protected LoginPage loginPage;
     protected MenuPage menuPage;
     protected CreateUserPage createUserPage;
@@ -31,9 +33,6 @@ public class BaseTest {
     protected CreateHousePage createHousePage;
     protected HousesReadOneByIdPage housesReadOneByIdPage;
     protected SettleOrEvictUserPage settleOrEvictUserPage;
-
-    protected final String user = System.getProperty("user", PropertyReader.getProperty("user"));
-    protected final String password = System.getProperty("password", PropertyReader.getProperty("password"));
 
     @Parameters({"browser"})
     @BeforeMethod

@@ -4,6 +4,7 @@ import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
+
 import java.time.Duration;
 
 import static com.codeborne.selenide.Condition.*;
@@ -147,6 +148,7 @@ public class MenuPage extends BasePage {
         log.info("Successfully navigated to Read User With Cars page");
         return page(ReadUserWithCarsPage.class);
     }
+
     @Step("Открытие страницы Read all")
     public UsersReadAllPage openReadAll() {
         log.info("Opening Read all page");

@@ -12,7 +12,8 @@ import wrappers.RadioButton;
 import static com.codeborne.selenide.Condition.clickable;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$x;
 
 @Log4j2
 public class CarPage extends BasePage {
