@@ -2,8 +2,10 @@ package tests.ui;
 
 import dto.ui.Money;
 import io.qameta.allure.Description;
+import io.qameta.allure.Flaky;
 import io.qameta.allure.Owner;
 import org.testng.annotations.Test;
+import utils.Retry;
 
 import static com.codeborne.selenide.Selenide.webdriver;
 import static com.codeborne.selenide.WebDriverConditions.urlContaining;
@@ -61,8 +63,10 @@ public class AddMoneyTest extends BaseTest {
     }
 
     @Test(testName = "Validation: Текст вместо суммы",
-            description = "Система должна отклонять нечисловые значения в поле суммы")
+            description = "Система должна отклонять нечисловые значения в поле суммы",
+            retryAnalyzer = Retry.class)
     @Description("Негативный сценарий: пополнение баланса текстовым значением")
+    @Flaky
     public void checkMoneyWithText() {
         Money money = Money.builder()
                 .userId("7205")

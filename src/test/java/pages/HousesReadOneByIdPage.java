@@ -46,7 +46,7 @@ public class HousesReadOneByIdPage extends BasePage {
     public HousesReadOneByIdPage openHousesReadOneById() {
         log.info("Opening Houses Read By ID page");
         open(BASE_URL + "/#/read/house");
-        webdriver().shouldHave(urlContaining("/#/read/house"));
+        HOUSE_ID.shouldBe(visible, Duration.ofSeconds(10));
         return this;
     }
 

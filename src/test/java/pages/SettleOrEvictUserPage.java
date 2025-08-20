@@ -6,6 +6,9 @@ import lombok.extern.log4j.Log4j2;
 import wrappers.Input;
 import wrappers.RadioButton;
 
+import java.time.Duration;
+
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverConditions.urlContaining;
 
@@ -21,12 +24,14 @@ public class SettleOrEvictUserPage extends BasePage {
             SUCCESS_MESSAGE = $x("//button[normalize-space()='Status: " +
             "Successfully pushed, code: 200']");
 
+    private final SelenideElement
+            ID_SEND_SOE_INPUT = $("#id_send");
 
     @Step("Открытие страницы заселения/выселения пользователя")
     public SettleOrEvictUserPage openSettleOrEvictPage() {
         log.info("Opening Settle/Evict user page");
         open(BASE_URL + "#/update/houseAndUser");
-        webdriver().shouldHave(urlContaining("/#/update/houseAndUser"));
+        ID_SEND_SOE_INPUT.shouldBe(visible, Duration.ofSeconds(60));
         return this;
     }
 

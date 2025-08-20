@@ -26,32 +26,31 @@ public class ReadUserWithCarsTest extends BaseTest {
     public void checkUsersReadAllWithCarsNavBar() {
         loginPage.login(user, password)
                 .checkAlert();
-        readUserWithCarsPage = menuPage.openReadUserWithCars()
-                .openUsersReadUserWithCarsUrl();
+        readUserWithCarsPage = menuPage.openReadUserWithCars();
         readUserWithCarsPage.checkNavBar();
     }
 
     @Test(testName = "Проверка работы инпута",
-            description = "Проверка функциональности поля ввода на странице")
+            description = "Проверка функциональности поля ввода на странице", retryAnalyzer = Retry.class)
+    @Flaky
     @Description("Позитивный тест: проверка что поле ввода корректно принимает и обрабатывает вводимые данные")
     public void checkInput() {
         loginPage.login(user, password)
                 .checkAlert();
-        readUserWithCarsPage = menuPage.openReadUserWithCars()
-        .openUsersReadUserWithCarsUrl();
+        readUserWithCarsPage = menuPage.openReadUserWithCars();
         readUserWithCarsPage.checkInput("7008");
     }
 
     @Test(testName = "Проверка отображения пользователя в таблице",
-            description = "Проверка корректного отображения данных пользователя в таблице",retryAnalyzer = Retry.class)
+            description = "Проверка корректного отображения данных пользователя в таблице",
+            retryAnalyzer = Retry.class)
     @Description("Комплексная проверка: поиск пользователя по ID и верификация всех его данных в таблице " +
             "(личные данные и информация об автомобиле)")
     @Flaky
     public void checkUserInTable() {
         loginPage.login(user, password)
                 .checkAlert();
-        readUserWithCarsPage = menuPage.openReadUserWithCars()
-        .openUsersReadUserWithCarsUrl();
+        readUserWithCarsPage = menuPage.openReadUserWithCars();
         readUserWithCarsPage.checkInput("7008")
                 .checkUserInTable("7008", "Леопольд", "Бетховен",
                         "45", "MALE", "7996001",

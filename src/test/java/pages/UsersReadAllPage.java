@@ -45,7 +45,7 @@ public class UsersReadAllPage extends BasePage {
         log.info("Opening Users Read All page");
         open(BASE_URL + "#/read/users");
         log.info("Users Read All page opened successfully");
-        Duration.ofSeconds(80);
+        ID_SORT_BUTTON.shouldBe(visible, Duration.ofSeconds(10));
         return this;
     }
 

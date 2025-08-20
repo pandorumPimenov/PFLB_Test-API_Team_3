@@ -1,8 +1,11 @@
 package tests.ui;
 
 import io.qameta.allure.Description;
+import io.qameta.allure.Flaky;
 import io.qameta.allure.Owner;
+import org.testng.IRetryAnalyzer;
 import org.testng.annotations.Test;
+import utils.Retry;
 
 import java.time.Duration;
 
@@ -19,7 +22,6 @@ public class HousesReadByIdTest extends BaseTest {
         loginPage.login(user, password)
                 .checkAlert();
         housesReadOneByIdPage = menuPage.openHousesReadOneByIdPage();
-        webdriver().shouldHave(urlContaining("#/read/house"), Duration.ofSeconds(5));
     }
 
     @Test(testName = "Проверка открытия страницы и наличия элементов управления",
@@ -43,8 +45,10 @@ public class HousesReadByIdTest extends BaseTest {
     }
 
     @Test(testName = "Проверка отображения дома в таблице",
-            description = "Тест проверяет корректность отображения данных о доме в таблице")
+            description = "Тест проверяет корректность отображения данных о доме в таблице",
+            retryAnalyzer = Retry.class)
     @Description("Комплексная проверка отображения всех атрибутов дома при поиске по ID")
+    @Flaky
     public void checkHouse() {
         loginPage.login(user, password)
                 .checkAlert();

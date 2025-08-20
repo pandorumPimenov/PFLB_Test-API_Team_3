@@ -36,14 +36,14 @@ public class ReadUserWithCarsPage extends BasePage {
             MODEL_CELL = $("table.tableCars td:nth-child(4)"),
             PRICE_CELL = $("table.tableCars td:nth-child(5)");
 
-    @Step("Открытие страницы Users_Read_user_with_cars")
-    public ReadUserWithCarsPage openUsersReadUserWithCarsUrl() {
-        log.info("Opening Users Read User With Cars page");
-        open(BASE_URL + "#/read/userInfo");
-        webdriver().shouldHave(urlContaining("#/read/userInfo"));
-        Duration.ofSeconds(80);
-        return this;
-    }
+//    @Step("Открытие страницы Users_Read_user_with_cars")
+//    public ReadUserWithCarsPage openUsersReadUserWithCarsUrl() {
+//        log.info("Opening Users Read User With Cars page");
+//        open(BASE_URL + "#/read/userInfo");
+//        webdriver().shouldHave(urlContaining("#/read/userInfo"));
+//        Duration.ofSeconds(80);
+//        return this;
+//    }
 
     @Step("Проверка наличия элементов управления на странице")
     public ReadUserWithCarsPage checkNavBar() {

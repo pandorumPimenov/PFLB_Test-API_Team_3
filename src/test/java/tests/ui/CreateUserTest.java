@@ -23,8 +23,6 @@ public class CreateUserTest extends BaseTest {
                 .checkAlert();
 
         createUserPage = menuPage.openCreateUserForm();
-
-        webdriver().shouldHave(urlContaining("/#/create/user"));
     }
 
     @Test(testName = "Создание пользователя с валидными данными",

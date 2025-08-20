@@ -14,8 +14,7 @@ public class LoginPage extends BasePage {
 
     // Кнопки действий
     private final SelenideElement
-            SUBMIT_BUTTON = $x("//button[normalize-space(text()) = 'GO']"),
-            LOG_OUT_BUTTON = $x("//button[normalize-space(text()) = 'LOGOUT']");
+            SUBMIT_BUTTON = $x("//button[normalize-space(text()) = 'GO']");
 
     // Сообщения об ошибках валидации
     private final SelenideElement
