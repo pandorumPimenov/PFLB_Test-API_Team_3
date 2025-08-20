@@ -8,15 +8,13 @@ import java.time.Duration;
 
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
-import static com.codeborne.selenide.WebDriverConditions.urlContaining;
 
 @Log4j2
 public class ReadUserWithCarsPage extends BasePage {
 
     private final SelenideElement
             READ_BUTTON = $x("//button[text()='Read']"),
-            STATUS_SIGN = $x("//button[@class = 'status btn btn-secondary']"),
-            ARROWS_INPUT = $("#spin");
+            STATUS_SIGN = $x("//button[@class = 'status btn btn-secondary']");
 
     // Таблица пользователя
     private final SelenideElement
@@ -35,15 +33,6 @@ public class ReadUserWithCarsPage extends BasePage {
             MARK_CELL = $("table.tableCars td:nth-child(3)"),
             MODEL_CELL = $("table.tableCars td:nth-child(4)"),
             PRICE_CELL = $("table.tableCars td:nth-child(5)");
-
-//    @Step("Открытие страницы Users_Read_user_with_cars")
-//    public ReadUserWithCarsPage openUsersReadUserWithCarsUrl() {
-//        log.info("Opening Users Read User With Cars page");
-//        open(BASE_URL + "#/read/userInfo");
-//        webdriver().shouldHave(urlContaining("#/read/userInfo"));
-//        Duration.ofSeconds(80);
-//        return this;
-//    }
 
     @Step("Проверка наличия элементов управления на странице")
     public ReadUserWithCarsPage checkNavBar() {

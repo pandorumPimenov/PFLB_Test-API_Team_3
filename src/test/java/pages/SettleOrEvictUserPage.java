@@ -10,7 +10,6 @@ import java.time.Duration;
 
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.*;
-import static com.codeborne.selenide.WebDriverConditions.urlContaining;
 
 @Log4j2
 public class SettleOrEvictUserPage extends BasePage {

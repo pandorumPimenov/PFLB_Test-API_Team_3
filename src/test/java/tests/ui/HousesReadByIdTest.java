@@ -7,11 +7,6 @@ import org.testng.IRetryAnalyzer;
 import org.testng.annotations.Test;
 import utils.Retry;
 
-import java.time.Duration;
-
-import static com.codeborne.selenide.Selenide.webdriver;
-import static com.codeborne.selenide.WebDriverConditions.urlContaining;
-
 @Owner("Шишкин Федор")
 public class HousesReadByIdTest extends BaseTest {
 

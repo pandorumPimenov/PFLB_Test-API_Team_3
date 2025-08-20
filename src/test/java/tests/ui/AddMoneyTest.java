@@ -7,8 +7,6 @@ import io.qameta.allure.Owner;
 import org.testng.annotations.Test;
 import utils.Retry;
 
-import static com.codeborne.selenide.Selenide.webdriver;
-import static com.codeborne.selenide.WebDriverConditions.urlContaining;
 import static org.testng.Assert.assertEquals;
 
 @Owner("Пименов Сергей")

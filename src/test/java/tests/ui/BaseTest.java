@@ -38,13 +38,12 @@ public class BaseTest {
     @Parameters({"browser"})
     @BeforeMethod
     public void setup(@Optional("chrome") String browser) {
-        // Очищаем предыдущий драйвер
+
         closeWebDriver();
 
-        // Настройки Selenide
         Configuration.timeout = 20000;
         Configuration.clickViaJs = true;
-        Configuration.headless = true; // Для отладки отключаем headless
+        Configuration.headless = true;
 
         if (browser.equalsIgnoreCase("chrome")) {
             ChromeOptions options = new ChromeOptions();

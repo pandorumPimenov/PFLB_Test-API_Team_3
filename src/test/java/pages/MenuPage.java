@@ -1,5 +1,6 @@
 package pages;
 
+import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
@@ -8,8 +9,6 @@ import java.time.Duration;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
-import static com.codeborne.selenide.WebDriverConditions.urlContaining;
-import static org.assertj.core.error.ShouldBe.shouldBe;
 
 @Log4j2
 public class MenuPage extends BasePage {
@@ -48,6 +47,7 @@ public class MenuPage extends BasePage {
 
     @Step("Открытие меню Users")
     public MenuPage openUsersMenu() {
+        Selenide.sleep(5000);
         USERS_MENU.shouldBe(visible, Duration.ofSeconds(20));
         log.info("Opening Users menu");
         clickElement(USERS_MENU);
@@ -57,6 +57,7 @@ public class MenuPage extends BasePage {
 
     @Step("Открытие меню Houses")
     public MenuPage openHousesMenu() {
+        Selenide.sleep(5000);
         HOUSES_MENU.shouldBe(visible, Duration.ofSeconds(20));
         log.info("Opening Houses menu");
         clickElement(HOUSES_MENU);
@@ -66,6 +67,7 @@ public class MenuPage extends BasePage {
 
     @Step("Открытие меню Cars и ожидание появления выпадающего списка")
     public MenuPage openCarsMenu() {
+        Selenide.sleep(5000);
         log.info("Opening Cars menu");
         CARS_MENU.shouldBe(visible, Duration.ofSeconds(20));
         clickElement(CARS_MENU);
@@ -93,6 +95,7 @@ public class MenuPage extends BasePage {
 
     @Step("Открытие формы покупки/продажи автомобиля")
     public MenuPage openBuyOrSellCar() {
+        Selenide.sleep(5000);
         log.info("Opening Buy or Sell Car form");
         openCarsMenu();
         clickElement(CAR_BUY_OR_SELL);
@@ -102,6 +105,7 @@ public class MenuPage extends BasePage {
 
     @Step("Открытие формы создания пользователя")
     public CreateUserPage openCreateUserForm() {
+        Selenide.sleep(5000);
         log.info("Opening Create User form");
         openUsersMenu();
         clickElement(DROPDOWN_CREATE_NEW);
@@ -111,6 +115,7 @@ public class MenuPage extends BasePage {
 
     @Step("Открытие формы добавления денег")
     public AddMoneyPage openAddMoneyForm() {
+        Selenide.sleep(5000);
         log.info("Opening Add Money form");
         openUsersMenu();
         clickElement(DROPDOWN_ADD_MONEY);
@@ -121,6 +126,7 @@ public class MenuPage extends BasePage {
 
     @Step("Открытие страницы Houses Read One By Id")
     public HousesReadOneByIdPage openHousesReadOneByIdPage() {
+        Selenide.sleep(5000);
         openHousesMenu();
         DROPDOWN_HOUSES_READ_ONE_BY_ID_PAGE
                 .shouldBe(visible, enabled, interactable)

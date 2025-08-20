@@ -6,8 +6,6 @@ import io.qameta.allure.Owner;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-import static com.codeborne.selenide.Selenide.webdriver;
-import static com.codeborne.selenide.WebDriverConditions.urlContaining;
 import static dto.ui.UserBuildFactory.getRandomUserBuild;
 import static dto.ui.UserBuildFactory.*;
 import static org.testng.Assert.assertEquals;
