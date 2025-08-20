@@ -12,9 +12,9 @@ public class DBConnection {
     private static final String USER = cfg.dbUser(),
             PASSWORD = cfg.dbPassword(),
             URL = cfg.dbUrl();
+    private final ResultSet result = null;
     private Connection connect = null;
     private Statement statement = null;
-    private final ResultSet result = null;
 
     public void connect() {
         try {
